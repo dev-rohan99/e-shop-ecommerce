@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { FaSitemap } from 'react-icons/fa';
-import { MdKeyboardArrowDown, MdOutlineCategory, MdOutlineDashboard, MdReportGmailerrorred } from 'react-icons/md';
+import { MdKeyboardArrowDown, MdOutlineCategory, MdOutlineDashboard, MdOutlineSettings, MdReportGmailerrorred } from 'react-icons/md';
 import { TbNewSection, TbTruckDelivery } from 'react-icons/tb';
 import { AiFillShop, AiOutlineTags } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
+import { HiOutlineUsers } from 'react-icons/hi2';
+import { LiaFileInvoiceDollarSolid } from 'react-icons/lia';
 
 
 const DashboardSidebar = () => {
@@ -24,52 +26,34 @@ const DashboardSidebar = () => {
                                 <Link to={"/dashboard"}><MdOutlineDashboard style={{fontSize: "23px"}} /> <span>Dashboard</span></Link>
                             </li>
                             <li> 
-                                <a href=""><FaSitemap style={{fontSize: "23px"}} /> <span>Products</span> <MdKeyboardArrowDown style={{fontSize: "23px"}} /></a>
-                                <ul style={{display: "none"}}>
-                                    <li><Link to={"/add-new-product"}>Add new product</Link></li>
-                                    <li><Link to={"/all-product"}>All product</Link></li>
-                                </ul>
+                                <Link to={"/dashboard/products"}><FaSitemap style={{fontSize: "23px"}} /> <span>Products</span></Link>
                             </li>
                             <li> 
-                                <a href="specialities.html"><MdOutlineCategory style={{fontSize: "23px"}} /> <span>Categories</span>
-                                <MdKeyboardArrowDown style={{fontSize: "23px"}} /></a>
-                                <ul style={{display: "none"}}>
-                                    <li><Link to={"/add-new-product"}>Add new product</Link></li>
-                                    <li><Link to={"/all-product"}>All product</Link></li>
-                                </ul>
+                                <Link to={"/dashboard/categories"}><MdOutlineCategory style={{fontSize: "23px"}} /> <span>Categories</span></Link>
                             </li>
                             <li> 
-                                <a href="doctor-list.html"><AiOutlineTags style={{fontSize: "23px"}} /> <span>Tags</span>
-                                <MdKeyboardArrowDown style={{fontSize: "23px"}} /></a>
-                                <ul style={{display: "none"}}>
-                                    <li><Link to={"/add-new-product"}>Add new product</Link></li>
-                                    <li><Link to={"/all-product"}>All product</Link></li>
-                                </ul>
+                                <Link to={"/dashboard/tags"}><AiOutlineTags style={{fontSize: "23px"}} /> <span>Tags</span></Link>
                             </li>
                             <li> 
-                                <a href="patient-list.html"><AiFillShop style={{fontSize: "23px"}} /> <span>Sellers</span>
-                                <MdKeyboardArrowDown style={{fontSize: "23px"}} /></a>
-                                <ul style={{display: "none"}}>
-                                    <li><Link to={"/add-new-product"}>Add new product</Link></li>
-                                    <li><Link to={"/all-product"}>All product</Link></li>
-                                </ul>
+                                <Link to={"/dashboard/sellers"}><AiFillShop style={{fontSize: "23px"}} /> <span>Sellers</span></Link>
                             </li>
                             <li> 
-                                <a href="reviews.html"><TbTruckDelivery style={{fontSize: "23px"}} /> <span>Drivers</span>
-                                <MdKeyboardArrowDown style={{fontSize: "23px"}} /></a>
-                                <ul style={{display: "none"}}>
-                                    <li><Link to={"/add-new-product"}>Add new product</Link></li>
-                                    <li><Link to={"/all-product"}>All product</Link></li>
-                                </ul>
+                                <Link to={"/dashboard/users"}><HiOutlineUsers style={{fontSize: "23px"}} /> <span>Users</span></Link>
                             </li>
                             <li> 
-                                <a href="profile.html"><CgProfile style={{fontSize: "23px"}} /> <span>Profile</span></a>
+                                <Link to={"/dashboard/drivers"}><TbTruckDelivery style={{fontSize: "23px"}} /> <span>Drivers</span></Link>
                             </li>
                             <li> 
-                                <a href="settings.html"><MdReportGmailerrorred style={{fontSize: "23px"}} /> <span>Settings</span></a>
+                                <Link to={"/dashboard/invoices"}><LiaFileInvoiceDollarSolid style={{fontSize: "23px"}} /> <span>Invoices</span></Link>
                             </li>
                             <li> 
-                                <a href="transactions-list.html"><TbNewSection style={{fontSize: "23px"}} /> <span>Transactions</span></a>
+                                <Link to={"/dashboard/profile"}><CgProfile style={{fontSize: "23px"}} /> <span>Profile</span></Link>
+                            </li>
+                            <li> 
+                                <Link to={"/dashboard/settings"}><MdOutlineSettings style={{fontSize: "23px"}} /> <span>Settings</span></Link>
+                            </li>
+                            <li> 
+                                <Link to={"/dashboard/transactions"}><TbNewSection style={{fontSize: "23px"}} /> <span>Transactions</span></Link>
                             </li>
                             <li className="submenu">
                                 <a href="#"><MdReportGmailerrorred style={{fontSize: "23px"}} /> <span> Reports</span> <MdKeyboardArrowDown style={{fontSize: "23px"}} /></a>

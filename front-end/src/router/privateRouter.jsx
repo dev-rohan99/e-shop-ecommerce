@@ -1,5 +1,7 @@
 import DashboardLayout from "../components/dashboard-layout/DashboardLayout";
-import Dashboard from "../pages/dashboard/Dashboard";
+import Dashboard from "../pages/admin-dashboard/Dashboard";
+import Sellers from "../pages/sellers/Sellers";
+import Tags from "../pages/tags/Tags";
 
 const privateRouter = [
     {
@@ -8,6 +10,14 @@ const privateRouter = [
             {
                 path: "/dashboard",
                 element: <Dashboard />
+            },
+            {
+                path: "/dashboard/tags",
+                element: <Tags />
+            },
+            {
+                path: "/dashboard/sellers",
+                element: <Sellers />
             },
         ]
     }
