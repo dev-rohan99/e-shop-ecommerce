@@ -32,13 +32,13 @@ router.post('/user-login', userLogin);
 // user loggedin
 router.get('/me', loggedInUser);
 // get all user data
-router.get('/users/:id', getAllUser);
+router.get('/:id', getAllUser);
 // user update profile
 router.put('/profile-update/:id', userUpdateProfile);
 // user account activation by email
-router.get('/activate/:token', accountActivation);
+router.get('/user-activation/:token', accountActivation);
 // user account activation by code
-router.post('/code-activate', accountActivateByCode);
+router.post('/code-activation', accountActivateByCode);
 // user account activation resend
 router.post('/resend-activation', resendAccountActivation);
 // user account activation resend
