@@ -21,7 +21,7 @@ export const sendActivationLink = async (to, data) => {
 
         // send activation mail
         await transporter.sendMail({
-            from : `asSunnah <${process.env.MAIL_ID}>`,
+            from : `E-Shop <${process.env.MAIL_ID}>`,
             subject : 'Account activation',
             to : to,
             html: `<div>
@@ -31,7 +31,7 @@ export const sendActivationLink = async (to, data) => {
                 <a style="font-size:'25px'" href="${data.link}">${data.link}</a>
                 <br>
                 <h2 style="font-size:'35px'">Or send code : ${data.code}</h2>
-                <h3 style="font-size:'25px'">Kind Regards, asSunnah Team</h3>
+                <h3 style="font-size:'25px'">Kind Regards, E-shop Team</h3>
             </div>`
         });
 

@@ -31,7 +31,7 @@ mongoDBConnect();
 app.use('/', express.static(path.join(__dirname, '/api/public')));
 
 // routes implement
-app.use('/api/v1/user', userRouter);
+app.use('/api/v1/users', userRouter);
 
 // error handler
 app.use(errorHandler);

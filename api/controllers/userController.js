@@ -4,7 +4,7 @@ import { isEmail, isPhone } from "../utility/validate.js";
 import { genHashPassword, verifyPassword } from "../utility/hash.js";
 import { createToken, verifyToken } from "../utility/token.js";
 import { resetPasswordLink, sendActivationLink } from "../utility/sendMail.js";
-import { getRandomCode } from "../utility/math.js";
+import { getRandomCode, getRandomUsernameCode } from "../utility/math.js";
 
 
 /**
@@ -20,18 +20,16 @@ export const userSignup = async (req, res, next) => {
     try{
 
         // get form data
-        const { name, email, username, password } = req.body;
+        const { name, email, password } = req.body;
 
         // validation
         if( !name || !password ){
             next(createError(400, 'All fields are required!'));
         }
 
-        const userEmail = await userModel.findOne({email : phoneOrEmail});
+        const userEmail = await userModel.findOne({email : email});
         if( userEmail ){
             return next(createError(400, 'This email already exists!'));
-        }else{
-            emailData = phoneOrEmail;
         }
         
         // create access token
@@ -44,15 +42,20 @@ export const userSignup = async (req, res, next) => {
             activationCode = getRandomCode(100000, 999999);
         }
 
+        // genarate username
+        const username = name.toLowerCase().split(" ").join("-");
+        console.log(getRandomUsernameCode(username, 999, 999999));
+
         // create user
         const user = await userModel.create({
             ...req.body,
-            password : genHashPassword(password),
-            accessToken : activationCode
+            username: getRandomUsernameCode(username, 999, 999999),
+            password: genHashPassword(password),
+            accessToken: activationCode
         });
 
         if (!user) {
-            next(createError(404, 'User not created!'));
+            next(createError(404, 'User not created! Please try again.'));
         }
 
         if(user){
@@ -68,7 +71,6 @@ export const userSignup = async (req, res, next) => {
             res.status(200).cookie('otp', user.email, {
                 sameSite : "none",
                 secure: true,
-                domain: "localhost:3000",
                 httpOnly: true,
                 expires : new Date(Date.now() + 1000 * 60 * 60 * 72)
             }).json({
@@ -93,7 +95,7 @@ export const userSignup = async (req, res, next) => {
  * @method POST
  */
 
-export const login = async (req, res, next) => {
+export const userLogin = async (req, res, next) => {
 
     try{
 

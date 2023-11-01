@@ -18,7 +18,6 @@ const userDataSchema = mongoose.Schema({
 
     phone : {
         type : String,
-        unique : true,
         trim : true
     },
 
@@ -97,6 +96,11 @@ const userDataSchema = mongoose.Schema({
 
     accessToken :{
         type : String
+    },
+
+    isActivate :{
+        type : String,
+        default: false
     },
     
     createdAt: {

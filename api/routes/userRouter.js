@@ -1,5 +1,5 @@
 import express from 'express';
-import { loggedInUser, login, userSignup, accountActivation, accountActivateByCode, forgotPassword, passwordResetAction, findUserAccount, resendAccountActivation, sendUserIdentificationOTP, checkPasswordResetOTP, passwordReset, userUpdateProfile, getAllUser } from '../controllers/userController.js';
+import { loggedInUser, userLogin, userSignup, accountActivation, accountActivateByCode, forgotPassword, passwordResetAction, findUserAccount, resendAccountActivation, sendUserIdentificationOTP, checkPasswordResetOTP, passwordReset, userUpdateProfile, getAllUser } from '../controllers/userController.js';
 import multer, { diskStorage } from 'multer';
 import path from "path";
 const router = express.Router();
@@ -28,7 +28,7 @@ const uploadProfilePhoto = multer({ storage : storage }).single('profilePhoto');
 // user register
 router.post('/user-signup', userSignup);
 // user login
-router.post('/login', login);
+router.post('/user-login', userLogin);
 // user loggedin
 router.get('/me', loggedInUser);
 // get all user data
