@@ -832,47 +832,6 @@ export const userUpdateProfile = async (req, res, next) => {
 
 }
 
-/**
- * user featured update
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- * @returns 
- */
-
-export const userFeaturedUpdate = async (req, res, next) => {
-
-    try{
-
-        const {id} = req.params;
-        let featuredImage = [];
-
-        req.files.forEach(data => {
-            featuredImage.push(data.filename);
-        });
-
-        const {featured} = await userModel.findById(id);
-
-        const userUpdate = await userModel.findByIdAndUpdate(id, { featured : [...featured, featuredImage] }, { new : true });
-
-        
-        if(!userUpdate){
-            return next(createError(400, "Profile update failed!"));
-        }
-
-        if(userUpdate){
-            return res.status(200).json({
-                message : "Profile featured updated successfull!",
-                user : userUpdate
-            });
-        }
-
-    }catch(err){
-        return next(err);
-    }
-
-}
-
 
 /**
  * user profile photo update
@@ -917,7 +876,7 @@ export const userProfilePhotoUpdate = async (req, res, next) => {
 export const getAllUser = async (req, res, next) => {
     try{
 
-        const {id} = req.params;
+        const { id } = req.params;
 
         const users = await userModel.find().select("-password").where("_id").ne(id);
 
@@ -939,130 +898,19 @@ export const getAllUser = async (req, res, next) => {
 }
 
 /**
- * add friend request
+ * user logout controller
  * @param {*} req 
  * @param {*} res 
  * @param {*} next 
  * @returns 
  */
 
-export const friendRequstSender = async (req, res, next) => {
+export const userLogout = async (req, res, next) => {
     try{
 
-        const {requester, receiver} = req.params;
-
-        const requesterUser = await userModel.findById(requester);
-        const receiverUser = await userModel.findById(receiver);
-
-        await requesterUser.updateOne({
-            $push : {
-                following : receiver
-            }
-        });
-
-        await receiverUser.updateOne({
-            $push : {
-                friendsRequest : requester
-            }
-        });
-
-        await receiverUser.updateOne({
-            $push : {
-                follower : requester
-            }
-        });
-
-        return res.status(200).json({
-            message : "Friend request sended!",
-            user : requesterUser
-        });
-
-    }catch(err){
-        return next(err);
-    }
-}
-
-/**
- * confirm friend request
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- * @returns 
- */
-
-export const confirmFriendRequst = async (req, res, next) => {
-    try{
-
-        const {receiver, requester} = req.params;
-
-        const receiverUser = await userModel.findById(receiver);
-        const requesterUser = await userModel.findById(requester);
-
-        await requesterUser.updateOne({
-            $push : {
-                friends : receiver
-            }
-        });
-
-        await receiverUser.updateOne({
-            $pull : {
-                friendsRequest : requester
-            }
-        });
-
-        await receiverUser.updateOne({
-            $push : {
-                friends : requester
-            }
-        });
-
-        return res.status(200).json({
-            message : "Friend request accepted!",
-            user : receiverUser
-        });
-
-    }catch(err){
-        return next(err);
-    }
-}
-
-/**
- * cancel friend request
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- * @returns 
- */
-
-export const cancelFriendRequst = async (req, res, next) => {
-    try{
-
-        const {receiver, requester} = req.params;
-
-        const receiverUser = await userModel.findById(receiver);
-        const requesterUser = await userModel.findById(requester);
-
-        await requesterUser.updateOne({
-            $pull : {
-                following : receiver
-            }
-        });
-
-        await receiverUser.updateOne({
-            $pull : {
-                friendsRequest : requester
-            }
-        });
-
-        await receiverUser.updateOne({
-            $pull : {
-                follower : requester
-            }
-        });
-
-        return res.status(200).json({
-            message : "Friend request canceled!",
-            user : receiverUser
+        res.clearCookie("authToken");
+        res.status(200).json({
+            message : "Logout successfully complete!"
         });
 
     }catch(err){
