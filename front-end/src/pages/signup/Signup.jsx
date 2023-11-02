@@ -1,11 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import bannerImg from "../../assets/images/page-banner-1.jpg";
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import { Link } from 'react-router-dom';
+import createToast from '../../utilities/createToast';
+import { isPassword } from '../../utilities/validation';
 
 const Signup = () => {
 
+    const [input, setInput] = useState({
+        name : "",
+        email : "",
+        password : "",
+        rePassword : ""
+    });
+
+    const handleInputChange = (event) => {
+        setInput((prevState) => ({
+            ...prevState,
+            [event.target.name] : event.target.value
+        }));
+    }
+
+    const handleSignupFormSubmit = async (e) => {
+        e.preventDefault();
+        if(!input.name || !input.email || !input.password || !input.rePassword){
+            createToast("All fields are required!", "warn");
+        }else{
+            if(isPassword(input.password)){
+                if(input.password !== input.rePassword){
+                    createToast("Please correct your password carefully!", "warn");
+                }else{
+                    if(input.password === input.rePassword){
+                        
+                    }
+                }
+            }
+        }
+    }
     
     return (
         <>
@@ -38,21 +70,21 @@ const Signup = () => {
                             <form method="POST" id="signup-form" className="signup-form">
                                 <h2 className="form-title pb-20">Create account</h2>
                                 <div className="form-group">
-                                    <input type="text" className="form-input" name="name" id="name" placeholder="Your Name"/>
+                                    <input onChange={handleInputChange} value={input.name} type="text" className="form-input" name="name" id="name" placeholder="Your Name"/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="email" className="form-input" name="email" id="email" placeholder="Your Email"/>
+                                    <input onChange={handleInputChange} value={input.email} type="email" className="form-input" name="email" id="email" placeholder="Your Email"/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-input" name="password" id="password" placeholder="Password"/>
+                                    <input onChange={handleInputChange} value={input.password} type="text" className="form-input" name="password" id="password" placeholder="Password"/>
                                     <span className="zmdi zmdi-eye field-icon toggle-password"></span>
                                 </div>
                                 <div className="form-group">
-                                    <input type="password" className="form-input" name="re_password" id="re_password" placeholder="Repeat your password"/>
+                                    <input onChange={handleInputChange} value={input.rePassword} type="password" className="form-input" id="re_password" placeholder="Repeat your password"/>
                                 </div>
                                 <div className="form-group">
                                     <input type="checkbox" name="agree-term" id="agree-term" className="agree-term" />
-                                    <label htmlFor="agree-term" className="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" className="term-service">Terms of service</a></label>
+                                    <label htmlFor="agree-term" className="label-agree-term ml-2"><span><span></span></span>I agree all statements in  <a href="#" className="term-service">Terms of service</a></label>
                                 </div>
                                 <div className="form-group">
                                     <input type="submit" name="submit" id="submit" className="main-btn register-submit" value="Sign up"/>

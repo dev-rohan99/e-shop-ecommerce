@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from '../../components/footer/Footer';
 import bannerImg from "../../assets/images/page-banner-1.jpg";
 import Header from '../../components/header/Header';
@@ -7,6 +7,21 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
 
+    const [input, setInput] = useState({
+        phoneOrEmail : "",
+        password : ""
+    });
+
+    const handleInputChange = (event) => {
+        setInput((prevState) => ({
+            ...prevState,
+            [event.target.name] : event.target.value
+        }));
+    }
+
+    const handleLoginFormSubmit = async (e) => {
+
+    }
     
     return (
         <>
@@ -36,13 +51,13 @@ const Login = () => {
                 <div className="container">
                     <div className="col-md-8 offset-md-2">
                         <div className="signup-content">
-                            <form method="POST" id="signup-form" className="signup-form">
+                            <form onSubmit={handleLoginFormSubmit} method="POST" id="signup-form" className="signup-form">
                                 <h2 className="form-title pb-20">Login your account</h2>
                                 <div className="form-group">
-                                    <input type="email" className="form-input" name="email" id="email" placeholder="Your Email"/>
+                                    <input onChange={handleInputChange} value={input.phoneOrEmail} type="text" className="form-input" name="email" id="email" placeholder="Your Email"/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-input" name="password" id="password" placeholder="Password"/>
+                                    <input onChange={handleInputChange} value={input.password} type="password" className="form-input" name="password" id="password" placeholder="Password"/>
                                     <span className="zmdi zmdi-eye field-icon toggle-password"></span>
                                 </div>
                                 <div className="form-group">

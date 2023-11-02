@@ -6,7 +6,7 @@
   "scripts": {
     "frontend": "npm run dev --prefix front-end",
     "start": "concurrently \"npm run server\" \"npm run frontend\"",
-    "server": "node api/server.js",
+    "server": "nodemon api/server.js",
     "build": "npm install && npm install --prefix front-end && npm run build --prefix front-end"
   },
   "keywords": [],
