@@ -9,7 +9,7 @@
 const errorHandler = (error, req, res, next) => {
 
     let errorStatus = error.status || 500;
-    let errorMessage = error.message || 'Unknown Errors';
+    let errorMessage = error.message || 'Someting went wrong!';
 
     res.status(errorStatus).json({
         status : errorStatus,

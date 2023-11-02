@@ -2,6 +2,7 @@ import express from 'express';
 import { loggedInUser, userLogin, userSignup, accountActivation, accountActivateByCode, forgotPassword, passwordResetAction, findUserAccount, resendAccountActivation, sendUserIdentificationOTP, checkPasswordResetOTP, passwordReset, userUpdateProfile, getAllUser } from '../controllers/userController.js';
 import multer, { diskStorage } from 'multer';
 import path from "path";
+import { userVerify } from '../middlewares/userVerify.js';
 const router = express.Router();
 
 const __dirname = path.resolve();
@@ -30,11 +31,11 @@ router.post('/user-signup', userSignup);
 // user login
 router.post('/user-login', userLogin);
 // user loggedin
-router.get('/me', loggedInUser);
+router.get('/me', userVerify, loggedInUser);
 // get all user data
 router.get('/:id', getAllUser);
 // user update profile
-router.put('/profile-update/:id', userUpdateProfile);
+router.put('/user-profile-update/:id', userUpdateProfile);
 // user account activation by email
 router.get('/user-activation/:token', accountActivation);
 // user account activation by code

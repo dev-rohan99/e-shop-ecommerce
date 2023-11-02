@@ -121,7 +121,7 @@ export const userLogin = async (req, res, next) => {
                     return next(createError(400, 'Password not matched!'));
                 }else{
     
-                    const token = createToken({id : loginUserForEmail._id}, '365d');
+                    const token = createToken({loginUserForEmail}, process.env.ACCESS_TOKEN_EXPIRE);
                     
                     return res.status(200).cookie('authToken', token).json({
                         message : "User login successfull!",
@@ -153,7 +153,7 @@ export const userLogin = async (req, res, next) => {
                     return next(createError(400, 'Password not matched!'));
                 }else{
     
-                    const token = createToken({id : loginUserForPhone._id}, '365d');
+                    const token = createToken({loginUserForPhone}, '365d');
                     
                     return res.status(200).cookie('authToken', token).json({
                         message : "User login successfull!",
@@ -187,32 +187,15 @@ export const loggedInUser = async (req, res, next) => {
 
     try{
 
-        const authToken = req.headers.authorization;
+        const looggedinUser = await userModel.findById(req.userId);
 
-        if(!authToken){
-            next(createError(400, "Token not found!"));
-        }
-
-        if(authToken){
-            const token = authToken.split(' ')[1]
-            const user = verifyToken(token);
-
-            if(!user){
-                next(createError(400, "Invalid token!"));
-            }
-
-            if(user){
-                const looggedinUser = await userModel.findById(user.id);
-
-                if(!loggedInUser){
-                    next(createError(400, "User not match!"));
-                }else{
-                    res.status(200).json({
-                        message : "User data stable!",
-                        user : looggedinUser
-                    });
-                }
-            }
+        if(!loggedInUser){
+            next(createError(400, "User not match!"));
+        }else{
+            res.status(200).json({
+                message : "User data stable!",
+                user : looggedinUser
+            });
         }
 
     }catch(err){
