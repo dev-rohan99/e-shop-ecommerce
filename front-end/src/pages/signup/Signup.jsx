@@ -27,6 +27,11 @@ const Signup = () => {
         if(!input.name || !input.email || !input.password || !input.rePassword){
             createToast("All fields are required!", "warn");
         }else{
+
+            if(!isPassword(input.password)){
+                createToast("Invalid password! please enter valid password and length should be minimum 6 characters.", "warn");
+            }
+
             if(isPassword(input.password)){
                 if(input.password !== input.rePassword){
                     createToast("Please correct your password carefully!", "warn");
@@ -36,6 +41,7 @@ const Signup = () => {
                     }
                 }
             }
+
         }
     }
     
@@ -67,7 +73,7 @@ const Signup = () => {
                 <div className="container">
                     <div className="col-md-8 offset-md-2">
                         <div className="signup-content">
-                            <form method="POST" id="signup-form" className="signup-form">
+                            <form onSubmit={handleSignupFormSubmit} method="POST" id="signup-form" className="signup-form">
                                 <h2 className="form-title pb-20">Create account</h2>
                                 <div className="form-group">
                                     <input onChange={handleInputChange} value={input.name} type="text" className="form-input" name="name" id="name" placeholder="Your Name"/>
@@ -80,7 +86,7 @@ const Signup = () => {
                                     <span className="zmdi zmdi-eye field-icon toggle-password"></span>
                                 </div>
                                 <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.rePassword} type="password" className="form-input" id="re_password" placeholder="Repeat your password"/>
+                                    <input onChange={handleInputChange} value={input.rePassword} name="rePassword" type="password" className="form-input" id="re_password" placeholder="Repeat your password"/>
                                 </div>
                                 <div className="form-group">
                                     <input type="checkbox" name="agree-term" id="agree-term" className="agree-term" />

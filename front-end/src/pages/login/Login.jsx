@@ -20,7 +20,7 @@ const Login = () => {
     }
 
     const handleLoginFormSubmit = async (e) => {
-
+        e.preventDefault();
     }
     
     return (
