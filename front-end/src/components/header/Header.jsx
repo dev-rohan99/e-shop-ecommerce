@@ -43,9 +43,7 @@ const Header = () => {
                                 <div className="header-right d-flex justify-content-end">
                                     <div className="login-register">
                                         <ul className="mb-0">
-                                            {user ? (<><li className="justThis"><Link to={"/login"}>Login</Link></li>
-                                            <li className="justThis"><Link to={"/signup"}>Signup</Link></li></>) : 
-                                            (<li ref={dropdownRef} className="nav-item dropdown has-arrow">
+                                            {user ? (<li ref={dropdownRef} className="nav-item dropdown has-arrow">
                                                 <a href="" onClick={toggle} className="dropdown-toggle nav-link pr-0" data-toggle="dropdown">
                                                     <span className="user-img"><img className="rounded-circle" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" width="31" alt="Ryan Taylor"/></span>
                                                 </a>
@@ -56,14 +54,16 @@ const Header = () => {
                                                         </div>
                                                         <div className="user-text">
                                                             <h6>Ryan Taylor</h6>
-                                                            <p className="text-muted mb-0">Administrator</p>
+                                                            <p className="text-muted mb-0">{user.role}</p>
                                                         </div>
                                                     </div>
                                                     <a className="dropdown-item text-secondary" href="profile.html">My Profile</a>
                                                     <a className="dropdown-item text-secondary" href="settings.html">Settings</a>
                                                     <a onClick={handleUserLogout} href="" className="dropdown-item text-secondary">Logout</a>
                                                 </div>}
-                                            </li>)}
+                                            </li>) : 
+                                            (<><li className="justThis"><Link to={"/login"}>Login</Link></li>
+                                            <li className="justThis"><Link to={"/signup"}>Signup</Link></li></>)}
                                         </ul>
                                     </div>
                                 </div>

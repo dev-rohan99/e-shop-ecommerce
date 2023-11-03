@@ -49,9 +49,6 @@ const Login = () => {
             createToast(message, "success");
             dispatch(setMessageEmpty());
         }
-        if(user){
-            // navigate("/dashboard");
-        }
     }, [error, message, user]);
     
     return (
