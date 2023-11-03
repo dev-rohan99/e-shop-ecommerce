@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from "react-redux";
 import bannerImg from "../../assets/images/page-banner-1.jpg";
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import { Link } from 'react-router-dom';
 import createToast from '../../utilities/createToast';
 import { isPassword } from '../../utilities/validation';
+import { userSignup } from '../../features/auth/authApiSlice';
 
 const Signup = () => {
 
@@ -14,6 +16,7 @@ const Signup = () => {
         password : "",
         rePassword : ""
     });
+    const dispatch = useDispatch();
 
     const handleInputChange = (event) => {
         setInput((prevState) => ({
@@ -37,7 +40,17 @@ const Signup = () => {
                     createToast("Please correct your password carefully!", "warn");
                 }else{
                     if(input.password === input.rePassword){
-                        
+                        dispatch(userSignup({
+                            name : input.name,
+                            email : input.email,
+                            password : input.password,
+                        }));
+                        setInput({
+                            name : "",
+                            email : "",
+                            password : "",
+                            rePassword : ""
+                        });
                     }
                 }
             }
@@ -82,7 +95,7 @@ const Signup = () => {
                                     <input onChange={handleInputChange} value={input.email} type="email" className="form-input" name="email" id="email" placeholder="Your Email"/>
                                 </div>
                                 <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.password} type="text" className="form-input" name="password" id="password" placeholder="Password"/>
+                                    <input onChange={handleInputChange} value={input.password} type="password" className="form-input" name="password" id="password" placeholder="Password"/>
                                     <span className="zmdi zmdi-eye field-icon toggle-password"></span>
                                 </div>
                                 <div className="form-group">
