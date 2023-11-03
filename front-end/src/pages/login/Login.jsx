@@ -50,7 +50,7 @@ const Login = () => {
             dispatch(setMessageEmpty());
         }
         if(user){
-            navigate("/dashboard");
+            // navigate("/dashboard");
         }
     }, [error, message, user]);
     

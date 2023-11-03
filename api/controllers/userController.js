@@ -121,7 +121,7 @@ export const userLogin = async (req, res, next) => {
                     return next(createError(400, 'Your password not matched!'));
                 }else{
     
-                    const token = createToken({loginUserForEmail}, process.env.ACCESS_TOKEN_EXPIRE);
+                    const token = createToken({user: loginUserForEmail}, process.env.ACCESS_TOKEN_EXPIRE);
                     
                     return res.status(200).cookie('authToken', token, {
                         httpOnly: true,
@@ -159,7 +159,7 @@ export const userLogin = async (req, res, next) => {
                     return next(createError(400, 'Your password not matched!'));
                 }else{
     
-                    const token = createToken({loginUserForPhone}, '365d');
+                    const token = createToken({user: loginUserForPhone}, process.env.ACCESS_TOKEN_EXPIRE);
                     
                     return res.status(200).cookie('authToken', token, {
                         httpOnly: true,
@@ -198,8 +198,8 @@ export const userLogin = async (req, res, next) => {
 export const loggedInUser = async (req, res, next) => {
 
     try{
-
-        const looggedinUser = await userModel.findById(req.userId);
+        console.log(req.userId);
+        const looggedinUser = await userModel.findById(req.userId).select("-password");
 
         if(!loggedInUser){
             next(createError(400, "User not match!"));

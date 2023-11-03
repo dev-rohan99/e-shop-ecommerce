@@ -618,7 +618,7 @@ p {
     margin-left: 25px;
     position: relative;
 }
-.login-register ul li::before {
+.login-register ul li.justThis::before {
     position: absolute;
     content: '/';
     color: #ffc600;

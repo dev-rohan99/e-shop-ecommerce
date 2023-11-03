@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { userLogin, userLogout, userSignup } from "./authApiSlice";
+import { getLoggedinUser, userLogin, userLogout, userSignup } from "./authApiSlice";
 
 
 const authSlice = createSlice({
@@ -43,17 +43,28 @@ const authSlice = createSlice({
             state.error = action.error.message;
         })
         
+        .addCase(getLoggedinUser.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(getLoggedinUser.fulfilled, (state, action) => {
+            state.isSuccess = true;
+            state.isLoading = false;
+            state.user = action.payload.user;
+        }).addCase(getLoggedinUser.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+        
         .addCase(userLogout.pending, (state) => {
             state.isLoading = true;
         }).addCase(userLogout.fulfilled, (state, action) => {
             state.isSuccess = true;
             state.isLoading = false;
-            state.user = action.payload.user;
+            state.user = null;
             state.message = action.payload.message;
         }).addCase(userLogout.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
-        });
+        })
 
     }
 });

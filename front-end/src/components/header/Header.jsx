@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from "../../assets/logo.png";
 import { FaBagShopping } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import useDropdownModalControl from '../../hooks/useDropdownModalControl';
+import { userLogout } from '../../features/auth/authApiSlice';
 
 
 const Header = () => {
 
+    const dispatch = useDispatch();
+    const { error, message, user } = useSelector((state) => state.auth);
+    const { isOpen, toggle, dropdownRef } = useDropdownModalControl();
+
+    const handleUserLogout = (e) => {
+        e.preventDefault();
+        dispatch(userLogout());
+    }
+
+    useEffect(() => {
+        if(user){
+            console.log(user);
+        }
+    }, [user]);
 
     return (
         <>
@@ -14,9 +31,9 @@ const Header = () => {
                 <div className="header-top d-none d-lg-block">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-6">
+                            <div className="col-md-6 d-flex align-items-center">
                                 <div className="header-contact">
-                                    <ul>
+                                    <ul className="mb-0">
                                         <li><i className="fa fa-envelope"></i><a href="#">info@yourmail.com</a></li>
                                         <li><i className="fa fa-phone"></i><span>+0123-456-5678</span></li>
                                     </ul>
@@ -24,20 +41,29 @@ const Header = () => {
                             </div>
                             <div className="col-md-6">
                                 <div className="header-right d-flex justify-content-end">
-                                    <div className="social d-flex">
-                                        <span className="follow-us">Follow Us :</span>
-                                        <ul>
-                                            <li><a href="#"><i className="fa fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i className="fa fa-youtube"></i></a></li>
-                                            <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i className="fa fa-instagram"></i></a></li>
-                                            <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                                        </ul>
-                                    </div>
                                     <div className="login-register">
-                                        <ul>
-                                            <li><Link to={"/login"}>Login</Link></li>
-                                            <li><Link to={"/signup"}>Signup</Link></li>
+                                        <ul className="mb-0">
+                                            {user ? (<><li className="justThis"><Link to={"/login"}>Login</Link></li>
+                                            <li className="justThis"><Link to={"/signup"}>Signup</Link></li></>) : 
+                                            (<li ref={dropdownRef} className="nav-item dropdown has-arrow">
+                                                <a href="" onClick={toggle} className="dropdown-toggle nav-link pr-0" data-toggle="dropdown">
+                                                    <span className="user-img"><img className="rounded-circle" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" width="31" alt="Ryan Taylor"/></span>
+                                                </a>
+                                                {isOpen && <div className="dropdown-menu d-block sjgdhsgdf">
+                                                    <div className="user-header">
+                                                        <div className="avatar avatar-sm">
+                                                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="User Image" className="avatar-img rounded-circle"/>
+                                                        </div>
+                                                        <div className="user-text">
+                                                            <h6>Ryan Taylor</h6>
+                                                            <p className="text-muted mb-0">Administrator</p>
+                                                        </div>
+                                                    </div>
+                                                    <a className="dropdown-item text-secondary" href="profile.html">My Profile</a>
+                                                    <a className="dropdown-item text-secondary" href="settings.html">Settings</a>
+                                                    <a onClick={handleUserLogout} href="" className="dropdown-item text-secondary">Logout</a>
+                                                </div>}
+                                            </li>)}
                                         </ul>
                                     </div>
                                 </div>

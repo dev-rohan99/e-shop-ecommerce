@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import dashLogo from "../../assets/logo.png";
 import { MdOutlineNotificationsNone } from "react-icons/md";
 import useDropdownModalControl from '../../hooks/useDropdownModalControl';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogout } from '../../features/auth/authApiSlice';
 
 const DashboardHeader = () => {
 
     const { isOpen, toggle, dropdownRef } = useDropdownModalControl();
     const { isOpen: isNotification, toggle: toggleNotification, dropdownRef: dropdownNotificationRef } = useDropdownModalControl();
+
+    const dispatch = useDispatch();
+    const { error, message, user } = useSelector((state) => state.auth);
+
+    const handleUserLogout = (e) => {
+        e.preventDefault();
+        dispatch(userLogout());
+    }
+
+    useEffect(() => {
+        if(user){
+            console.log(user);
+        }
+    }, [user]);
 
     return (
         <>
@@ -126,7 +142,7 @@ const DashboardHeader = () => {
                             </div>
                             <a className="dropdown-item" href="profile.html">My Profile</a>
                             <a className="dropdown-item" href="settings.html">Settings</a>
-                            <a className="dropdown-item" href="login.html">Logout</a>
+                            <a className="dropdown-item" onClick={handleUserLogout} href="">Logout</a>
                         </div>}
                     </li>
                     

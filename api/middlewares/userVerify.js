@@ -5,8 +5,8 @@ import jwt from "jsonwebtoken";
 export const userVerify = (req, res, next) => {
 
     try{
-        const authHeader = req.headers.authorization || req.headers.Authorization;
-        const token = authHeader.split(" ")[1];
+        // const authHeader = req.headers.authorization || req.headers.Authorization;
+        const token = req.cookies.authToken;
 
         // Token check
         if( !token ){
@@ -16,9 +16,10 @@ export const userVerify = (req, res, next) => {
             jwt.verify(token, process.env.JWT_SECRECT, async (err, payload) => {
                 if(err) return next(createError(403, 'Token is not valid!'));
                 // if(payload._id !== req.params.id) return next(createError(404, 'You are not be able to access this feture!'));
-                req.userId = payload.id;
-                req.role = payload.role;
-                req.username = payload.username;
+                console.log(payload);
+                req.userId = payload.user._id;
+                req.role = payload.user.role;
+                req.username = payload.user.username;
                 next();
             });
 

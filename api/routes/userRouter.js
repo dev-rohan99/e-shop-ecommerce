@@ -35,7 +35,7 @@ router.get('/me', userVerify, loggedInUser);
 // get all user data
 router.get('/:id', getAllUser);
 // user update profile
-router.put('/user-profile-update/:id', userUpdateProfile);
+router.put('/user-profile-update/:id', userVerify, userUpdateProfile);
 // user account activation by email
 router.get('/user-activation/:token', accountActivation);
 // user account activation by code

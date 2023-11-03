@@ -29,10 +29,23 @@ export const userLogin = createAsyncThunk("auth/userLogin", async (data) => {
     }
 });
 
-export const userLogout = createAsyncThunk("auth/userLogout", async (data) => {
+export const getLoggedinUser = createAsyncThunk("auth/getLoggedinUser", async () => {
     try{
 
-        const response = await axios.post(`${serverUri}/users/user-login`, data, {
+        const response = await axios.get(`${serverUri}/users/me`, {
+            withCredentials: true
+        });
+        return response.data;
+
+    }catch(err){
+        throw new Error(err.response.data.message);
+    }
+});
+
+export const userLogout = createAsyncThunk("auth/userLogout", async () => {
+    try{
+
+        const response = await axios.post(`${serverUri}/users/user-logout`, "", {
             withCredentials: true
         });
         return response.data;
