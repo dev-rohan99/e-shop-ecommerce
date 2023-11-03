@@ -21,7 +21,9 @@ function App() {
 }, [error, message]);
 
   useEffect(() => {
-    dispatch(getLoggedinUser());
+    if(localStorage.getItem("user")){
+      dispatch(getLoggedinUser());
+    }
   }, [dispatch]);
 
   return (

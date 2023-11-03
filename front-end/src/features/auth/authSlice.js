@@ -5,7 +5,7 @@ import { getLoggedinUser, userLogin, userLogout, userSignup } from "./authApiSli
 const authSlice = createSlice({
     name: "auth",
     initialState: {
-        user: {},
+        user: localStorage.getItem("user") ? localStorage.getItem("user") : null,
         isLoading: null,
         isSuccess: null,
         error: null,
@@ -37,11 +37,13 @@ const authSlice = createSlice({
             state.isSuccess = true;
             state.isLoading = false;
             state.user = action.payload.user;
+            localStorage.setItem("user", action.payload.user);
             state.message = action.payload.message;
         }).addCase(userLogin.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
             state.user = null;
+            localStorage.removeItem("user");
         })
         
         .addCase(getLoggedinUser.pending, (state) => {
@@ -54,6 +56,7 @@ const authSlice = createSlice({
             state.isLoading = false;
             state.error = action.error.message;
             state.user = null;
+            localStorage.removeItem("user");
         })
         
         .addCase(userLogout.pending, (state) => {
@@ -63,6 +66,7 @@ const authSlice = createSlice({
             state.isLoading = false;
             state.user = null;
             state.message = action.payload.message;
+            localStorage.removeItem("user");
         }).addCase(userLogout.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
