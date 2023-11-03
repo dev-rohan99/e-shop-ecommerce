@@ -11,10 +11,11 @@ import { userSignup } from '../../features/auth/authApiSlice';
 const Signup = () => {
 
     const [input, setInput] = useState({
-        name : "",
-        email : "",
-        password : "",
-        rePassword : ""
+        name: "",
+        email: "",
+        password: "",
+        rePassword: "",
+        agreement: null
     });
     const dispatch = useDispatch();
 
@@ -29,6 +30,8 @@ const Signup = () => {
         e.preventDefault();
         if(!input.name || !input.email || !input.password || !input.rePassword){
             createToast("All fields are required!", "warn");
+        }else if(!input.agreement){
+            createToast("Please agree all statements in Terms of service!", "warn");
         }else{
 
             if(!isPassword(input.password)){
@@ -46,11 +49,12 @@ const Signup = () => {
                             password : input.password,
                         }));
                         setInput({
-                            name : "",
-                            email : "",
-                            password : "",
-                            rePassword : ""
-                        });
+                            name: "",
+                            email: "",
+                            password: "",
+                            rePassword: ""
+                        })
+                        document.getElementById("signup-form").reset();
                     }
                 }
             }
@@ -102,7 +106,7 @@ const Signup = () => {
                                     <input onChange={handleInputChange} value={input.rePassword} name="rePassword" type="password" className="form-input" id="re_password" placeholder="Repeat your password"/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="checkbox" name="agree-term" id="agree-term" className="agree-term" />
+                                    <input type="checkbox" name="agreement" onChange={handleInputChange} value={true} id="agree-term" className="agree-term" />
                                     <label htmlFor="agree-term" className="label-agree-term ml-2"><span><span></span></span>I agree all statements in  <a href="#" className="term-service">Terms of service</a></label>
                                 </div>
                                 <div className="form-group">
