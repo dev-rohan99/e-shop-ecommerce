@@ -74,7 +74,7 @@ export const userSignup = async (req, res, next) => {
                 httpOnly: true,
                 expires : new Date(Date.now() + 1000 * 60 * 60 * 72)
             }).json({
-                message : "User created successfull!",
+                message : "Thank you for joining us!",
                 user : user
             });
 
@@ -114,17 +114,23 @@ export const userLogin = async (req, res, next) => {
             const loginUserForEmail = await userModel.findOne({email : phoneOrEmail});
             
             if(!loginUserForEmail){
-                return next(createError(400, 'Login user not found!'));
+                return next(createError(400, 'Your data could be not found!'));
             }else{
     
                 if(!verifyPassword(password, loginUserForEmail.password)){
-                    return next(createError(400, 'Password not matched!'));
+                    return next(createError(400, 'Your password not matched!'));
                 }else{
     
                     const token = createToken({loginUserForEmail}, process.env.ACCESS_TOKEN_EXPIRE);
                     
-                    return res.status(200).cookie('authToken', token).json({
-                        message : "User login successfull!",
+                    return res.status(200).cookie('authToken', token, {
+                        httpOnly: true,
+                        secure: (process.env.APP_ENV === "PRODUCTION") ? true : false,
+                        sameSite: "strict",
+                        path: "/",
+                        maxAge: 7 * 24 * 60 * 60 * 1000
+                    }).json({
+                        message : "Welcome back! Lets explore.",
                         user : loginUserForEmail,
                         token : token
                     });
@@ -146,17 +152,23 @@ export const userLogin = async (req, res, next) => {
             const loginUserForPhone = await userModel.findOne({phone : phoneOrEmail});
             
             if(!loginUserForPhone){
-                return next(createError(400, 'Login user not found!'));
+                return next(createError(400, 'Your data could be not found!'));
             }else{
     
                 if(!verifyPassword(password, loginUserForPhone.password)){
-                    return next(createError(400, 'Password not matched!'));
+                    return next(createError(400, 'Your password not matched!'));
                 }else{
     
                     const token = createToken({loginUserForPhone}, '365d');
                     
-                    return res.status(200).cookie('authToken', token).json({
-                        message : "User login successfull!",
+                    return res.status(200).cookie('authToken', token, {
+                        httpOnly: true,
+                        secure: (process.env.APP_ENV === "PRODUCTION") ? true : false,
+                        sameSite: "strict",
+                        path: "/",
+                        maxAge: 7 * 24 * 60 * 60 * 1000
+                    }).json({
+                        message : "Welcome back! Lets explore.",
                         user : loginUserForPhone,
                         token : token
                     });

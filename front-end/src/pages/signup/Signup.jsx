@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import bannerImg from "../../assets/images/page-banner-1.jpg";
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import createToast from '../../utilities/createToast';
 import { isPassword } from '../../utilities/validation';
 import { userSignup } from '../../features/auth/authApiSlice';
+import { setMessageEmpty } from '../../features/auth/authSlice';
 
 const Signup = () => {
 
@@ -18,6 +19,7 @@ const Signup = () => {
         agreement: null
     });
     const dispatch = useDispatch();
+    const { error, message } = useSelector((state) => state.auth);
 
     const handleInputChange = (event) => {
         setInput((prevState) => ({
@@ -61,6 +63,17 @@ const Signup = () => {
 
         }
     }
+
+    useEffect(() => {
+        if(error){
+            createToast(error, "warn");
+            dispatch(setMessageEmpty());
+        }
+        if(message){
+            createToast(message, "success");
+            dispatch(setMessageEmpty());
+        }
+    }, [error, message]);
     
     return (
         <>
