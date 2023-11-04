@@ -1,6 +1,7 @@
 import DashboardLayout from "../components/dashboard-layout/DashboardLayout";
 import Dashboard from "../pages/admin-dashboard/Dashboard";
 import Home from "../pages/home/Home";
+import Profile from "../pages/profile/Profile";
 import Sellers from "../pages/sellers/Sellers";
 import Tags from "../pages/tags/Tags";
 import PrivateGard from "./PrivateGard";
@@ -25,8 +26,8 @@ const privateRouter = [
                         element: <Sellers />
                     },
                     {
-                        path: "/",
-                        element: <Home />
+                        path: "/dashboard/profile",
+                        element: <Profile />
                     },
                 ]
             }

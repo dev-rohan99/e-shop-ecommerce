@@ -4,14 +4,15 @@ import { MdOutlineNotificationsNone } from "react-icons/md";
 import useDropdownModalControl from '../../hooks/useDropdownModalControl';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogout } from '../../features/auth/authApiSlice';
+import useAuthHook from '../../hooks/useAuthHook';
 
-const DashboardHeader = () => {
+const Dashboardheaderssssssssss = () => {
 
     const { isOpen, toggle, dropdownRef } = useDropdownModalControl();
     const { isOpen: isNotification, toggle: toggleNotification, dropdownRef: dropdownNotificationRef } = useDropdownModalControl();
 
     const dispatch = useDispatch();
-    const { error, message, user } = useSelector((state) => state.auth);
+    const { user } = useAuthHook();
 
     const handleUserLogout = (e) => {
         e.preventDefault();
@@ -27,9 +28,9 @@ const DashboardHeader = () => {
     return (
         <>
         
-            <div className="header">
+            <div className="headerssssssssss">
                     
-                <div className="header-left">
+                <div className="headerssssssssss-left">
                     <a href="index.html" className="logo">
                         <img src={dashLogo} alt="Logo"/>
                     </a>
@@ -55,12 +56,12 @@ const DashboardHeader = () => {
                 
                 <ul className="nav user-menu">
 
-                    <li ref={dropdownNotificationRef} className="nav-item dropdown noti-dropdown">
+                    <li ref={dropdownNotificationRef} id='navavav' className="nav-item dropdown noti-dropdown">
                         <a href="" onClick={toggleNotification} className="dropdown-toggle nav-link" data-toggle="dropdown">
                             <MdOutlineNotificationsNone style={{fontSize: "30px"}} /> <span className="badge badge-pill">3</span>
                         </a>
                         {isNotification && <div className="dropdown-menu notifications d-block end-0">
-                            <div className="topnav-dropdown-header">
+                            <div className="topnav-dropdown-headerssssssssss">
                                 <span className="notification-title">Notifications</span>
                                 <a href="javascript:void(0)" className="clear-noti"> Clear All </a>
                             </div>
@@ -131,13 +132,13 @@ const DashboardHeader = () => {
                             <span className="user-img"><img className="rounded-circle" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" width="31" alt="Ryan Taylor"/></span>
                         </a>
                         {isOpen && <div className="dropdown-menu d-block sjgdhsgdf">
-                            <div className="user-header">
+                            <div className="user-headerssssssssss">
                                 <div className="avatar avatar-sm">
                                     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="User Image" className="avatar-img rounded-circle"/>
                                 </div>
                                 <div className="user-text">
-                                    <h6>Ryan Taylor</h6>
-                                    <p className="text-muted mb-0">Administrator</p>
+                                    <h6>{user?.name ? user?.name : "Anounmus"}</h6>
+                                    <p className="text-muted mb-0">{user?.role ? user?.role : "None"}</p>
                                 </div>
                             </div>
                             <a className="dropdown-item" href="profile.html">My Profile</a>
@@ -154,4 +155,4 @@ const DashboardHeader = () => {
     )
 }
 
-export default DashboardHeader
+export default Dashboardheaderssssssssss

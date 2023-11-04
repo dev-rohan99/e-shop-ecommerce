@@ -11,7 +11,7 @@ const Sellers = () => {
             <div className="page-wrapper">
                 <div className="content container-fluid">
 				
-					<div className="page-header">
+					<div className="page-headerssssssssss">
 						<div className="row">
 							<div className="col-sm-12">
 								<h3 className="page-title">List of Doctors</h3>

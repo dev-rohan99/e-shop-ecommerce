@@ -1,28 +1,20 @@
 import React, { useEffect } from 'react';
 import logo from "../../assets/logo.png";
-import { FaBagShopping } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import useDropdownModalControl from '../../hooks/useDropdownModalControl';
+import { useDispatch } from 'react-redux';
 import { userLogout } from '../../features/auth/authApiSlice';
+import useAuthHook from '../../hooks/useAuthHook';
 
 
 const Header = () => {
 
     const dispatch = useDispatch();
-    const { error, message, user } = useSelector((state) => state.auth);
-    const { isOpen, toggle, dropdownRef } = useDropdownModalControl();
+    const { user } = useAuthHook();
 
     const handleUserLogout = (e) => {
         e.preventDefault();
         dispatch(userLogout());
     }
-
-    useEffect(() => {
-        if(user){
-            console.log(user);
-        }
-    }, [user]);
 
     return (
         <>
@@ -38,6 +30,7 @@ const Header = () => {
                                 <div className="dropdown-box">
                                     <a href="#USD">USD</a>
                                     <a href="#EUR">EUR</a>
+                                    <a href="#EUR">BDT</a>
                                 </div>
                             </div>
 
@@ -53,19 +46,27 @@ const Header = () => {
                                     <a href="#FRA">
                                         <img src="https://cdn.pixabay.com/photo/2020/02/21/05/49/bangladesh-4866534_1280.png" alt="FRA Flag" width="14" height="8"
                                             className="dropdown-image" />
-                                        FRA
+                                        BNG
                                     </a>
                                 </div>
                             </div>
 
                             <span className="divider d-lg-show"></span>
-                            <a href="blog.html" className="d-lg-show">Blog</a>
-                            <a href="contact-us.html" className="d-lg-show">Contact Us</a>
-                            <a href="my-account.html" className="d-lg-show">My Account</a>
-                            <Link to="/login" className="d-lg-show login sign-in"><i
-                                    className="w-icon-account"></i>Login</Link>
-                            <span className="delimiter d-lg-show">/</span>
-                            <Link to="/signup" className="ml-0 d-lg-show login register">Sign Up</Link>
+                            <Link to="/blog" className="d-lg-show">Blog</Link>
+                            <Link to="/contact-us" className="d-lg-show">Contact Us</Link>
+                            {
+                                user ? (
+                                    <>
+                                        <Link to="/user-dashboard" className="d-lg-show">My Account</Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link to="/login" className="d-lg-show login sign-in"><i className="w-icon-account"></i>Login</Link>
+                                        <span className="delimiter d-lg-show">/</span>
+                                        <Link to="/signup" className="ml-0 d-lg-show login register">Sign Up</Link>
+                                    </>
+                                )
+                            }
                         </div>
                     </div>
                 </div>

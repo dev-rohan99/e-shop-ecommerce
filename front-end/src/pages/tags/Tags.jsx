@@ -11,7 +11,7 @@ const Tags = () => {
             <div className="page-wrapper">
                 <div className="content container-fluid">
                         
-                    <div className="page-header">
+                    <div className="page-headerssssssssss">
                         <div className="row">
                             <div className="col-sm-7 col-auto">
                                 <h3 className="page-title">Specialities</h3>

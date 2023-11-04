@@ -5,7 +5,6 @@ import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoggedinUser } from "./features/auth/authApiSlice";
-import createToast from "./utilities/createToast";
 import { setMessageEmpty } from "./features/auth/authSlice";
 
 function App() {
@@ -15,6 +14,9 @@ function App() {
   
   useEffect(() => {
     if(error){
+        dispatch(setMessageEmpty());
+    }
+    if(message){
         dispatch(setMessageEmpty());
     }
 }, [error, message]);

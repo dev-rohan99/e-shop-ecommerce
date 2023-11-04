@@ -5841,15 +5841,17 @@ button.bg-danger:hover {
 	width: 240px;
 	z-index: 1;
 	transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
 }
 .headerssssssssss .headerssssssssss-left .logo {
 	display: inline-block;
 	line-height: 60px;
 }
-/* .headerssssssssss .headerssssssssss-left .logo img {
+.headerssssssssss .headerssssssssss-left .logo img {
     max-height: 40px;
     width: auto;
-} */
+}
 .headerssssssssss-left .logo.logo-small {
     display: none;
 }
@@ -5929,6 +5931,7 @@ button.bg-danger:hover {
     align-items: center;
     border-top: 1px solid #e3e3e3;
     padding: 10px 15px;
+    font-size: 13px;
 }
 .user-menu .dropdown-menu .dropdown-item:hover {
 	color: #fff;
@@ -6036,7 +6039,10 @@ button.bg-danger:hover {
 }
 .user-headerssssssssss .user-text h6 {
     margin-bottom: 2px;
-    font-size: 0.9rem;
+    font-size: 14px;
+}
+#navavav {
+    margin-right: 0rem;
 }
 .menu-title {
     color: #a3a3a3;

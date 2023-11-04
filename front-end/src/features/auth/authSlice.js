@@ -77,7 +77,7 @@ const authSlice = createSlice({
 
 
 // selectors
-
+export const getLoggedinUserData = (state) => state.auth;
 // actions
 export const { setMessageEmpty } = authSlice.actions;
 

@@ -15,7 +15,7 @@ const Dashboard = () => {
             
                 <div className="content container-fluid">
                     
-                    <div className="page-header">
+                    <div className="page-headerssssssssss">
                         <div className="row">
                             <div className="col-sm-12">
                                 <h3 className="page-title">Welcome Admin!</h3>
@@ -30,7 +30,7 @@ const Dashboard = () => {
                         <div className="col-xl-3 col-sm-6 col-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <div className="dash-widget-header">
+                                    <div className="dash-widget-headerssssssssss">
                                         <span className="dash-widget-icon text-primary border-primary">
                                             <FaUserFriends style={{fontSize: "35px"}} />
                                         </span>
@@ -50,7 +50,7 @@ const Dashboard = () => {
                         <div className="col-xl-3 col-sm-6 col-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <div className="dash-widget-header">
+                                    <div className="dash-widget-headerssssssssss">
                                         <span className="dash-widget-icon text-success">
                                             <HiMiniIdentification style={{fontSize: "35px"}} />
                                         </span>
@@ -71,7 +71,7 @@ const Dashboard = () => {
                         <div className="col-xl-3 col-sm-6 col-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <div className="dash-widget-header">
+                                    <div className="dash-widget-headerssssssssss">
                                         <span className="dash-widget-icon text-danger border-danger">
                                             <FaMoneyBill1 style={{fontSize: "35px"}} />
                                         </span>
@@ -92,7 +92,7 @@ const Dashboard = () => {
                         <div className="col-xl-3 col-sm-6 col-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <div className="dash-widget-header">
+                                    <div className="dash-widget-headerssssssssss">
                                         <span className="dash-widget-icon text-warning border-warning">
                                             <GiProgression style={{fontSize: "35px"}} />
                                         </span>
@@ -116,7 +116,7 @@ const Dashboard = () => {
                         <div className="col-md-12 col-lg-6">
                         
                             <div className="card card-chart">
-                                <div className="card-header">
+                                <div className="card-headerssssssssss">
                                     <h4 className="card-title">Revenue</h4>
                                 </div>
                                 <div className="card-body">
@@ -128,7 +128,7 @@ const Dashboard = () => {
                         <div className="col-md-12 col-lg-6">
                         
                             <div className="card card-chart">
-                                <div className="card-header">
+                                <div className="card-headerssssssssss">
                                     <h4 className="card-title">Status</h4>
                                 </div>
                                 <div className="card-body">
@@ -143,7 +143,7 @@ const Dashboard = () => {
                         <div className="col-md-6 d-flex">
                         
                             <div className="card card-table flex-fill">
-                                <div className="card-header">
+                                <div className="card-headerssssssssss">
                                     <h4 className="card-title">Doctors List</h4>
                                 </div>
                                 <div className="card-body">
@@ -185,7 +185,7 @@ const Dashboard = () => {
                         <div className="col-md-6 d-flex">
                         
                             <div className="card  card-table flex-fill">
-                                <div className="card-header">
+                                <div className="card-headerssssssssss">
                                     <h4 className="card-title">Patients List</h4>
                                 </div>
                                 <div className="card-body">
@@ -224,7 +224,7 @@ const Dashboard = () => {
                         <div className="col-md-12">
                         
                             <div className="card card-table">
-                                <div className="card-header">
+                                <div className="card-headerssssssssss">
                                     <h4 className="card-title">Appointment List</h4>
                                 </div>
                                 <div className="card-body">
