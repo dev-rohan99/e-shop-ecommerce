@@ -16,11 +16,6 @@ const permissionDataSchema = mongoose.Schema({
         required: true
     },
 
-    access : {
-        type: Array,
-        required: true
-    },
-
     status : {
         type: Boolean,
         default: true

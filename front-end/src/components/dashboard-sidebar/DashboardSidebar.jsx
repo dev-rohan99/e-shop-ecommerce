@@ -6,7 +6,8 @@ import { TbNewSection, TbTruckDelivery } from 'react-icons/tb';
 import { AiFillShop, AiOutlineTags } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { HiOutlineUsers } from 'react-icons/hi2';
-import { LiaFileInvoiceDollarSolid } from 'react-icons/lia';
+import { LiaFileInvoiceDollarSolid, LiaUserCheckSolid } from 'react-icons/lia';
+import { BiAccessibility } from 'react-icons/bi';
 
 
 const DashboardSidebar = () => {
@@ -42,6 +43,12 @@ const DashboardSidebar = () => {
                             </li>
                             <li> 
                                 <Link to={"/dashboard/drivers"}><TbTruckDelivery style={{fontSize: "23px"}} /> <span>Drivers</span></Link>
+                            </li>
+                            <li> 
+                                <Link to={"/dashboard/roles"}><LiaUserCheckSolid style={{fontSize: "23px"}} /> <span>Roles</span></Link>
+                            </li>
+                            <li> 
+                                <Link to={"/dashboard/permissions"}><BiAccessibility style={{fontSize: "23px"}} /> <span>Permissions</span></Link>
                             </li>
                             <li> 
                                 <Link to={"/dashboard/invoices"}><LiaFileInvoiceDollarSolid style={{fontSize: "23px"}} /> <span>Invoices</span></Link>

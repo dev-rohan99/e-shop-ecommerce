@@ -8600,3 +8600,29 @@ table.table-inbox tbody tr.checked {
 		display: none;
 	}
 }
+
+
+.sidebar-inner
+{
+	overflow-y: scroll;
+    background-color: #07294D;
+}
+
+.sidebar-inner::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: transparent;
+	border-radius: 10px;
+}
+
+.sidebar-inner::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: transparent;
+}
+
+.sidebar-inner::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+}
