@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Header from '../../components/header/Header';
 import { useDispatch, useSelector } from 'react-redux';
+import Footer from '../../components/footer/Footer';
+import HeroSection from '../../components/hero-section/HeroSection';
 
 
 const Home = () => {
@@ -18,6 +20,10 @@ const Home = () => {
         <>
         
             <Header/>
+
+            <HeroSection/>
+
+            <Footer/>
         
         </>
     )
