@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { FaSitemap } from 'react-icons/fa';
-import { MdKeyboardArrowDown, MdOutlineCategory, MdOutlineDashboard, MdOutlineSettings, MdReportGmailerrorred } from 'react-icons/md';
+import { MdKeyboardArrowDown, MdOutlineCategory, MdOutlineDashboard, MdOutlineEdgesensorHigh, MdOutlineSettings, MdReportGmailerrorred } from 'react-icons/md';
 import { TbNewSection, TbTruckDelivery } from 'react-icons/tb';
 import { AiFillShop, AiOutlineTags } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
@@ -37,6 +37,9 @@ const DashboardSidebar = () => {
                             </li>
                             <li> 
                                 <Link to={"/dashboard/sellers"}><AiFillShop style={{fontSize: "23px"}} /> <span>Sellers</span></Link>
+                            </li>
+                            <li> 
+                                <Link to={"/dashboard/orders"}><MdOutlineEdgesensorHigh style={{fontSize: "23px"}} /> <span>Orders</span></Link>
                             </li>
                             <li> 
                                 <Link to={"/dashboard/users"}><HiOutlineUsers style={{fontSize: "23px"}} /> <span>Users</span></Link>

@@ -18,7 +18,17 @@ const roleDataSchema = mongoose.Schema({
 
     permissions : {
         type: Array,
-        required: true
+        default: []
+    },
+
+    status : {
+        type: Boolean,
+        default: true
+    },
+
+    trash : {
+        type: Boolean,
+        default: false
     }
 
 }, {

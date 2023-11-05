@@ -1,5 +1,5 @@
 import React from 'react';
-import TagsDataTable from '../../components/tags-data-table/TagsDataTable';
+import TagsDataTable from '../../components/tags-datatable/TagsDataTable';
 
 
 const Tags = () => {

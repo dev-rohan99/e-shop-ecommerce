@@ -1,7 +1,8 @@
 import DashboardLayout from "../components/dashboard-layout/DashboardLayout";
 import Dashboard from "../pages/admin-dashboard/Dashboard";
-import Home from "../pages/home/Home";
+import Permission from "../pages/permission/Permission";
 import Profile from "../pages/profile/Profile";
+import Role from "../pages/role/Role";
 import Sellers from "../pages/sellers/Sellers";
 import Tags from "../pages/tags/Tags";
 import PrivateGard from "./PrivateGard";
@@ -28,6 +29,14 @@ const privateRouter = [
                     {
                         path: "/dashboard/profile",
                         element: <Profile />
+                    },
+                    {
+                        path: "/dashboard/roles",
+                        element: <Role />
+                    },
+                    {
+                        path: "/dashboard/permissions",
+                        element: <Permission />
                     },
                 ]
             }

@@ -5,6 +5,7 @@ import useDropdownModalControl from '../../hooks/useDropdownModalControl';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogout } from '../../features/auth/authApiSlice';
 import useAuthHook from '../../hooks/useAuthHook';
+import { Link } from 'react-router-dom';
 
 const Dashboardheaderssssssssss = () => {
 
@@ -141,8 +142,8 @@ const Dashboardheaderssssssssss = () => {
                                     <p className="text-muted mb-0">{user?.role ? user?.role : "None"}</p>
                                 </div>
                             </div>
-                            <a className="dropdown-item" href="profile.html">My Profile</a>
-                            <a className="dropdown-item" href="settings.html">Settings</a>
+                            <Link className="dropdown-item" to="/dashboard/profile">My Profile</Link>
+                            <Link className="dropdown-item" to="/dashboard/settings">Settings</Link>
                             <a className="dropdown-item" onClick={handleUserLogout} href="">Logout</a>
                         </div>}
                     </li>

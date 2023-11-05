@@ -10,7 +10,6 @@ import "./assets/css/default.css";
 import "./assets/css/magnific-popup.css";
 import "./assets/css/nice-select.css";
 import "./assets/css/animate.css";
-
 import './index.css';
 import "./assets/css/style.min.css";
 import "./assets/css/demo1.min.css";

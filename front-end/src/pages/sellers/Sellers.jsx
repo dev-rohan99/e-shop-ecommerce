@@ -1,5 +1,5 @@
 import React from 'react';
-import SellersDataTable from '../../components/sellers-data-table/SellersDataTable';
+import SellersDataTable from '../../components/sellers-datatable/SellersDataTable';
 
 
 const Sellers = () => {
