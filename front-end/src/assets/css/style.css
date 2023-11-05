@@ -8626,3 +8626,19 @@ table.table-inbox tbody tr.checked {
 	border-radius: 10px;
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
 }
+
+.btn.btn-sm.edit {
+    font-size: 1.3rem;
+    padding: 0.67em 0.7em;
+    text-align: center;
+    border-radius: 3px;
+    background: #2f8cb9a6 !important;
+}
+
+.btn.btn-sm.delete {
+    font-size: 1.3rem;
+    padding: 0.67em 0.7em;
+    text-align: center;
+    border-radius: 3px;
+    background: #e63c3c9c !important;
+}
