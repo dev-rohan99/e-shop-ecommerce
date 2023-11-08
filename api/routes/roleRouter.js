@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.use(userVerify);
 
-router.get('/', getRoles);
+router.get('/all', getRoles);
 router.get('/:id', getSingleRole);
 router.post('/create', createRole);
 router.put('/update/:id', editRole);

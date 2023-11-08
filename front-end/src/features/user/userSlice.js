@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createUserPermission, getAllPermission, updatePermission } from "./userApiSlice";
+import { createUserPermission, deletePermission, getAllPermission, updatePermission } from "./userApiSlice";
 
 
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        permission: null,
-        role: null,
+        permissions: null,
+        roles: null,
         user: null,
         error: null,
         message: null,
@@ -35,7 +35,7 @@ const userSlice = createSlice({
         }).addCase(getAllPermission.fulfilled, (state, action) => {
             state.isLoading = false;
             state.message = action.payload.message;
-            state.permission = action.payload.permissions;
+            state.permissions = action.payload.permissions;
         }).addCase(getAllPermission.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
@@ -46,8 +46,17 @@ const userSlice = createSlice({
         }).addCase(updatePermission.fulfilled, (state, action) => {
             state.isLoading = false;
             state.message = action.payload.message;
-            state.permission = action.payload.permissions;
         }).addCase(updatePermission.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        .addCase(deletePermission.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(deletePermission.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.message = action.payload.message;
+        }).addCase(deletePermission.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
         })
@@ -57,7 +66,7 @@ const userSlice = createSlice({
 
 
 // selectors
-
+export const getAllPermissionData = (state) => state.user;
 // actions
 export const { setUserMessageEmpty } = userSlice.actions;
 

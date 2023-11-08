@@ -26,6 +26,7 @@ const Permission = () => {
 			setInput({
 				name: ""
 			});
+			setModal(false);
 		}
 	}
 
@@ -80,7 +81,7 @@ const Permission = () => {
 				</div>			
 			</div>
 
-			{modal && <Modal title={"Add new role"}  modalClose={setModal}>
+			{modal && <Modal title={"Add new permission"}  modalClose={setModal}>
 				<form onSubmit={handlePermissionCreate}>
 					<div className="row form-row">
 

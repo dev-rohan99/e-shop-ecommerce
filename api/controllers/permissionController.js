@@ -11,16 +11,18 @@ import { makeSlug } from "../utility/makeSlug.js";
  */
 
 
-export const getPermissions = async (req, res, next) => {
+export const getAllPermissions = async (req, res, next) => {
     try{
 
         const permissions = await permissionModel.find();
-
+        
         if(permissions.length === 0){
             return next(createError(404, 'Sorry, permissions data not found!'));
         }
 
-        return res.status(200).json(permissions);
+        res.status(200).json({
+            permissions: permissions
+        });
 
     }catch(err){
         next(err);
