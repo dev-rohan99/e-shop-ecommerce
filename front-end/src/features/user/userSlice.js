@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getLoggedinUser, userLogin, userLogout, userSignup } from "./authApiSlice";
+import { createUserPermission, getAllPermission, updatePermission } from "./userApiSlice";
 
 
-const authSlice = createSlice({
+const userSlice = createSlice({
     name: "user",
     initialState: {
         permission: null,
@@ -13,21 +13,41 @@ const authSlice = createSlice({
         isLoading: null
     },
     reducers: {
-        setMessageEmpty: (state) => {
-            state.isSuccess = null;
+        setUserMessageEmpty: (state) => {
             state.message = null;
             state.error = null;
         }
     },
     extraReducers: (builder) => {
 
-        builder.addCase(userSignup.pending, (state) => {
+        builder.addCase(createUserPermission.pending, (state) => {
             state.isLoading = true;
-        }).addCase(userSignup.fulfilled, (state, action) => {
-            state.isSuccess = true;
+        }).addCase(createUserPermission.fulfilled, (state, action) => {
             state.isLoading = false;
             state.message = action.payload.message;
-        }).addCase(userSignup.rejected, (state, action) => {
+        }).addCase(createUserPermission.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        .addCase(getAllPermission.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(getAllPermission.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.permission = action.payload.permissions;
+        }).addCase(getAllPermission.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        .addCase(updatePermission.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(updatePermission.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.permission = action.payload.permissions;
+        }).addCase(updatePermission.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
         })
@@ -37,8 +57,8 @@ const authSlice = createSlice({
 
 
 // selectors
-export const getLoggedinUserData = (state) => state.auth;
-// actions
-export const { setMessageEmpty } = authSlice.actions;
 
-export default authSlice.reducer;
+// actions
+export const { setUserMessageEmpty } = userSlice.actions;
+
+export default userSlice.reducer;

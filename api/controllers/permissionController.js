@@ -58,6 +58,7 @@ export const createPermission = async (req, res, next) => {
         });
 
         return res.status(201).json({
+            message: "User permission successfully created!",
             permission
         });
 
@@ -119,6 +120,7 @@ export const editPermission = async (req, res, next) => {
         }
 
         return res.status(201).json({
+            message: "User permission successfully updated!",
             permission: updatedPermission
         });
 
@@ -147,6 +149,7 @@ export const deletePermission = async (req, res, next) => {
         }
 
         return res.status(201).json({
+            message: "User permission successfully deleted!",
             permission: deletedPermission
         });
 

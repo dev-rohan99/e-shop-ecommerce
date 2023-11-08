@@ -10,7 +10,7 @@ import { setMessageEmpty } from "./features/auth/authSlice";
 function App() {
 
   const dispatch = useDispatch();
-  const { error, message, user } = useSelector((state) => state.auth);
+  const { error, message } = useSelector((state) => state.auth);
   
   useEffect(() => {
     if(error){

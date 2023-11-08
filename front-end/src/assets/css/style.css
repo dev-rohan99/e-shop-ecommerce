@@ -8642,3 +8642,7 @@ table.table-inbox tbody tr.checked {
     border-radius: 3px;
     background: #e63c3c9c !important;
 }
+
+div#Add_Specialities_details {
+    background: #0000008f;
+}

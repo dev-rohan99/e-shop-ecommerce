@@ -58,6 +58,7 @@ export const createRole = async (req, res, next) => {
         });
 
         return res.status(201).json({
+            message: "User role successfully created!",
             role
         });
 
@@ -119,6 +120,7 @@ export const editRole = async (req, res, next) => {
         }
 
         return res.status(201).json({
+            message: "User role successfully updated!",
             role: updatedRole
         });
 
@@ -147,6 +149,7 @@ export const deleteRole = async (req, res, next) => {
         }
 
         return res.status(201).json({
+            message: "User role successfully deleted!",
             role: deletedRole
         });
 

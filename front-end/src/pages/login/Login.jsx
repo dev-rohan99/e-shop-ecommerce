@@ -34,8 +34,20 @@ const Login = () => {
         }else{
             if(input.rememberPass){
                 dispatch(userLogin({phoneOrEmail: input.phoneOrEmail, password: input.password}));
+                setInput({
+                    phoneOrEmail: "",
+                    password: "",
+                    rememberPass: false
+                })
+                document.getElementById("signup-form").reset();
             }else{
                 dispatch(userLogin({phoneOrEmail: input.phoneOrEmail, password: input.password}));
+                setInput({
+                    phoneOrEmail: "",
+                    password: "",
+                    rememberPass: false
+                })
+                document.getElementById("signup-form").reset();
             }
         }
     }
@@ -49,7 +61,7 @@ const Login = () => {
             createToast(message, "success");
             dispatch(setMessageEmpty());
         }
-    }, [error, message, user]);
+    }, [error, message]);
     
     return (
         <>

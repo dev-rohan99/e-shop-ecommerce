@@ -3,10 +3,10 @@ import axios from "axios";
 import serverUri from "../../utilities/serverUri";
 
 
-export const userSignup = createAsyncThunk("auth/userSignup", async (data) => {
+export const createUserPermission = createAsyncThunk("user/createUserPermission", async (data) => {
     try{
 
-        const response = await axios.post(`${serverUri}/users/user-signup`, data, {
+        const response = await axios.post(`${serverUri}/users/permissions/create`, data, {
             withCredentials: true
         });
         return response.data;
@@ -16,10 +16,10 @@ export const userSignup = createAsyncThunk("auth/userSignup", async (data) => {
     }
 });
 
-export const userLogin = createAsyncThunk("auth/userLogin", async (data) => {
+export const getAllPermission = createAsyncThunk("user/getAllPermission", async () => {
     try{
 
-        const response = await axios.post(`${serverUri}/users/user-login`, data, {
+        const response = await axios.get(`${serverUri}/users/permissions`, {
             withCredentials: true
         });
         return response.data;
@@ -29,10 +29,10 @@ export const userLogin = createAsyncThunk("auth/userLogin", async (data) => {
     }
 });
 
-export const getLoggedinUser = createAsyncThunk("auth/getLoggedinUser", async () => {
+export const getSinglePermission = createAsyncThunk("user/getSinglePermission", async () => {
     try{
 
-        const response = await axios.get(`${serverUri}/users/me`, {
+        const response = await axios.get(`${serverUri}/users/permissions`, {
             withCredentials: true
         });
         return response.data;
@@ -42,10 +42,10 @@ export const getLoggedinUser = createAsyncThunk("auth/getLoggedinUser", async ()
     }
 });
 
-export const userLogout = createAsyncThunk("auth/userLogout", async () => {
+export const updatePermission = createAsyncThunk("user/updatePermission", async (data) => {
     try{
 
-        const response = await axios.post(`${serverUri}/users/user-logout`, "", {
+        const response = await axios.put(`${serverUri}/users/permissions/update`, data, {
             withCredentials: true
         });
         return response.data;
