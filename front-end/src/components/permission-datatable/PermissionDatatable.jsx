@@ -1,16 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import DataTable from 'datatables.net-dt';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPermissionData } from '../../features/user/userSlice';
-import { getAllPermission } from '../../features/user/userApiSlice';
+import { getAllPermission, updatePermission } from '../../features/user/userApiSlice';
 import moment from "moment";
+import useInputControl from '../../hooks/useInputControl';
+import createToast from '../../utilities/createToast';
+import Modal from '../modal/Modal';
 
 
 const PermissionDatatable = () => {
 
+	const [modal, setModal] = useState(false);
 	const dispatch = useDispatch();
     const { permissions } = useSelector(getAllPermissionData);
+	const { input, setInput, handleInputChange } = useInputControl({
+		name: ""
+	});
+
+    const handlePermissionUpdate = (e, id) => {
+		e.preventDefault();
+		if(!input.name){
+			createToast("Please, fill out the form!", "warn");
+		}else{
+			dispatch(updatePermission({id: id, name: input.name}));
+			setInput({
+				name: ""
+			});
+			setModal(false);
+		}
+	}
 
     useEffect(() => {
         new DataTable('.datatable');
@@ -51,7 +71,27 @@ const PermissionDatatable = () => {
                                 </td>
 
                                 <td>
-                                    <button className="btn btn-sm bg-danger-light edit mr-2"><FaRegEdit style={{fontSize: "30px", margin:"auto"}} /></button>
+                                    <button onClick={() => {
+                                                setInput({name: data?.name});
+                                                setModal(true);
+                                            }} className="btn btn-sm bg-danger-light edit mr-2"><FaRegEdit style={{fontSize: "30px", margin:"auto"}} /></button>
+
+                                    {modal && <Modal title={"Permission update"}  modalClose={setModal}>
+                                        <form onSubmit={(e) => handlePermissionUpdate(e, data?._id)}>
+                                            <div className="row form-row alllsds">
+
+                                                <div className="col-12 mx-2">
+                                                    <div className="form-group">
+                                                        <label>Name</label>
+                                                        <input type="text" name="name" value={input.name} onChange={handleInputChange} className="form-control"/>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <button type="submit" className="btn btn-primary btn-block">Update</button>
+                                        </form>
+                                    </Modal>}
+
                                     <button className="btn btn-sm bg-danger-light delete"><FaRegTrashAlt style={{fontSize: "30px", margin:"auto"}} /></button>
                                 </td>
                             </tr>

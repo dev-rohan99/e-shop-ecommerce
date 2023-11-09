@@ -42,10 +42,10 @@ export const getSinglePermission = createAsyncThunk("user/getSinglePermission", 
     }
 });
 
-export const updatePermission = createAsyncThunk("user/updatePermission", async (data, id) => {
+export const updatePermission = createAsyncThunk("user/updatePermission", async (data) => {
     try{
-
-        const response = await axios.put(`${serverUri}/users/permissions/update/${id}`, data, {
+        
+        const response = await axios.put(`${serverUri}/users/permissions/update/${data.id}`, data, {
             withCredentials: true
         });
         return response.data;
@@ -55,7 +55,7 @@ export const updatePermission = createAsyncThunk("user/updatePermission", async 
     }
 });
 
-export const deletePermission = createAsyncThunk("user/updatePermission", async (data, id) => {
+export const deletePermission = createAsyncThunk("user/deletePermission", async (data, id) => {
     try{
 
         const response = await axios.put(`${serverUri}/users/permissions/delete/${id}`, data, {

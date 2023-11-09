@@ -8646,3 +8646,14 @@ table.table-inbox tbody tr.checked {
 div#Add_Specialities_details {
     background: #0000008f;
 }
+
+.row.alllsds {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100% !important;
+}
