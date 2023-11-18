@@ -20,7 +20,9 @@ export const getRoles = async (req, res, next) => {
             return next(createError(404, 'Sorry, roles data not found!'));
         }
 
-        return res.status(200).json(roles);
+        return res.status(200).json({
+            roles
+        });
 
     }catch(err){
         next(err);

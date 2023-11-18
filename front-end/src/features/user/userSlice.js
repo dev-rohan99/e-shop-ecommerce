@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createUserPermission, deletePermission, getAllPermission, updatePermission } from "./userApiSlice";
+import { createUserPermission, createUserRole, deletePermission, deleteRole, getAllPermission, getAllRole, updatePermission, updateRole } from "./userApiSlice";
 
 
 const userSlice = createSlice({
@@ -25,6 +25,7 @@ const userSlice = createSlice({
         }).addCase(createUserPermission.fulfilled, (state, action) => {
             state.isLoading = false;
             state.message = action.payload.message;
+            state.permissions.push(action.payload.permission);
         }).addCase(createUserPermission.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
@@ -56,7 +57,51 @@ const userSlice = createSlice({
         }).addCase(deletePermission.fulfilled, (state, action) => {
             state.isLoading = false;
             state.message = action.payload.message;
+            state.permissions.filters((data) => data._id !== action.payload.permission._id);
         }).addCase(deletePermission.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        builder.addCase(createUserRole.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(createUserRole.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.roles.push(action.payload.role);
+        }).addCase(createUserRole.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        .addCase(getAllRole.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(getAllRole.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.roles = action.payload.roles;
+        }).addCase(getAllRole.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        .addCase(updateRole.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(updateRole.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.message = action.payload.message;
+        }).addCase(updateRole.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        .addCase(deleteRole.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(deleteRole.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.roles.filters((data) => data._id !== action.payload.role._id);
+        }).addCase(deleteRole.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
         })
@@ -67,6 +112,7 @@ const userSlice = createSlice({
 
 // selectors
 export const getAllPermissionData = (state) => state.user;
+export const getAllRoleData = (state) => state.user;
 // actions
 export const { setUserMessageEmpty } = userSlice.actions;
 

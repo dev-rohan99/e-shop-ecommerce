@@ -1,11 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import RoleDatatable from '../../components/role-datatable/RoleDatatable';
 import Modal from '../../components/modal/Modal';
+import useInputControl from '../../hooks/useInputControl';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserMessageEmpty } from '../../features/user/userSlice';
+import createToast from '../../utilities/createToast';
+import { createUserRole } from '../../features/user/userApiSlice';
 
 
 const Role = () => {
 
 	const [modal, setModal] = useState(false);
+	const { input, setInput, handleInputChange } = useInputControl({
+		name: ""
+	});
+	const dispatch = useDispatch();
+    const { error, message } = useSelector((state) => state.user);
+
+	const handleRoleCreate = (e) => {
+		e.preventDefault();
+		if(!input.name){
+			createToast("Please, fill out the form!", "warn");
+		}else{
+			dispatch(createUserRole(input));
+			setInput({
+				name: ""
+			});
+			setModal(false);
+		}
+	}
+
+	useEffect(() => {
+        if(error){
+            createToast(error, "warn");
+            dispatch(setUserMessageEmpty());
+        }
+        if(message){
+            createToast(message, "success");
+            dispatch(setUserMessageEmpty());
+        }
+    }, [error, message]);
 
     return (
         <>
@@ -47,18 +81,18 @@ const Role = () => {
 			</div>
 
 			{modal && <Modal title={"Add new role"} modalClose={setModal}>
-				<form>
+				<form onSubmit={handleRoleCreate}>
 					<div className="row form-row">
 
 						<div className="col-12 mx-2">
 							<div className="form-group">
 								<label>Name</label>
-								<input type="text" className="form-control"/>
+								<input name="name" onChange={handleInputChange} value={input.name} type="text" className="form-control"/>
 							</div>
 						</div>
 						
 					</div>
-					<button type="submit" className="btn btn-primary btn-block">Cretate</button>
+					<button type="submit" className="btn btn-primary btn-block">Create</button>
 				</form>
 			</Modal>}
         

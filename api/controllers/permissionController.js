@@ -132,6 +132,38 @@ export const editPermission = async (req, res, next) => {
 }
 
 /**
+ * edit permission status
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
+ */
+
+export const editPermissionStatus = async (req, res, next) => {
+    try{
+
+        const { id } = req.params;
+        const { status } = req.body;
+
+        const updatedPermission = await permissionModel.findByIdAndUpdate(id, {
+            status: !status
+        }, { new: true });
+
+        if(!updatedPermission){
+            return next(createError(400, "Sorry, permission update failed! Try again."))
+        }
+
+        return res.status(201).json({
+            message: "User permission status successfully updated!",
+            permission: updatedPermission
+        });
+
+    }catch(err){
+        next(err);
+    }
+}
+
+/**
  * delete permission
  * @param {*} req 
  * @param {*} res 

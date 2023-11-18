@@ -3,8 +3,9 @@ import DataTable from 'datatables.net-dt';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPermissionData } from '../../features/user/userSlice';
-import { getAllPermission, updatePermission } from '../../features/user/userApiSlice';
+import { deletePermission, getAllPermission, updatePermission } from '../../features/user/userApiSlice';
 import moment from "moment";
+import Swal from 'sweetalert2';
 import useInputControl from '../../hooks/useInputControl';
 import createToast from '../../utilities/createToast';
 import Modal from '../modal/Modal';
@@ -25,11 +26,29 @@ const PermissionDatatable = () => {
 			createToast("Please, fill out the form!", "warn");
 		}else{
 			dispatch(updatePermission({id: id, name: input.name}));
+            dispatch(getAllPermission());
 			setInput({
 				name: ""
 			});
 			setModal(false);
 		}
+	}
+
+    const handlePermissionDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if(result.isConfirmed){
+                dispatch(deletePermission(id, Swal));
+                dispatch(getAllPermission());
+            }
+        });
 	}
 
     useEffect(() => {
@@ -55,7 +74,7 @@ const PermissionDatatable = () => {
                 </thead>
                 <tbody>
                     {
-                        permissions?.map((data, index) => 
+                        [...permissions]?.reverse().map((data, index) => 
                             <tr key={index}>
                                 <td>
                                     <h2 className="table-avatar">{data?.name}</h2>
@@ -71,10 +90,15 @@ const PermissionDatatable = () => {
                                 </td>
 
                                 <td>
-                                    <button onClick={() => {
-                                                setInput({name: data?.name});
-                                                setModal(true);
-                                            }} className="btn btn-sm bg-danger-light edit mr-2"><FaRegEdit style={{fontSize: "30px", margin:"auto"}} /></button>
+                                    <button 
+                                        onClick={() => {
+                                            setInput({name: data?.name});
+                                            setModal(true);
+                                        }} 
+                                        className="btn btn-sm bg-danger-light edit mr-2"
+                                    >
+                                        <FaRegEdit style={{fontSize: "30px", margin:"auto"}} />
+                                    </button>
 
                                     {modal && <Modal title={"Permission update"}  modalClose={setModal}>
                                         <form onSubmit={(e) => handlePermissionUpdate(e, data?._id)}>
@@ -92,10 +116,10 @@ const PermissionDatatable = () => {
                                         </form>
                                     </Modal>}
 
-                                    <button className="btn btn-sm bg-danger-light delete"><FaRegTrashAlt style={{fontSize: "30px", margin:"auto"}} /></button>
+                                    <button onClick={() => handlePermissionDelete(data?._id)} className="btn btn-sm bg-danger-light delete"><FaRegTrashAlt style={{fontSize: "30px", margin:"auto"}} /></button>
                                 </td>
                             </tr>
-                        ).reverse()
+                        )
                     }
                 </tbody>
             </table>) : (
