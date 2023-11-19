@@ -12,7 +12,11 @@ const useInputControl = (initialState) => {
         }));
     }
 
-    return { input, setInput, handleInputChange };
+    const resetForm = () => {
+        setInput(initialState);
+    }
+
+    return { input, setInput, handleInputChange, resetForm };
 }
 
 export default useInputControl;

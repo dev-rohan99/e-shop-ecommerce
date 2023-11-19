@@ -55,6 +55,19 @@ export const updatePermission = createAsyncThunk("user/updatePermission", async 
     }
 });
 
+export const updatePermissionStatus = createAsyncThunk("user/updatePermissionStatus", async ({id, status}) => {
+    try{
+        
+        const response = await axios.put(`${serverUri}/users/permissions/status-update/${id}`, {status}, {
+            withCredentials: true
+        });
+        return response.data;
+
+    }catch(err){
+        throw new Error(err.response.data.message);
+    }
+});
+
 export const deletePermission = createAsyncThunk("user/deletePermission", async (id, Swal) => {
     try{
 
@@ -107,6 +120,19 @@ export const getSingleRole = createAsyncThunk("user/getSingleRole", async (id) =
     try{
 
         const response = await axios.get(`${serverUri}/users/roles/${id}`, {
+            withCredentials: true
+        });
+        return response.data;
+
+    }catch(err){
+        throw new Error(err.response.data.message);
+    }
+});
+
+export const updateRoleStatus = createAsyncThunk("user/updateRoleStatus", async ({id, status}) => {
+    try{
+        
+        const response = await axios.put(`${serverUri}/users/roles/status-update/${id}`, {status}, {
             withCredentials: true
         });
         return response.data;

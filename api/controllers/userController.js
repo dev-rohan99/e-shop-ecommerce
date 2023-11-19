@@ -198,7 +198,6 @@ export const userLogin = async (req, res, next) => {
 export const loggedInUser = async (req, res, next) => {
 
     try{
-        console.log(req.userId);
         const looggedinUser = await userModel.findById(req.userId).select("-password");
 
         if(!loggedInUser){

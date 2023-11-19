@@ -15,7 +15,7 @@ const Permission = () => {
 		name: ""
 	});
 	const dispatch = useDispatch();
-    const { error, message } = useSelector((state) => state.user);
+    const { error, message, permissions } = useSelector((state) => state.user);
 
 	const handlePermissionCreate = (e) => {
 		e.preventDefault();
@@ -31,15 +31,15 @@ const Permission = () => {
 	}
 
 	useEffect(() => {
-        if(error){
+        if(error && permissions){
             createToast(error, "warn");
             dispatch(setUserMessageEmpty());
         }
-        if(message){
+        if(message && permissions){
             createToast(message, "success");
             dispatch(setUserMessageEmpty());
         }
-    }, [error, message]);
+    }, [error, message, permissions, dispatch]);
 
 
 	return (

@@ -3,7 +3,7 @@ import RoleDatatable from '../../components/role-datatable/RoleDatatable';
 import Modal from '../../components/modal/Modal';
 import useInputControl from '../../hooks/useInputControl';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserMessageEmpty } from '../../features/user/userSlice';
+import { getAllPermissionData, setUserMessageEmpty } from '../../features/user/userSlice';
 import createToast from '../../utilities/createToast';
 import { createUserRole } from '../../features/user/userApiSlice';
 
@@ -11,11 +11,27 @@ import { createUserRole } from '../../features/user/userApiSlice';
 const Role = () => {
 
 	const [modal, setModal] = useState(false);
-	const { input, setInput, handleInputChange } = useInputControl({
-		name: ""
+	const { input, setInput, resetForm, handleInputChange } = useInputControl({
+		name: "",
+		permissions: []
 	});
 	const dispatch = useDispatch();
-    const { error, message } = useSelector((state) => state.user);
+    const { error, message, roles } = useSelector((state) => state.user);
+    const { permissions } = useSelector(getAllPermissionData);
+
+	const handleCheckBoxChange = (e) => {
+		const value = e.target.value;
+		const updatedList = [...input.permissions];
+		if(input.permissions.includes(value)){
+			updatedList.splice(input.permissions.indexOf(value), 1);
+		}else{
+			updatedList.push(value);
+		}
+		setInput((prevState) => ({
+            ...prevState,
+            permissions: updatedList
+        }));
+	}
 
 	const handleRoleCreate = (e) => {
 		e.preventDefault();
@@ -23,23 +39,21 @@ const Role = () => {
 			createToast("Please, fill out the form!", "warn");
 		}else{
 			dispatch(createUserRole(input));
-			setInput({
-				name: ""
-			});
+            resetForm();
 			setModal(false);
 		}
 	}
 
 	useEffect(() => {
-        if(error){
+        if(error && roles && permissions){
             createToast(error, "warn");
             dispatch(setUserMessageEmpty());
         }
-        if(message){
+        if(message && roles && permissions){
             createToast(message, "success");
             dispatch(setUserMessageEmpty());
         }
-    }, [error, message]);
+    }, [error, message, roles, permissions, dispatch]);
 
     return (
         <>
@@ -88,6 +102,17 @@ const Role = () => {
 							<div className="form-group">
 								<label>Name</label>
 								<input name="name" onChange={handleInputChange} value={input.name} type="text" className="form-control"/>
+							</div>
+
+							<div className="row">
+
+								{[...permissions]?.map((data, index) => <div key={`dfvv4477fgg${index}`} className="col-md-3">
+									<div className="form-group">
+										<input type="checkbox" id={"agree-term" + index} className="agree-term" value={data?.name} onChange={handleCheckBoxChange} />
+										<label htmlFor={"agree-term" + index} className="label-agree-term"><span><span></span></span> {data?.name}</label>
+									</div>
+								</div>)}
+
 							</div>
 						</div>
 						

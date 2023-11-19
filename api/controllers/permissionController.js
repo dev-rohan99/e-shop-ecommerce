@@ -16,13 +16,15 @@ export const getAllPermissions = async (req, res, next) => {
 
         const permissions = await permissionModel.find();
         
-        if(permissions.length === 0){
-            return next(createError(404, 'Sorry, permissions data not found!'));
-        }
+        // if(permissions.length === 0){
+        //     return next(createError(404, 'Sorry, permissions data not found!'));
+        // }
 
-        res.status(200).json({
-            permissions: permissions
-        });
+        if(permissions.length > 0){
+            res.status(200).json({
+                permissions: permissions
+            });
+        }
 
     }catch(err){
         next(err);

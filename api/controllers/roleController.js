@@ -16,13 +16,15 @@ export const getRoles = async (req, res, next) => {
 
         const roles = await roleModel.find();
 
-        if(roles.length === 0){
-            return next(createError(404, 'Sorry, roles data not found!'));
-        }
+        // if(roles.length === 0){
+        //     return next(createError(404, 'Sorry, roles data not found!'));
+        // }
 
-        return res.status(200).json({
-            roles
-        });
+        if(roles.length > 0){
+            res.status(200).json({
+                roles
+            });
+        }
 
     }catch(err){
         next(err);
@@ -40,7 +42,7 @@ export const getRoles = async (req, res, next) => {
 export const createRole = async (req, res, next) => {
     try{
 
-        const { name } = req.body;
+        const { name, permissions } = req.body;
 
         if(!name){
             return next(createError(400, 'Please fill out the form!'));
@@ -56,7 +58,8 @@ export const createRole = async (req, res, next) => {
         
         const role = await roleModel.create({
             name,
-            slug
+            slug,
+            permissions
         });
 
         return res.status(201).json({
@@ -124,6 +127,38 @@ export const editRole = async (req, res, next) => {
         return res.status(201).json({
             message: "User role successfully updated!",
             role: updatedRole
+        });
+
+    }catch(err){
+        next(err);
+    }
+}
+
+/**
+ * edit role status
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
+ */
+
+export const editRoleStatus = async (req, res, next) => {
+    try{
+
+        const { id } = req.params;
+        const { status } = req.body;
+
+        const updatedrole = await roleModel.findByIdAndUpdate(id, {
+            status: !status
+        }, { new: true });
+
+        if(!updatedrole){
+            return next(createError(400, "Sorry, permission update failed! Try again."))
+        }
+
+        return res.status(201).json({
+            message: "User permission status successfully updated!",
+            role: updatedrole
         });
 
     }catch(err){

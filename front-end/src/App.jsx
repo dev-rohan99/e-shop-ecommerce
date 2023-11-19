@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoggedinUser } from "./features/auth/authApiSlice";
 import { setMessageEmpty } from "./features/auth/authSlice";
+import { getAllPermission, getAllRole } from "./features/user/userApiSlice";
 
 function App() {
 
@@ -20,6 +21,11 @@ function App() {
         dispatch(setMessageEmpty());
     }
 }, [error, message]);
+
+  useEffect(() => {
+    dispatch(getAllPermission());
+    dispatch(getAllRole());
+  }, [dispatch]);
 
   useEffect(() => {
     if(localStorage.getItem("user")){

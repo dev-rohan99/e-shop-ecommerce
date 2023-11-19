@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createUserPermission, createUserRole, deletePermission, deleteRole, getAllPermission, getAllRole, updatePermission, updateRole } from "./userApiSlice";
+import { createUserPermission, createUserRole, deletePermission, deleteRole, getAllPermission, getAllRole, updatePermission, updatePermissionStatus, updateRole } from "./userApiSlice";
 
 
 const userSlice = createSlice({
@@ -23,6 +23,7 @@ const userSlice = createSlice({
         builder.addCase(createUserPermission.pending, (state) => {
             state.isLoading = true;
         }).addCase(createUserPermission.fulfilled, (state, action) => {
+            state.permissions = state.permissions ?? [];
             state.isLoading = false;
             state.message = action.payload.message;
             state.permissions.push(action.payload.permission);
@@ -47,7 +48,27 @@ const userSlice = createSlice({
         }).addCase(updatePermission.fulfilled, (state, action) => {
             state.isLoading = false;
             state.message = action.payload.message;
+            state.permissions[
+                state.permissions.findIndex(
+                    (data) => data._id == action.payload.permission._id
+                )
+            ] = action.payload.permission;
         }).addCase(updatePermission.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        .addCase(updatePermissionStatus.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(updatePermissionStatus.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.permissions[
+                state.permissions.findIndex(
+                    (data) => data._id == action.payload.permission._id
+                )
+            ] = action.payload.permission;
+        }).addCase(updatePermissionStatus.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
         })
@@ -57,7 +78,7 @@ const userSlice = createSlice({
         }).addCase(deletePermission.fulfilled, (state, action) => {
             state.isLoading = false;
             state.message = action.payload.message;
-            state.permissions.filters((data) => data._id !== action.payload.permission._id);
+            state.permissions = state.permissions.filter((data) => data._id !== action.payload.permission._id);
         }).addCase(deletePermission.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
@@ -66,6 +87,7 @@ const userSlice = createSlice({
         builder.addCase(createUserRole.pending, (state) => {
             state.isLoading = true;
         }).addCase(createUserRole.fulfilled, (state, action) => {
+            state.roles = state.roles ?? [];
             state.isLoading = false;
             state.message = action.payload.message;
             state.roles.push(action.payload.role);
@@ -90,6 +112,9 @@ const userSlice = createSlice({
         }).addCase(updateRole.fulfilled, (state, action) => {
             state.isLoading = false;
             state.message = action.payload.message;
+            state.roles[
+                state.roles.findIndex((data) => data._id == action.payload.role._id)
+            ] = action.payload.role
         }).addCase(updateRole.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
@@ -100,7 +125,7 @@ const userSlice = createSlice({
         }).addCase(deleteRole.fulfilled, (state, action) => {
             state.isLoading = false;
             state.message = action.payload.message;
-            state.roles.filters((data) => data._id !== action.payload.role._id);
+            state.roles = state.roles.filter((data) => data._id !== action.payload.role._id);
         }).addCase(deleteRole.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;

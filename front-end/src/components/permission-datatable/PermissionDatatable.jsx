@@ -3,7 +3,7 @@ import DataTable from 'datatables.net-dt';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPermissionData } from '../../features/user/userSlice';
-import { deletePermission, getAllPermission, updatePermission } from '../../features/user/userApiSlice';
+import { deletePermission, getAllPermission, updatePermission, updatePermissionStatus } from '../../features/user/userApiSlice';
 import moment from "moment";
 import Swal from 'sweetalert2';
 import useInputControl from '../../hooks/useInputControl';
@@ -16,7 +16,7 @@ const PermissionDatatable = () => {
 	const [modal, setModal] = useState(false);
 	const dispatch = useDispatch();
     const { permissions } = useSelector(getAllPermissionData);
-	const { input, setInput, handleInputChange } = useInputControl({
+	const { input, setInput, handleInputChange, resetForm } = useInputControl({
 		name: ""
 	});
 
@@ -26,12 +26,13 @@ const PermissionDatatable = () => {
 			createToast("Please, fill out the form!", "warn");
 		}else{
 			dispatch(updatePermission({id: id, name: input.name}));
-            dispatch(getAllPermission());
-			setInput({
-				name: ""
-			});
+			resetForm();
 			setModal(false);
 		}
+	}
+
+    const handlePermissionStatusUpdate = (status, id) => {
+        dispatch(updatePermissionStatus({id: id, status}));
 	}
 
     const handlePermissionDelete = (id) => {
@@ -54,10 +55,6 @@ const PermissionDatatable = () => {
     useEffect(() => {
         new DataTable('.datatable');
     }, []);
-
-    useEffect(() => {
-        dispatch(getAllPermission());
-    }, [dispatch])
 
     return (
         <>
@@ -84,8 +81,8 @@ const PermissionDatatable = () => {
                                 
                                 <td>
                                     <div className="status-toggle">
-                                        <input type="checkbox" id={`status_${index}`} className="check" value={data?.status}/>
-                                        <label htmlFor={`status_${index}`} className="checktoggle">checkbox</label>
+                                        <input type="checkbox" id={`status_${index}`} className="check" checked={data.status ? true : false}/>
+                                        <label onClick={() => handlePermissionStatusUpdate(data.status, data._id)} htmlFor={`status_${index}`} className="checktoggle">checkbox</label>
                                     </div>
                                 </td>
 

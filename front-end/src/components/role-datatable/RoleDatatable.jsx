@@ -3,8 +3,8 @@ import DataTable from 'datatables.net-dt';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import useInputControl from '../../hooks/useInputControl';
-import { getAllRoleData } from '../../features/user/userSlice';
-import { deleteRole, getAllRole, updateRole } from '../../features/user/userApiSlice';
+import { getAllPermissionData, getAllRoleData } from '../../features/user/userSlice';
+import { deleteRole, getAllPermission, getAllRole, updateRole } from '../../features/user/userApiSlice';
 import Modal from '../modal/Modal';
 import createToast from '../../utilities/createToast';
 import moment from 'moment';
@@ -15,20 +15,34 @@ const RoleDatatable = () => {
     const [modal, setModal] = useState(false);
 	const dispatch = useDispatch();
     const { roles } = useSelector(getAllRoleData);
-    const { input, setInput, handleInputChange } = useInputControl({
-		name: ""
+    const { permissions } = useSelector(getAllPermissionData);
+    const { input, setInput, resetForm, handleInputChange } = useInputControl({
+		name: "",
+		permissions: null
 	});
+
+    const handleCheckBoxChange = (e) => {
+		const value = e.target.value;
+		const updatedList = [...input.permissions];
+		if(input.permissions.includes(value)){
+			updatedList.splice(input.permissions.indexOf(value), 1);
+		}else{
+			updatedList.push(value);
+		}
+		setInput((prevState) => ({
+            ...prevState,
+            permissions: updatedList
+        }));
+	}
 
     const handleRoleUpdate = (e, id) => {
         e.preventDefault();
         if(!input.name){
             createToast("Please, fill out the form!", "warn");
         }else{
-            dispatch(updateRole({id: id, name: input.name}));
+            dispatch(updateRole({id: id, name: input.name, permissions: input.permissions}));
             dispatch(getAllRole());
-            setInput({
-				name: ""
-			});
+            resetForm();
 			setModal(false);
         }
     }
@@ -45,7 +59,7 @@ const RoleDatatable = () => {
         }).then((result) => {
             if(result.isConfirmed){
                 dispatch(deleteRole(id, Swal));
-                dispatch(getAllRole());
+                dispatch(getAllPermission());
             }
         });
     }
@@ -53,10 +67,6 @@ const RoleDatatable = () => {
     useEffect(() => {
         new DataTable('.datatable');
     }, []);
-
-    useEffect(() => {
-        dispatch(getAllRole());
-    }, [dispatch]);
 
     return (
         <>
@@ -80,11 +90,13 @@ const RoleDatatable = () => {
                                     <h2 className="table-avatar">{data?.name}</h2>
                                 </td>
                                 <td>{data?.slug}</td>
-                                {roles?.permissions ? (<td>{data?.permissions?.map((data, index) => 
+                                {data?.permissions ? (<td width={"450px"} style={{display: "flex",justifyContent: "start",flexWrap: "wrap"}}>
+                                    {[...data.permissions]?.map((data, index) => 
                                     
-                                    <span style={{backgroundColor:"#19C1DC",fontSize:"16px"}} className="rounded p-2 text-center" key={index}>{data}</span>
+                                        <span style={{backgroundColor: "rgb(5 125 145)",fontSize: "13px"}} className="rounded mr-1 px-2 py-0 text-center text-white mt-1 mb-1" key={index}>{data}</span>
                                 
-                                )}</td>) : (<td>Not added yet!</td>)}
+                                    )}
+                                </td>) : (<td>Not added yet!</td>)}
                                 <td>{moment(data?.createdAt).format('LLL')}</td>
                                 
                                 <td>
@@ -112,6 +124,18 @@ const RoleDatatable = () => {
                                                 </div>
                                                 
                                             </div>
+
+                                            <div className="row form-row alllsds">
+
+                                                {[...permissions]?.map((data, index) => <div key={`dfvv4477fgg${index}`} className="col-md-3">
+                                                    <div className="form-group">
+                                                        <input type="checkbox" id={"agree-term" + index} className="agree-term" value={data?.name} onChange={handleCheckBoxChange} />
+                                                        <label htmlFor={"agree-term" + index} className="label-agree-term"><span><span></span></span> {data?.name}</label>
+                                                    </div>
+                                                </div>)}
+
+                                            </div>
+
                                             <button type="submit" className="btn btn-primary btn-block">Update</button>
                                         </form>
                                     </Modal>}
