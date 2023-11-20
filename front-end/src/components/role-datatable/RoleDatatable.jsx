@@ -20,29 +20,31 @@ const RoleDatatable = () => {
 		name: "",
 		permissions: null
 	});
+    const { input: roleInput, setInput: setRoleInput, resetForm: resetRoleForm, handleInputChange: handleEditRoleChange } = useInputControl({});
 
     const handleCheckBoxChange = (e) => {
 		const value = e.target.value;
-		const updatedList = [...input.permissions];
-		if(input.permissions.includes(value)){
-			updatedList.splice(input.permissions.indexOf(value), 1);
+		const updatedList = [...roleInput.permissions];
+		if(roleInput.permissions.includes(value)){
+			updatedList.splice(roleInput.permissions.indexOf(value), 1);
 		}else{
 			updatedList.push(value);
 		}
-		setInput((prevState) => ({
+		setRoleInput((prevState) => ({
             ...prevState,
             permissions: updatedList
         }));
 	}
 
-    const handleRoleUpdate = (e, id) => {
-        e.preventDefault();
+    const handleRoleUpdate = (id) => {
+        setModal(true);
+        const roleFind = roles.find((data) => data._id === id);
+        setRoleInput(roleFind);
         if(!input.name){
             createToast("Please, fill out the form!", "warn");
         }else{
             dispatch(updateRole({id: id, name: input.name, permissions: input.permissions}));
-            dispatch(getAllRole());
-            resetForm();
+            resetRoleForm();
 			setModal(false);
         }
     }
@@ -107,19 +109,16 @@ const RoleDatatable = () => {
                                 </td>
                                 
                                 <td>
-                                    <button onClick={() => {
-                                            setInput({name: data?.name});
-                                            setModal(true);
-                                        }} className="btn btn-sm bg-danger-light edit mr-2"><FaRegEdit style={{fontSize: "30px", margin:"auto"}} /></button>
+                                    <button onClick={() => handleRoleUpdate(data?._id)} className="btn btn-sm bg-danger-light edit mr-2"><FaRegEdit style={{fontSize: "30px", margin:"auto"}} /></button>
 
                                     {modal && <Modal title={"Role update"}  modalClose={setModal}>
-                                        <form onSubmit={(e) => handleRoleUpdate(e, data?._id)}>
+                                        <form>
                                             <div className="row form-row alllsds">
 
                                                 <div className="col-12 mx-2">
                                                     <div className="form-group">
                                                         <label>Name</label>
-                                                        <input type="text" name="name" value={input.name} onChange={handleInputChange} className="form-control"/>
+                                                        <input type="text" name="name" value={roleInput.name} onChange={handleEditRoleChange} className="form-control"/>
                                                     </div>
                                                 </div>
                                                 
@@ -127,9 +126,9 @@ const RoleDatatable = () => {
 
                                             <div className="row form-row alllsds">
 
-                                                {[...permissions]?.map((data, index) => <div key={`dfvv4477fgg${index}`} className="col-md-3">
+                                                {permissions?.map((data, index) => <div key={`dfvv4477fgg${index}`} className="col-md-3">
                                                     <div className="form-group">
-                                                        <input type="checkbox" id={"agree-term" + index} className="agree-term" value={data?.name} onChange={handleCheckBoxChange} />
+                                                        <input checked={roleInput?.permissions?.includes(data?.name)} type="checkbox" id={"agree-term" + index} className="agree-term" value={data?.name} onChange={handleCheckBoxChange} />
                                                         <label htmlFor={"agree-term" + index} className="label-agree-term"><span><span></span></span> {data?.name}</label>
                                                     </div>
                                                 </div>)}

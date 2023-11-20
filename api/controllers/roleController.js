@@ -112,7 +112,7 @@ export const editRole = async (req, res, next) => {
     try{
 
         const { id } = req.params;
-        const { name } = req.body;
+        const { name, permissions } = req.body;
         const slug = makeSlug(name);
 
         const updatedRole = await roleModel.findByIdAndUpdate(id, {
