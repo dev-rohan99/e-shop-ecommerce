@@ -4,9 +4,8 @@ import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import useInputControl from '../../hooks/useInputControl';
 import { getAllPermissionData, getAllRoleData } from '../../features/user/userSlice';
-import { deleteRole, getAllPermission, getAllRole, updateRole } from '../../features/user/userApiSlice';
+import { deleteRole, getAllPermission, updateRole } from '../../features/user/userApiSlice';
 import Modal from '../modal/Modal';
-import createToast from '../../utilities/createToast';
 import moment from 'moment';
 import Swal from 'sweetalert2';
 
@@ -17,20 +16,20 @@ const RoleDatatable = () => {
     const { roles } = useSelector(getAllRoleData);
     const { permissions } = useSelector(getAllPermissionData);
     const { input, setInput, resetForm, handleInputChange } = useInputControl({
-		name: "",
-		permissions: null
-	});
-    const { input: roleInput, setInput: setRoleInput, resetForm: resetRoleForm, handleInputChange: handleEditRoleChange } = useInputControl({});
+        id: "",
+        name: "",
+        permissions: null
+    });
 
     const handleCheckBoxChange = (e) => {
 		const value = e.target.value;
-		const updatedList = [...roleInput.permissions];
-		if(roleInput.permissions.includes(value)){
-			updatedList.splice(roleInput.permissions.indexOf(value), 1);
+		const updatedList = [...input.permissions];
+		if(input.permissions.includes(value)){
+			updatedList.splice(input.permissions.indexOf(value), 1);
 		}else{
 			updatedList.push(value);
 		}
-		setRoleInput((prevState) => ({
+		setInput((prevState) => ({
             ...prevState,
             permissions: updatedList
         }));
@@ -39,13 +38,17 @@ const RoleDatatable = () => {
     const handleRoleEdit = (id) => {
         setModal(true);
         const roleFind = roles.find((data) => data._id === id);
-        setRoleInput(roleFind);
+        setInput({
+            id: roleFind._id,
+            name: roleFind.name,
+            permissions: roleFind.permissions
+        });
     }
 
     const handleRoleUpdate = (e) => {
         e.preventDefault();
-        dispatch(updateRole(roleInput));
-        resetRoleForm();
+        dispatch(updateRole(input));
+        resetForm();
         setModal(false);
     }
 
@@ -118,7 +121,7 @@ const RoleDatatable = () => {
                                                 <div className="col-12 mx-2">
                                                     <div className="form-group">
                                                         <label>Name</label>
-                                                        <input type="text" name="name" value={roleInput.name} onChange={handleEditRoleChange} className="form-control"/>
+                                                        <input type="text" name="name" value={input.name} onChange={handleInputChange} className="form-control"/>
                                                     </div>
                                                 </div>
                                                 
@@ -128,7 +131,7 @@ const RoleDatatable = () => {
 
                                                 {permissions?.map((data, index) => <div key={`dfvv4477fgg${index}`} className="col-md-3">
                                                     <div className="form-group">
-                                                        <input checked={roleInput?.permissions?.includes(data?.name)} type="checkbox" id={"agree-term" + index} className="agree-term" value={data?.name} onChange={handleCheckBoxChange} />
+                                                        <input checked={input?.permissions?.includes(data?.name)} type="checkbox" id={"agree-term" + index} className="agree-term" value={data?.name} onChange={handleCheckBoxChange} />
                                                         <label htmlFor={"agree-term" + index} className="label-agree-term"><span><span></span></span> {data?.name}</label>
                                                     </div>
                                                 </div>)}

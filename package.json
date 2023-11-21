@@ -4,13 +4,14 @@
   "main": "api/server.js",
   "type": "module",
   "scripts": {
-    "frontend": "npm run dev --prefix front-end",
-    "start": "concurrently \"npm run server\" \"npm run frontend\"",
-    "server": "node api/server.js",
-    "build": "npm install && npm install --prefix front-end && npm run build --prefix front-end"
+    "frontend-dashboard": "npm run dev --prefix frontend-dashboard",
+    "frontend-shop": "npm run dev --prefix frontend-shop",
+    "start": "concurrently \"npm run server\" \"npm run frontend-dashboard\" \"npm run frontend-shop\"",
+    "server": "nodemon api/server.js",
+    "build": "npm install && npm install --prefix frontend-dashboard && npm run build --prefix frontend-dashboard && npm install --prefix frontend-shop && npm run build --prefix frontend-shop"
   },
   "keywords": [],
-  "author": "",
+  "author": "Rohan Mostofa Abir",
   "license": "ISC",
   "description": "",
   "dependencies": {
