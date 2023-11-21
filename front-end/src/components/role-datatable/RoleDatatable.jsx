@@ -36,17 +36,17 @@ const RoleDatatable = () => {
         }));
 	}
 
-    const handleRoleUpdate = (id) => {
+    const handleRoleEdit = (id) => {
         setModal(true);
         const roleFind = roles.find((data) => data._id === id);
         setRoleInput(roleFind);
-        if(!input.name){
-            createToast("Please, fill out the form!", "warn");
-        }else{
-            dispatch(updateRole({id: id, name: input.name, permissions: input.permissions}));
-            resetRoleForm();
-			setModal(false);
-        }
+    }
+
+    const handleRoleUpdate = (e) => {
+        e.preventDefault();
+        dispatch(updateRole(roleInput));
+        resetRoleForm();
+        setModal(false);
     }
 
     const handleRoleDelete = (id) => {
@@ -109,10 +109,10 @@ const RoleDatatable = () => {
                                 </td>
                                 
                                 <td>
-                                    <button onClick={() => handleRoleUpdate(data?._id)} className="btn btn-sm bg-danger-light edit mr-2"><FaRegEdit style={{fontSize: "30px", margin:"auto"}} /></button>
+                                    <button onClick={() => handleRoleEdit(data?._id)} className="btn btn-sm bg-danger-light edit mr-2"><FaRegEdit style={{fontSize: "30px", margin:"auto"}} /></button>
 
                                     {modal && <Modal title={"Role update"}  modalClose={setModal}>
-                                        <form>
+                                        <form onSubmit={handleRoleUpdate}>
                                             <div className="row form-row alllsds">
 
                                                 <div className="col-12 mx-2">
@@ -153,4 +153,4 @@ const RoleDatatable = () => {
     )
 }
 
-export default RoleDatatable
+export default RoleDatatable;

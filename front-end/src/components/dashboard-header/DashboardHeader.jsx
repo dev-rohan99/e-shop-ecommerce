@@ -20,11 +20,11 @@ const Dashboardheaderssssssssss = () => {
         dispatch(userLogout());
     }
 
-    useEffect(() => {
-        if(user){
-            console.log(user);
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     if(user){
+    //         console.log(user);
+    //     }
+    // }, [user]);
 
     return (
         <>

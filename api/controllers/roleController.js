@@ -113,18 +113,23 @@ export const editRole = async (req, res, next) => {
 
         const { id } = req.params;
         const { name, permissions } = req.body;
-        const slug = makeSlug(name);
+     
+        if(!name){
+            return next(createError(400, "Sorry, name field is required!"));
+        }
 
         const updatedRole = await roleModel.findByIdAndUpdate(id, {
             ...req.body,
-            slug
+            name: name,
+            slug: makeSlug(name),
+            permissions: permissions
         }, { new: true });
 
         if(!updatedRole){
-            return next(createError(400, "Sorry, Role update failed! Try again."))
+            return next(createError(400, "Sorry, Role update failed! Try again."));
         }
 
-        return res.status(201).json({
+        res.status(201).json({
             message: "User role successfully updated!",
             role: updatedRole
         });

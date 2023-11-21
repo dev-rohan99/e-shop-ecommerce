@@ -142,10 +142,10 @@ export const updateRoleStatus = createAsyncThunk("user/updateRoleStatus", async 
     }
 });
 
-export const updateRole = createAsyncThunk("user/updateRole", async ({id, name}) => {
+export const updateRole = createAsyncThunk("user/updateRole", async (data) => {
     try{
         
-        const response = await axios.put(`${serverUri}/users/roles/update/${id}`, {name}, {
+        const response = await axios.put(`${serverUri}/users/roles/update/${data._id}`, {data}, {
             withCredentials: true
         });
         return response.data;
