@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-// import bannerImg from "../../assets/images/page-banner-1.jpg";
-import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
 import { Link } from 'react-router-dom';
 import createToast from '../../utilities/createToast';
 import { isPassword } from '../../utilities/validation';
@@ -78,63 +75,38 @@ const Signup = () => {
     return (
         <>
 
-            <Header/>
-        
-            {/* <section id="page-banner" className="pt-110 pb-110 bg_cover" data-overlay="8" style={{backgroundImage: `url(${bannerImg})`}}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="page-banner-cont">
-                                <h2>Signup</h2>
-                                <nav aria-label="breadcrumb">
-                                    <ol className="breadcrumb">
-                                        <li className="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li className="breadcrumb-item active" aria-current="page">Signup</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> */}
-
 
             <section className="signup pt-105 pb-120 gray-bg">
                 <div className="container">
-                    <div className="col-md-8 offset-md-2">
-                        <div className="signup-content">
-                            <form onSubmit={handleSignupFormSubmit} method="POST" id="signup-form" className="signup-form">
-                                <h2 className="form-title pb-20">Create account</h2>
+                    <div className="col-md-5 mx-auto shadow-lg p-5">
+                        <div className="tab-content">
+                            <div className="tab-pane active" id="sign-in">
                                 <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.name} type="text" className="form-input" name="name" id="name" placeholder="Your Name"/>
+                                    <label>Email address *</label>
+                                    <input type="text" className="form-control" name="email" id="username" required={true}/>
                                 </div>
-                                <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.email} type="email" className="form-input" name="email" id="email" placeholder="Your Email"/>
+                                <div className="form-group mb-0">
+                                    <label>Password *</label>
+                                    <input type="text" className="form-control" name="password" id="password" required={true} />
                                 </div>
-                                <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.password} type="password" className="form-input" name="password" id="password" placeholder="Password"/>
-                                    <span className="zmdi zmdi-eye field-icon toggle-password"></span>
+                                <div className="form-checkbox d-flex align-items-center justify-content-between">
+                                    <input type="checkbox" className="custom-checkbox" id="remember" name="remember" required={true}/>
+                                    <label htmlFor="remember">Remember me</label>
+                                    <a href="#">Last your password?</a>
                                 </div>
-                                <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.rePassword} name="rePassword" type="password" className="form-input" id="re_password" placeholder="Repeat your password"/>
-                                </div>
-                                <div className="form-group">
-                                    <input type="checkbox" name="agreement" onChange={handleInputChange} value={true} id="agree-term" className="agree-term" />
-                                    <label htmlFor="agree-term" className="label-agree-term ml-2"><span><span></span></span>I agree all statements in  <a href="#" className="term-service">Terms of service</a></label>
-                                </div>
-                                <div className="form-group">
-                                    <input type="submit" name="submit" id="submit" className="main-btn register-submit" value="Sign up"/>
-                                </div>
-                            </form>
-                            <p className="loginhere">
-                                Have already an account ? <Link to="/login" className="loginhere-link">Login here</Link>
-                            </p>
+                                <a href="#" className="btn btn-primary">Sign In</a>
+                            </div>
+                        </div>
+                        <p className="text-center">Sign in with social account</p>
+                        <div className="social-icons social-icon-border-color d-flex justify-content-center">
+                            <a href="#" className="social-icon social-facebook w-icon-facebook"></a>
+                            <a href="#" className="social-icon social-twitter w-icon-twitter"></a>
+                            <a href="#" className="social-icon social-google fab fa-google"></a>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <Footer/>
         
         </>
     )

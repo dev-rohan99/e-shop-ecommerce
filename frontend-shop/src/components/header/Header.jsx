@@ -11,10 +11,10 @@ const Header = () => {
     const dispatch = useDispatch();
     const { user } = useAuthHook();
 
-    // const handleUserLogout = (e) => {
-    //     e.preventDefault();
-    //     dispatch(userLogout());
-    // }
+    const handleUserLogout = (e) => {
+        e.preventDefault();
+        dispatch(userLogout());
+    }
 
     return (
         <>
