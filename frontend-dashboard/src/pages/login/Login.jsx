@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Footer from '../../components/footer/Footer';
-import bannerImg from "../../assets/images/page-banner-1.jpg";
-import Header from '../../components/header/Header';
+import dashLogo from "../../assets/logo.png";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import createToast from '../../utilities/createToast';
@@ -66,60 +64,50 @@ const Login = () => {
     return (
         <>
             
-            <Header/>
-        
-            <section id="page-banner" className="pt-110 pb-110 bg_cover" data-overlay="8" style={{backgroundImage: `url(${bannerImg})`}}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="page-banner-cont">
-                                <h2>Login</h2>
-                                <nav aria-label="breadcrumb">
-                                    <ol className="breadcrumb">
-                                        <li className="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li className="breadcrumb-item active" aria-current="page">Login</li>
-                                    </ol>
-                                </nav>
+            <div className="main-wrapper login-body">
+                <div className="login-wrapper">
+                    <div className="container">
+                        <div className="loginbox">
+                            <div className="login-left">
+                                <h1 className="text-center font-weight-bold font-size-lg text-white">E-shop</h1>
+                            </div>
+                            <div className="login-right">
+                                <div className="login-right-wrap">
+                                    <h1>Signup</h1>
+                                    <p className="account-subtitle">Access to our dashboard</p>
+                                    
+                                    <form onSubmit={handleLoginFormSubmit}>
+                                        <div className="form-group">
+                                            <input name="phoneOrEmail" value={input.phoneOrEmail} onChange={handleInputChange} className="form-control" type="email" placeholder="Email"/>
+                                        </div>
+                                        <div className="form-group">
+                                            <input name="password" value={input.password} onChange={handleInputChange} className="form-control" type="password" placeholder="Password"/>
+                                        </div>
+                                        <div className="form-group mb-0">
+                                            <button className="btn btn-danger btn-block" type="submit">Login</button>
+                                        </div>
+                                    </form>
+                                    
+                                    <div className="login-or">
+                                        <span className="or-line"></span>
+                                        <span className="span-or">or</span>
+                                    </div>
+                                    
+                                    <div className="social-login">
+                                        <span>Login with</span>
+                                        <a href="#" className="facebook"><i className="fa fa-facebook"></i></a><a href="#" className="google"><i className="fa fa-google"></i></a>
+                                    </div>
+                                    
+                                    <div className="text-center dont-have">Don't have an account? <Link to="/Signup">Signup</Link></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-
-            <section className="signup pt-105 pb-120 gray-bg">
-                <div className="container">
-                    <div className="col-md-8 offset-md-2">
-                        <div className="signup-content">
-                            <form onSubmit={handleLoginFormSubmit} method="POST" id="signup-form" className="signup-form">
-                                <h2 className="form-title pb-20">Login your account</h2>
-                                <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.phoneOrEmail} type="text" className="form-input" name="phoneOrEmail" id="email" placeholder="Your Email"/>
-                                </div>
-                                <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.password} type="password" className="form-input" name="password" id="password" placeholder="Password"/>
-                                    <span className="zmdi zmdi-eye field-icon toggle-password"></span>
-                                </div>
-                                <div className="form-group">
-                                    <input type="checkbox" name="rememberPass" value={true} id="agree-term" className="agree-term" />
-                                    <label htmlFor="agree-term" className="label-agree-term"><span><span></span></span> Remember password</label>
-                                </div>
-                                <div className="form-group">
-                                    <input type="submit" name="submit" id="submit" className="main-btn register-submit" value="Login"/>
-                                </div>
-                            </form>
-                            <p className="loginhere">
-                                Have already an account ? <Link to="/signup" className="loginhere-link">Signup here</Link>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <Footer/>
+            </div>
 
         </>
     )
 }
 
-export default Login
+export default Login;

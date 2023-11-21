@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import bannerImg from "../../assets/images/page-banner-1.jpg";
-import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
+import { useDispatch, useSelector } from "react-redux"; 
 import { Link } from 'react-router-dom';
 import createToast from '../../utilities/createToast';
 import { isPassword } from '../../utilities/validation';
@@ -78,63 +75,53 @@ const Signup = () => {
     return (
         <>
 
-            <Header/>
-        
-            <section id="page-banner" className="pt-110 pb-110 bg_cover" data-overlay="8" style={{backgroundImage: `url(${bannerImg})`}}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="page-banner-cont">
-                                <h2>Signup</h2>
-                                <nav aria-label="breadcrumb">
-                                    <ol className="breadcrumb">
-                                        <li className="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li className="breadcrumb-item active" aria-current="page">Signup</li>
-                                    </ol>
-                                </nav>
+            <div className="main-wrapper login-body">
+                <div className="login-wrapper">
+                    <div className="container">
+                        <div className="loginbox">
+                            <div className="login-left">
+                                <h1 className="text-center font-weight-bold font-size-lg text-white">E-shop</h1>
+                            </div>
+                            <div className="login-right">
+                                <div className="login-right-wrap">
+                                    <h1>Signup</h1>
+                                    <p className="account-subtitle">Access to our dashboard</p>
+                                    
+                                    <form onSubmit={handleSignupFormSubmit}>
+                                        <div className="form-group">
+                                            <input name="name" value={input.name} onChange={handleInputChange} className="form-control" type="text" placeholder="Name"/>
+                                        </div>
+                                        <div className="form-group">
+                                            <input name="email" value={input.email} onChange={handleInputChange} className="form-control" type="text" placeholder="Email"/>
+                                        </div>
+                                        <div className="form-group">
+                                            <input name="password" value={input.password} onChange={handleInputChange} className="form-control" type="text" placeholder="Password"/>
+                                        </div>
+                                        <div className="form-group">
+                                            <input name="rePassword" value={input.rePassword} onChange={handleInputChange} className="form-control" type="text" placeholder="Confirm Password"/>
+                                        </div>
+                                        <div className="form-group mb-0">
+                                            <button className="btn btn-danger btn-block" type="submit">Signup</button>
+                                        </div>
+                                    </form>
+                                    
+                                    <div className="login-or">
+                                        <span className="or-line"></span>
+                                        <span className="span-or">or</span>
+                                    </div>
+                                    
+                                    <div className="social-login">
+                                        <span>Signup with</span>
+                                        <a href="#" className="facebook"><i className="fa fa-facebook"></i></a><a href="#" className="google"><i className="fa fa-google"></i></a>
+                                    </div>
+                                    
+                                    <div className="text-center dont-have">Already have an account? <Link to="/login">Login</Link></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-
-            <section className="signup pt-105 pb-120 gray-bg">
-                <div className="container">
-                    <div className="col-md-8 offset-md-2">
-                        <div className="signup-content">
-                            <form onSubmit={handleSignupFormSubmit} method="POST" id="signup-form" className="signup-form">
-                                <h2 className="form-title pb-20">Create account</h2>
-                                <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.name} type="text" className="form-input" name="name" id="name" placeholder="Your Name"/>
-                                </div>
-                                <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.email} type="email" className="form-input" name="email" id="email" placeholder="Your Email"/>
-                                </div>
-                                <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.password} type="password" className="form-input" name="password" id="password" placeholder="Password"/>
-                                    <span className="zmdi zmdi-eye field-icon toggle-password"></span>
-                                </div>
-                                <div className="form-group">
-                                    <input onChange={handleInputChange} value={input.rePassword} name="rePassword" type="password" className="form-input" id="re_password" placeholder="Repeat your password"/>
-                                </div>
-                                <div className="form-group">
-                                    <input type="checkbox" name="agreement" onChange={handleInputChange} value={true} id="agree-term" className="agree-term" />
-                                    <label htmlFor="agree-term" className="label-agree-term ml-2"><span><span></span></span>I agree all statements in  <a href="#" className="term-service">Terms of service</a></label>
-                                </div>
-                                <div className="form-group">
-                                    <input type="submit" name="submit" id="submit" className="main-btn register-submit" value="Sign up"/>
-                                </div>
-                            </form>
-                            <p className="loginhere">
-                                Have already an account ? <Link to="/login" className="loginhere-link">Login here</Link>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <Footer/>
+            </div>
         
         </>
     )

@@ -48,7 +48,7 @@ const Permission = () => {
 			<div className="page-wrapper">
 				<div className="content container-fluid">
 						
-					<div className="page-headerssssssssss">
+					<div className="page-header">
 						<div className="row">
 							<div className="col-sm-12">
 								<h3 className="page-title">List of Permissions</h3>
@@ -85,7 +85,7 @@ const Permission = () => {
 				<form onSubmit={handlePermissionCreate}>
 					<div className="row form-row">
 
-						<div className="col-12 mx-2">
+						<div className="col-12">
 							<div className="form-group">
 								<label>Name</label>
 								<input type="text" name="name" value={input.name} onChange={handleInputChange} className="form-control"/>

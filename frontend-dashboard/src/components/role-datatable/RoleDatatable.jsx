@@ -112,13 +112,13 @@ const RoleDatatable = () => {
                                 </td>
                                 
                                 <td>
-                                    <button onClick={() => handleRoleEdit(data?._id)} className="btn btn-sm bg-danger-light edit mr-2"><FaRegEdit style={{fontSize: "30px", margin:"auto"}} /></button>
+                                    <button onClick={() => handleRoleEdit(data?._id)} className="btn btn-sm bg-info-light mr-2"><FaRegEdit style={{fontSize: "15px", margin:"auto"}} /></button>
 
                                     {modal && <Modal title={"Role update"}  modalClose={setModal}>
                                         <form onSubmit={handleRoleUpdate}>
-                                            <div className="row form-row alllsds">
+                                            <div className="row form-row">
 
-                                                <div className="col-12 mx-2">
+                                                <div className="col-12">
                                                     <div className="form-group">
                                                         <label>Name</label>
                                                         <input type="text" name="name" value={input.name} onChange={handleInputChange} className="form-control"/>
@@ -127,7 +127,7 @@ const RoleDatatable = () => {
                                                 
                                             </div>
 
-                                            <div className="row form-row alllsds">
+                                            <div className="row form-row">
 
                                                 {permissions?.map((data, index) => <div key={`dfvv4477fgg${index}`} className="col-md-3">
                                                     <div className="form-group">
@@ -142,7 +142,7 @@ const RoleDatatable = () => {
                                         </form>
                                     </Modal>}
 
-                                    <button onClick={() => handleRoleDelete(data?._id)} className="btn btn-sm bg-danger-light delete"><FaRegTrashAlt style={{fontSize: "30px", margin:"auto"}} /></button>
+                                    <button onClick={() => handleRoleDelete(data?._id)} className="btn btn-sm bg-danger-light"><FaRegTrashAlt style={{fontSize: "15px", margin:"auto"}} /></button>
                                 </td>
                             </tr>)}
                         </tbody>

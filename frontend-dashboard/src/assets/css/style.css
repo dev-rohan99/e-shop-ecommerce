@@ -10,7 +10,7 @@
 /* CSS Index 
 -----------------------------------
 1. Theme default
-2. headerssssssssss
+2. header
 3. SLIDER
 4. CATEGORY
 5. ABOUT
@@ -563,52 +563,52 @@ p {
     }
 }
 /*=====================================================
-    2. headerssssssssss css 
+    2. header css 
 ======================================================*/
 
-/*===== headerssssssssss top =====*/
+/*===== header top =====*/
 
-.headerssssssssss-top {
+.header-top {
     background-color: #07294d;
     padding-top: 0px;
     padding-bottom: 0px;
 }
-.headerssssssssss-contact ul li {
+.header-contact ul li {
     display: inline-block;
     margin-right: 20px;
     color: #c6c6c6;
     font-size: 16px;
     font-weight: 500;
 }
-.headerssssssssss-contact ul li:last-child {
+.header-contact ul li:last-child {
     margin-right: 0;
 }
-.headerssssssssss-contact ul li i {
+.header-contact ul li i {
     margin-right: 10px;
 }
-.headerssssssssss-contact ul li a {
+.header-contact ul li a {
     color: #c6c6c6;
     font-weight: 500;
     font-size: 16px;
 }
-.headerssssssssss-right {}
-.headerssssssssss-right .social {}
-.headerssssssssss-right .social .follow-us {
+.header-right {}
+.header-right .social {}
+.header-right .social .follow-us {
     font-size: 16px;
     color: #c6c6c6;
     padding-right: 10px;
     font-weight: 500;
 }
-.headerssssssssss-right .social ul {}
-.headerssssssssss-right .social ul li {
+.header-right .social ul {}
+.header-right .social ul li {
     display: inline-block;
     padding: 0 5px;
 }
-.headerssssssssss-right .social ul li a {
+.header-right .social ul li a {
     color: #c6c6c6;
     font-size: 16px;
 }
-.headerssssssssss-right .social ul li a:hover {
+.header-right .social ul li a:hover {
     color: #ffc600;
 }
 .login-register {}
@@ -638,7 +638,7 @@ p {
 .login-register ul li a:hover {
     color: #fff;
 }
-/*===== headerssssssssss Menu =====*/
+/*===== header Menu =====*/
 
 .navigation {}
 .navigation.sticky {
@@ -786,31 +786,31 @@ p {
     top: -5px;
     right: 0;
 }
-/*===== headerssssssssss TOW =====*/
+/*===== header TOW =====*/
 
-.headerssssssssss-two {}
-.headerssssssssss-two .headerssssssssss-top {
+.header-two {}
+.header-two .header-top {
     background-color: #fff;
     border-bottom: 1px solid #edf0f2;
 }
-.headerssssssssss-two .headerssssssssss-contact ul li {
+.header-two .header-contact ul li {
     color: #07294d;
 }
-.headerssssssssss-two .headerssssssssss-contact ul li a {
+.header-two .header-contact ul li a {
     color: #07294d;
 }
-.headerssssssssss-two .headerssssssssss-right .social .follow-us {
+.header-two .header-right .social .follow-us {
     color: #07294d;
 }
-.headerssssssssss-two .headerssssssssss-right .social ul li a {
+.header-two .header-right .social ul li a {
     color: #07294d;
 }
-.headerssssssssss-two .headerssssssssss-right .social ul li a:hover {
+.header-two .header-right .social ul li a:hover {
     color: #ffc600;
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
 }
-.headerssssssssss-two .login-register ul li a {
+.header-two .login-register ul li a {
     color: #07294d;
     font-size: 16px;
     font-weight: 500;
@@ -819,33 +819,33 @@ p {
     border-radius: 5px;
     transition: all 0.3s linear;
 }
-.headerssssssssss-two .login-register ul li a:hover {
+.header-two .login-register ul li a:hover {
     background: #07294d;
     color: #fff;
 }
-.headerssssssssss-two .login-register ul li::before {
+.header-two .login-register ul li::before {
     display: none;
 }
-.headerssssssssss-two .login-register ul li {
+.header-two .login-register ul li {
     margin-left: 10px;
 }
-.headerssssssssss-two .headerssssssssss-right .social {
+.header-two .header-right .social {
     margin-top: 5px;
 }
-.headerssssssssss-two .navigation .navbar .navbar-nav li .sub-menu {
+.header-two .navigation .navbar .navbar-nav li .sub-menu {
     background-color: #fff;
 }
-.headerssssssssss-two .navigation .navbar .navbar-nav li .sub-menu li a {
+.header-two .navigation .navbar .navbar-nav li .sub-menu li a {
     border-bottom: 1px solid #edeff2;
     color: #07294d;
 }
-.headerssssssssss-two .navigation .navbar .navbar-nav li .sub-menu li a.active, .headerssssssssss-two .navigation .navbar .navbar-nav li .sub-menu li a:hover {
+.header-two .navigation .navbar .navbar-nav li .sub-menu li a.active, .header-two .navigation .navbar .navbar-nav li .sub-menu li a:hover {
     color: #ffc600;
 }
-/*===== headerssssssssss THREEE =====*/
+/*===== header THREEE =====*/
 
-.headerssssssssss-three {}
-.headerssssssssss-three .navigation {
+.header-three {}
+.header-three .navigation {
     background-color: transparent;
     position: absolute;
     top: 0;
@@ -854,50 +854,50 @@ p {
     z-index: 99;
     padding: 10px 0;
 }
-.headerssssssssss-three .navigation .navbar .navbar-nav li a {
+.header-three .navigation .navbar .navbar-nav li a {
     color: #fff;
 }
-.headerssssssssss-three .navigation .navbar .navbar-nav li a:hover {
+.header-three .navigation .navbar .navbar-nav li a:hover {
     color: #ffc600;
 }
-.headerssssssssss-three .navigation .right-icon ul li a {
+.header-three .navigation .right-icon ul li a {
     color: #fff;
 }
-.headerssssssssss-three .navigation.sticky {
+.header-three .navigation.sticky {
     position: fixed;
     width: 100%;
     background-color: #fff;
     padding: 0 0;
 }
-.headerssssssssss-three .navigation.sticky .navbar .navbar-nav li a {
+.header-three .navigation.sticky .navbar .navbar-nav li a {
     color: #07294d;
 }
-.headerssssssssss-three .navigation.sticky .navbar .navbar-nav li a:hover {
+.header-three .navigation.sticky .navbar .navbar-nav li a:hover {
     color: #ffc600;
 }
-.headerssssssssss-three .navigation.sticky .right-icon ul li a {
+.header-three .navigation.sticky .right-icon ul li a {
     color: #07294d;
 }
-.headerssssssssss-three .navigation .navbar .navbar-nav li .sub-menu {
+.header-three .navigation .navbar .navbar-nav li .sub-menu {
     background-color: #fff;
 }
-.headerssssssssss-three .navigation .navbar .navbar-nav li .sub-menu li a {
+.header-three .navigation .navbar .navbar-nav li .sub-menu li a {
     border-bottom: 1px solid #edeff2;
     color: #07294d;
 }
-.headerssssssssss-three .navigation .navbar .navbar-nav li .sub-menu li a:hover {
+.header-three .navigation .navbar .navbar-nav li .sub-menu li a:hover {
     color: #ffc600;
 }
-/*===== headerssssssssss FORE =====*/
+/*===== header FORE =====*/
 
-.headerssssssssss-four .navigation .navbar .navbar-nav li .sub-menu {
+.header-four .navigation .navbar .navbar-nav li .sub-menu {
     background-color: #fff;
 }
-.headerssssssssss-four .navigation .navbar .navbar-nav li .sub-menu li a {
+.header-four .navigation .navbar .navbar-nav li .sub-menu li a {
     border-bottom: 1px solid #edeff2;
     color: #07294d;
 }
-.headerssssssssss-four .navigation .navbar .navbar-nav li .sub-menu li a.active, .headerssssssssss-four .navigation .navbar .navbar-nav li .sub-menu li a:hover {
+.header-four .navigation .navbar .navbar-nav li .sub-menu li a.active, .header-four .navigation .navbar .navbar-nav li .sub-menu li a:hover {
     color: #ffc600;
 }
 /*===== SEARCH BOX =====*/
@@ -2875,21 +2875,21 @@ p {
 .curriculum-cont .accordion .card:last-child {
     border-bottom: 0 !important;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss {
+.curriculum-cont .accordion .card .card-header {
     padding: 0;
     border-bottom: 0;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a {
+.curriculum-cont .accordion .card .card-header a {
     overflow: hidden;
     display: block;
     padding: 15px 15px;
     background-color: #edf0f2;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a.collapsed {
+.curriculum-cont .accordion .card .card-header a.collapsed {
     background-color: #fff;
     border: none;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a::before, .curriculum-cont .accordion .card .card-headerssssssssss a.collapsed::before {
+.curriculum-cont .accordion .card .card-header a::before, .curriculum-cont .accordion .card .card-header a.collapsed::before {
     content: "\f107";
     font-family: FontAwesome;
     font-size: 18px;
@@ -2902,42 +2902,42 @@ p {
     -webkit-transition: all 0.2s linear;
     transition: all 0.2s linear;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a.collapsed:before {
+.curriculum-cont .accordion .card .card-header a.collapsed:before {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a ul li {
+.curriculum-cont .accordion .card .card-header a ul li {
     display: inline-block;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a ul li:last-child {
+.curriculum-cont .accordion .card .card-header a ul li:last-child {
     float: right;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a ul li>i {
+.curriculum-cont .accordion .card .card-header a ul li>i {
     color: #ffc600;
     font-size: 15px;
     margin-right: 5px;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a ul li>.lecture {
+.curriculum-cont .accordion .card .card-header a ul li>.lecture {
     font-size: 15px;
     color: #8a8a8a;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a ul li>.head {
+.curriculum-cont .accordion .card .card-header a ul li>.head {
     font-size: 16px;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
     margin-left: 15px;
     color: #000;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a ul li>.time {
+.curriculum-cont .accordion .card .card-header a ul li>.time {
     font-size: 15px;
     color: #8a8a8a;
     text-align: right;
     padding-right: 30px;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a ul li>.time i {
+.curriculum-cont .accordion .card .card-header a ul li>.time i {
     margin-right: 5px;
 }
-.curriculum-cont .accordion .card .card-headerssssssssss a ul li>.time span {}
+.curriculum-cont .accordion .card .card-header a ul li>.time span {}
 .curriculum-cont .accordion .card .card-body {
     background-color: #edf0f2;
     padding: 0 25px 20px;
@@ -4259,21 +4259,21 @@ p.form-message.success, p.form-message.error {
 .faq-accordion-cont .accordion .card:last-child {
     border-bottom: 0 !important;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss {
+.faq-accordion-cont .accordion .card .card-header {
     padding: 0;
     border-bottom: 0;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a {
+.faq-accordion-cont .accordion .card .card-header a {
     overflow: hidden;
     display: block;
     padding: 17px 25px;
     background-color: #07294d;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a.collapsed {
+.faq-accordion-cont .accordion .card .card-header a.collapsed {
     background-color: #fff;
     border: none;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a::before, .faq-accordion-cont .accordion .card .card-headerssssssssss a.collapsed::before {
+.faq-accordion-cont .accordion .card .card-header a::before, .faq-accordion-cont .accordion .card .card-header a.collapsed::before {
     content: "\f107";
     font-family: FontAwesome;
     font-size: 22px;
@@ -4286,43 +4286,43 @@ p.form-message.success, p.form-message.error {
     -webkit-transition: all 0.2s linear;
     transition: all 0.2s linear;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a.collapsed:before {
+.faq-accordion-cont .accordion .card .card-header a.collapsed:before {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
     color: #8a8a8a;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a ul li {
+.faq-accordion-cont .accordion .card .card-header a ul li {
     display: inline-block;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a ul li:last-child {
+.faq-accordion-cont .accordion .card .card-header a ul li:last-child {
     float: right;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a ul li>i {
+.faq-accordion-cont .accordion .card .card-header a ul li>i {
     color: #ffc600;
     font-size: 16px;
     margin-right: 5px;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a ul li>.lecture {
+.faq-accordion-cont .accordion .card .card-header a ul li>.lecture {
     font-size: 15px;
     color: #8a8a8a;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a ul li>.head {
+.faq-accordion-cont .accordion .card .card-header a ul li>.head {
     font-size: 16px;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
     margin-left: 15px;
     color: #fff;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a.collapsed ul li>.head {
+.faq-accordion-cont .accordion .card .card-header a.collapsed ul li>.head {
     color: #07294d;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a ul li>.time {
+.faq-accordion-cont .accordion .card .card-header a ul li>.time {
     font-size: 15px;
     color: #8a8a8a;
     text-align: right;
     padding-right: 30px;
 }
-.faq-accordion-cont .accordion .card .card-headerssssssssss a ul li>.time i {
+.faq-accordion-cont .accordion .card .card-header a ul li>.time i {
     margin-right: 5px;
 }
 .faq-accordion-cont .accordion .card .card-body {
@@ -4453,7 +4453,7 @@ Version      : 1.0
 5. Select2
 6. Nav Tabs
 7. Components
-8. headerssssssssss
+8. header
 9. Sidebar
 10. Content
 11. Login
@@ -5334,7 +5334,7 @@ button.bg-danger:hover {
 .card-body {
 	padding: 1.5rem;
 }
-.card-headerssssssssss {
+.card-header {
 	border-bottom: 1px solid #e6e6e6;
 	padding: 1rem 1.5rem;
 }
@@ -5343,11 +5343,11 @@ button.bg-danger:hover {
 	border-top: 1px solid #e6e6e6;
 	padding: 1rem 1.5rem;
 }
-.card .card-headerssssssssss {
+.card .card-header {
     background-color: #fff;
     border-bottom: 1px solid #eaeaea;
 }
-.card .card-headerssssssssss .card-title {
+.card .card-header .card-title {
     margin-bottom: 0;
 }
 .modal-footer.text-left {
@@ -5449,7 +5449,7 @@ button.bg-danger:hover {
 .nav-tabs {
 	border-bottom: 1px solid #e6e6e6;
 }
-.card-headerssssssssss-tabs {
+.card-header-tabs {
     border-bottom: 0;
 }
 .nav-tabs > li > a {
@@ -5602,10 +5602,10 @@ button.bg-danger:hover {
 	7. Components
 -----------------------*/
 
-.section-headerssssssssss {
+.section-header {
     margin-bottom: 1.875rem;
 }
-.section-headerssssssssss .section-title {
+.section-header .section-title {
     color: #333;
 }
 .line {
@@ -5819,10 +5819,10 @@ button.bg-danger:hover {
 }
 
 /*-----------------
-	8. headerssssssssss
+	8. header
 -----------------------*/
 
-.headerssssssssss {
+.header {
 	background: #fff;
 	border-bottom: 1px solid #f0f0f0;
 	left: 0;
@@ -5832,7 +5832,7 @@ button.bg-danger:hover {
 	z-index: 1001;
 	height: 60px;
 }
-.headerssssssssss .headerssssssssss-left {
+.header .header-left {
 	float: left;
 	height: 60px;
 	padding: 0 20px;
@@ -5844,24 +5844,24 @@ button.bg-danger:hover {
     display: flex;
     align-items: center;
 }
-.headerssssssssss .headerssssssssss-left .logo {
+.header .header-left .logo {
 	display: inline-block;
 	line-height: 60px;
 }
-.headerssssssssss .headerssssssssss-left .logo img {
+.header .header-left .logo img {
     max-height: 40px;
     width: auto;
 }
-.headerssssssssss-left .logo.logo-small {
+.header-left .logo.logo-small {
     display: none;
 }
-.headerssssssssss .dropdown-menu > li > a {
+.header .dropdown-menu > li > a {
 	position: relative;
 }
-.headerssssssssss .dropdown-toggle:after {
+.header .dropdown-toggle:after {
 	display: none;
 }
-.headerssssssssss .has-arrow .dropdown-toggle:after {
+.header .has-arrow .dropdown-toggle:after {
 	border-top: 0;
 	border-left: 0;
 	border-bottom: 2px solid #333;
@@ -5881,7 +5881,7 @@ button.bg-danger:hover {
 	width: 8px;
 	vertical-align: 2px;
 }
-.headerssssssssss .has-arrow .dropdown-toggle[aria-expanded="true"]:after {
+.header .has-arrow .dropdown-toggle[aria-expanded="true"]:after {
 	-webkit-transform: rotate(-135deg);
 	-ms-transform: rotate(-135deg);
 	transform: rotate(-135deg);
@@ -5950,33 +5950,33 @@ button.bg-danger:hover {
     left: unset;
 }
 
-.headerssssssssss .dropdown-menu > li > a:focus,
-.headerssssssssss .dropdown-menu > li > a:hover {
+.header .dropdown-menu > li > a:focus,
+.header .dropdown-menu > li > a:hover {
 	background-color: #00d0f1;
 	color: #fff;
 }
-.headerssssssssss .dropdown-menu > li > a:focus i,
-.headerssssssssss .dropdown-menu > li > a:hover i {
+.header .dropdown-menu > li > a:focus i,
+.header .dropdown-menu > li > a:hover i {
 	color: #fff;
 }
-.headerssssssssss .dropdown-menu > li > a {
+.header .dropdown-menu > li > a {
 	padding: 10px 18px;
 }
-.headerssssssssss .dropdown-menu > li > a i {
+.header .dropdown-menu > li > a i {
 	color: #00d0f1;
 	margin-right: 10px;
 	text-align: center;
 	width: 18px;
 }
-.headerssssssssss .user-menu .dropdown-menu > li > a i {
+.header .user-menu .dropdown-menu > li > a i {
 	color: #00d0f1;
 	font-size: 16px;
 	margin-right: 10px;
 	min-width: 18px;
 	text-align: center;
 }
-.headerssssssssss .user-menu .dropdown-menu > li > a:focus i,
-.headerssssssssss .user-menu .dropdown-menu > li > a:hover i {
+.header .user-menu .dropdown-menu > li > a:focus i,
+.header .user-menu .dropdown-menu > li > a:hover i {
 	color: #fff;
 }
 .mobile_btn {
@@ -6029,15 +6029,15 @@ button.bg-danger:hover {
 	padding-left: 5px;
 	padding-right: 5px;
 }
-.user-headerssssssssss {
+.user-header {
     background-color: #f9f9f9;
     display: flex;
     padding: 10px 7px;
 }
-.user-headerssssssssss .user-text {
+.user-header .user-text {
 	margin-left: 10px;
 }
-.user-headerssssssssss .user-text h6 {
+.user-header .user-text h6 {
     margin-bottom: 2px;
     font-size: 14px;
 }
@@ -6438,10 +6438,10 @@ html.menu-opened body {
 .page-wrapper > .content {
 	padding: 1.875rem 1.875rem 0;
 }
-.page-headerssssssssss {
+.page-header {
 	margin-bottom: 1.875rem;
 }
-.page-headerssssssssss .breadcrumb {
+.page-header .breadcrumb {
     background-color: transparent;
     color: #6c757d;
     font-size: 1rem;
@@ -6449,7 +6449,7 @@ html.menu-opened body {
     margin-bottom: 0;
     padding: 0;
 }
-.page-headerssssssssss .breadcrumb a {
+.page-header .breadcrumb a {
 	color: #333;
 }
 .page-title {
@@ -6484,7 +6484,7 @@ html.menu-opened body {
 }
 .login-wrapper .loginbox .login-left {
     align-items: center;
-    background: linear-gradient(180deg, #1b5a90, #00d0f1);
+    background: linear-gradient(180deg, #e39214, #ff2525);
     border-radius: 6px 0 0 6px;
     flex-direction: column;
     justify-content: center;
@@ -6633,11 +6633,11 @@ html.menu-opened body {
 .notifications .media-list .media-left {
 	padding-right: 8px;
 }
-.topnav-dropdown-headerssssssssss {
+.topnav-dropdown-header {
 	border-bottom: 1px solid #eee;
 	text-align: center;
 }
-.topnav-dropdown-headerssssssssss, 
+.topnav-dropdown-header, 
 .topnav-dropdown-footer {
     font-size: 14px;
     height: 40px;
@@ -6707,13 +6707,13 @@ html.menu-opened body {
     padding: 0;
     position: relative;
 }
-.topnav-dropdown-headerssssssssss .notification-title {
+.topnav-dropdown-header .notification-title {
     color: #333;
     display: block;
     float: left;
     font-size: 14px;
 }
-.topnav-dropdown-headerssssssssss .clear-noti {
+.topnav-dropdown-header .clear-noti {
     color: #f83f37;
     float: right;
     font-size: 12px;
@@ -6747,7 +6747,7 @@ html.menu-opened body {
 .dash-widget-info h3 {
     margin-bottom: 10px;
 }
-.dash-widget-headerssssssssss {
+.dash-widget-header {
     align-items: center;
     display: flex;
     margin-bottom: 15px;
@@ -6886,7 +6886,7 @@ html.menu-opened body {
 	float: left;
 	margin-bottom: 0;
 }
-.fc-toolbar.fc-headerssssssssss-toolbar {
+.fc-toolbar.fc-header-toolbar {
     margin-bottom: 1.5rem;
 }
 .none-border .modal-footer {
@@ -6912,7 +6912,7 @@ html.menu-opened body {
 .fc-toolbar .ui-state-hover {
 	z-index: 0;
 }
-.fc th.fc-widget-headerssssssssss {
+.fc th.fc-widget-header {
 	background: #eeeeee;
 	font-size: 14px;
 	line-height: 20px;
@@ -7125,7 +7125,7 @@ table.table-inbox tbody tr.checked {
 	height: auto;
 	max-width: 100%;
 }
-.mailview-headerssssssssss {
+.mailview-header {
 	border-bottom: 1px solid #ddd;
 	margin-bottom: 20px;
 	padding-bottom: 15px;
@@ -7261,7 +7261,7 @@ table.table-inbox tbody tr.checked {
     position: relative;
     z-index: 4;
 }
-.chat-window .chat-cont-left .chat-headerssssssssss {
+.chat-window .chat-cont-left .chat-header {
     align-items: center;
     background-color: #fff;
     border-bottom: 1px solid #e0e3e4;
@@ -7271,12 +7271,12 @@ table.table-inbox tbody tr.checked {
     justify-content: space-between;
     padding: 0 15px;
 }
-.chat-window .chat-cont-left .chat-headerssssssssss span {
+.chat-window .chat-cont-left .chat-header span {
     font-size: 20px;
     font-weight: 600;
     text-transform: capitalize;
 }
-.chat-window .chat-cont-left .chat-headerssssssssss .chat-compose {
+.chat-window .chat-cont-left .chat-header .chat-compose {
     color: #8a8a8a;
     display: inline-flex;
 }
@@ -7380,7 +7380,7 @@ table.table-inbox tbody tr.checked {
     flex: 0 0 65%;
     max-width: 65%;
 }
-.chat-window .chat-cont-right .chat-headerssssssssss {
+.chat-window .chat-cont-right .chat-header {
     align-items: center;
     background-color: #fff;
     border-bottom: 1px solid #e0e3e4;
@@ -7389,25 +7389,25 @@ table.table-inbox tbody tr.checked {
     justify-content: space-between;
     padding: 0 15px;
 }
-.chat-window .chat-cont-right .chat-headerssssssssss .back-user-list {
+.chat-window .chat-cont-right .chat-header .back-user-list {
     display: none;
     margin-right: 5px;
     margin-left: -7px;
 }
-.chat-window .chat-cont-right .chat-headerssssssssss .media {
+.chat-window .chat-cont-right .chat-header .media {
 	align-items: center;
 }
-.chat-window .chat-cont-right .chat-headerssssssssss .media .media-img-wrap {
+.chat-window .chat-cont-right .chat-header .media .media-img-wrap {
 	position: relative;
 	display: flex;
 	align-items: center;
 	margin-right: 15px;
 }
-.chat-window .chat-cont-right .chat-headerssssssssss .media .media-img-wrap .avatar {
+.chat-window .chat-cont-right .chat-header .media .media-img-wrap .avatar {
 	height: 50px;
 	width: 50px;
 }
-.chat-window .chat-cont-right .chat-headerssssssssss .media .media-img-wrap .status {
+.chat-window .chat-cont-right .chat-header .media .media-img-wrap .status {
     border: 2px solid #fff;
     bottom: 0;
     height: 10px;
@@ -7415,20 +7415,20 @@ table.table-inbox tbody tr.checked {
     right: 3px;
     width: 10px;
 }
-.chat-window .chat-cont-right .chat-headerssssssssss .media .media-body .user-name {
+.chat-window .chat-cont-right .chat-header .media .media-body .user-name {
     color: #333;
     font-size: 16px;
     font-weight: 600;
     text-transform: capitalize;
 }
-.chat-window .chat-cont-right .chat-headerssssssssss .media .media-body .user-status {
+.chat-window .chat-cont-right .chat-header .media .media-body .user-status {
     color: #666;
     font-size: 14px;
 }
-.chat-window .chat-cont-right .chat-headerssssssssss .chat-options {
+.chat-window .chat-cont-right .chat-header .chat-options {
     display: flex;
 }
-.chat-window .chat-cont-right .chat-headerssssssssss .chat-options > a {
+.chat-window .chat-cont-right .chat-header .chat-options > a {
     align-items: center;
     border-radius: 50%;
     color: #8a8a8a;
@@ -8016,7 +8016,7 @@ table.table-inbox tbody tr.checked {
 	23. Profile
 -----------------------*/
 
-.profile-headerssssssssss {
+.profile-header {
     background-color: #fff;
     border: 1px solid #f0f0f0;
     padding: 1.5rem;
@@ -8029,7 +8029,7 @@ table.table-inbox tbody tr.checked {
 .profile-menu .nav-tabs.nav-tabs-solid {
 	background-color: transparent;
 }
-.profile-headerssssssssss img {
+.profile-header img {
     height: auto;
     max-width: 120px;
     width: 120px;
@@ -8233,18 +8233,18 @@ table.table-inbox tbody tr.checked {
 		margin-left: 15px;
 		padding: 0 15px;
 	}
-	.mini-sidebar .headerssssssssss-left .logo img {
+	.mini-sidebar .header-left .logo img {
 		height: auto;
 		max-height: 40px;
 		width: auto;
 	}
-	.mini-sidebar .headerssssssssss .headerssssssssss-left .logo {
+	.mini-sidebar .header .header-left .logo {
 		display: none;
 	}
-	.mini-sidebar .headerssssssssss-left .logo.logo-small {
+	.mini-sidebar .header-left .logo.logo-small {
 		display: block;
 	}
-	.mini-sidebar .headerssssssssss .headerssssssssss-left {
+	.mini-sidebar .header .header-left {
 		padding: 0 5px;
 		width: 78px;
 	}
@@ -8309,7 +8309,7 @@ table.table-inbox tbody tr.checked {
 	}
 }
 @media only screen and (max-width: 991.98px) {
-	.headerssssssssss .headerssssssssss-left {
+	.header .header-left {
 		position: absolute;
 		width: 100%;
 	}
@@ -8374,13 +8374,13 @@ table.table-inbox tbody tr.checked {
 		right: calc(-100% + -1.875rem);
 		top: 0;
 	}
-	.chat-window .chat-cont-right .chat-headerssssssssss {
+	.chat-window .chat-cont-right .chat-header {
 		justify-content: start;
 	}
-	.chat-window .chat-cont-right .chat-headerssssssssss .back-user-list {
+	.chat-window .chat-cont-right .chat-header .back-user-list {
 		display: block;
 	}
-	.chat-window .chat-cont-right .chat-headerssssssssss .chat-options {
+	.chat-window .chat-cont-right .chat-header .chat-options {
 		margin-left: auto;
 	}
 	.chat-window.chat-slide .chat-cont-left {
@@ -8416,7 +8416,7 @@ table.table-inbox tbody tr.checked {
 	h6, .h6 {
 		font-size: 0.875rem;
 	}
-	.headerssssssssss .has-arrow .dropdown-toggle:after {
+	.header .has-arrow .dropdown-toggle:after {
 		display: none;
 	}
 	.user-menu.nav > li > a > span:not(.user-img) {
@@ -8430,13 +8430,13 @@ table.table-inbox tbody tr.checked {
 		left: auto;
 		right: 0;
 	}
-	.headerssssssssss .headerssssssssss-left {
+	.header .header-left {
 		padding: 0 15px;
 	}
-	.headerssssssssss .headerssssssssss-left .logo {
+	.header .header-left .logo {
 		display: none;
 	}
-	.headerssssssssss-left .logo.logo-small {
+	.header-left .logo.logo-small {
 		display: inline-block;
 	}
 	.login-wrapper .loginbox .login-left {
@@ -8525,7 +8525,7 @@ table.table-inbox tbody tr.checked {
 	.card-body {
 		padding: 1.25rem;
 	}
-	.card-headerssssssssss {
+	.card-header {
 		padding: .75rem 1.25rem;
 	}
 	.card-footer {
@@ -8534,7 +8534,7 @@ table.table-inbox tbody tr.checked {
 	.card-chart .card-body {
 		padding: 5px;
 	}
-	.page-headerssssssssss {
+	.page-header {
 		margin-bottom: 0.9375rem;
 	}
 	.account-wrapper {
@@ -8582,7 +8582,7 @@ table.table-inbox tbody tr.checked {
 	.profile-tab-cont {
 		padding-top: 1.25rem;
 	}
-	.chat-window .chat-cont-right .chat-headerssssssssss .media .media-body {
+	.chat-window .chat-cont-right .chat-header .media .media-body {
 		display: none;
 	}
 }
@@ -8596,7 +8596,7 @@ table.table-inbox tbody tr.checked {
 	.chat-window .chat-cont-left .chat-users-list a.media .media-body > div:first-child .user-last-chat {
 		max-width: 160px;
 	}
-	.page-headerssssssssss .breadcrumb {
+	.page-header .breadcrumb {
 		display: none;
 	}
 }

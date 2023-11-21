@@ -7,7 +7,7 @@ import { userLogout } from '../../features/auth/authApiSlice';
 import useAuthHook from '../../hooks/useAuthHook';
 import { Link } from 'react-router-dom';
 
-const Dashboardheaderssssssssss = () => {
+const Dashboardheader = () => {
 
     const { isOpen, toggle, dropdownRef } = useDropdownModalControl();
     const { isOpen: isNotification, toggle: toggleNotification, dropdownRef: dropdownNotificationRef } = useDropdownModalControl();
@@ -29,9 +29,9 @@ const Dashboardheaderssssssssss = () => {
     return (
         <>
         
-            <div className="headerssssssssss">
+            <div className="header">
                     
-                <div className="headerssssssssss-left">
+                <div className="header-left">
                     <a href="index.html" className="logo">
                         <img src={dashLogo} alt="Logo"/>
                     </a>
@@ -62,7 +62,7 @@ const Dashboardheaderssssssssss = () => {
                             <MdOutlineNotificationsNone style={{fontSize: "30px"}} /> <span className="badge badge-pill">3</span>
                         </a>
                         {isNotification && <div className="dropdown-menu notifications d-block end-0">
-                            <div className="topnav-dropdown-headerssssssssss">
+                            <div className="topnav-dropdown-header">
                                 <span className="notification-title">Notifications</span>
                                 <a href="javascript:void(0)" className="clear-noti"> Clear All </a>
                             </div>
@@ -133,7 +133,7 @@ const Dashboardheaderssssssssss = () => {
                             <span className="user-img"><img className="rounded-circle" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" width="31" alt="Ryan Taylor"/></span>
                         </a>
                         {isOpen && <div className="dropdown-menu d-block sjgdhsgdf">
-                            <div className="user-headerssssssssss">
+                            <div className="user-header">
                                 <div className="avatar avatar-sm">
                                     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="User Image" className="avatar-img rounded-circle"/>
                                 </div>
@@ -156,4 +156,4 @@ const Dashboardheaderssssssssss = () => {
     )
 }
 
-export default Dashboardheaderssssssssss
+export default Dashboardheader;

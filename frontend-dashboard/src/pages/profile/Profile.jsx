@@ -12,7 +12,7 @@ const Profile = () => {
             <div className="page-wrapper">
                 <div className="content container-fluid">
 					
-					<div className="page-headerssssssssss">
+					<div className="page-header">
 						<div className="row">
 							<div className="col">
 								<h3 className="page-title">Profile</h3>
@@ -26,9 +26,9 @@ const Profile = () => {
 					
 					<div className="row">
 						<div className="col-md-12">
-							<div className="profile-headerssssssssss">
+							<div className="profile-header">
 								<div className="row align-items-center">
-									<div className="col-auto profile-image">
+									<div className="col-md-2 col-auto profile-image">
 										<a href="#">
 											<img className="rounded-circle" alt="User Image" src={user?.avatar ? user?.avatar : "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"}/>
 										</a>
@@ -99,7 +99,7 @@ const Profile = () => {
 											<div className="modal fade" id="edit_personal_details" aria-hidden="true" role="dialog">
 												<div className="modal-dialog modal-dialog-centered" role="document" >
 													<div className="modal-content">
-														<div className="modal-headerssssssssss">
+														<div className="modal-header">
 															<h5 className="modal-title">Personal Details</h5>
 															<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 																<span aria-hidden="true">&times;</span>

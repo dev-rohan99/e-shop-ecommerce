@@ -61,7 +61,7 @@ const Role = () => {
             <div className="page-wrapper">
                 <div className="content container-fluid">
 				
-					<div className="page-headerssssssssss">
+					<div className="page-header">
 						<div className="row">
 							<div className="col-sm-12">
 								<h3 className="page-title">List of Roles</h3>
@@ -98,7 +98,7 @@ const Role = () => {
 				<form onSubmit={handleRoleCreate}>
 					<div className="row form-row">
 
-						<div className="col-12 mx-2">
+						<div className="col-12">
 							<div className="form-group">
 								<label>Name</label>
 								<input name="name" onChange={handleInputChange} value={input.name} type="text" className="form-control"/>

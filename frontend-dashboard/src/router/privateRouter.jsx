@@ -15,7 +15,7 @@ const privateRouter = [
                 element: <PrivateGard/>,
                 children: [
                     {
-                        path: "/dashboard",
+                        path: "/",
                         element: <Dashboard />
                     },
                     {

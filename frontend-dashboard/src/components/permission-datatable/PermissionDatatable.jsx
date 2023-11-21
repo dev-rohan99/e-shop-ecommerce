@@ -92,16 +92,16 @@ const PermissionDatatable = () => {
                                             setInput({name: data?.name});
                                             setModal(true);
                                         }} 
-                                        className="btn btn-sm bg-danger-light edit mr-2"
+                                        className="btn btn-sm bg-info-light mr-2"
                                     >
-                                        <FaRegEdit style={{fontSize: "30px", margin:"auto"}} />
+                                        <FaRegEdit style={{fontSize: "15px", margin:"auto"}} />
                                     </button>
 
                                     {modal && <Modal title={"Permission update"}  modalClose={setModal}>
                                         <form onSubmit={(e) => handlePermissionUpdate(e, data?._id)}>
-                                            <div className="row form-row alllsds">
+                                            <div className="row form-row">
 
-                                                <div className="col-12 mx-2">
+                                                <div className="col-12">
                                                     <div className="form-group">
                                                         <label>Name</label>
                                                         <input type="text" name="name" value={input.name} onChange={handleInputChange} className="form-control"/>
@@ -113,7 +113,7 @@ const PermissionDatatable = () => {
                                         </form>
                                     </Modal>}
 
-                                    <button onClick={() => handlePermissionDelete(data?._id)} className="btn btn-sm bg-danger-light delete"><FaRegTrashAlt style={{fontSize: "30px", margin:"auto"}} /></button>
+                                    <button onClick={() => handlePermissionDelete(data?._id)} className="btn btn-sm bg-danger-light"><FaRegTrashAlt style={{fontSize: "15px", margin:"auto"}} /></button>
                                 </td>
                             </tr>
                         )

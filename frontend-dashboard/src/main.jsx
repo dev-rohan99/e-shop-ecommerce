@@ -4,16 +4,8 @@ import App from './App.jsx';
 import 'sweetalert2/src/sweetalert2.scss';
 import { Provider } from "react-redux";
 import "./assets/css/style.css";
-import "./assets/css/responsive.css";
 import "./assets/css/bootstrap.min.css";
-import "./assets/css/slick.css";
-import "./assets/css/default.css";
-import "./assets/css/magnific-popup.css";
-import "./assets/css/nice-select.css";
-import "./assets/css/animate.css";
 import './index.css';
-import "./assets/css/style.min.css";
-import "./assets/css/demo1.min.css";
 import "./assets/plugins/datatables/datatables.min.css";
 import store from './app/store.js';
 
