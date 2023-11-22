@@ -64,9 +64,35 @@ const Login = () => {
         <>
 
 
-            <section className="signup pt-105 pb-120 gray-bg">
+            <section className="signup pt-10 pb-10 mt-10 mb-10 gray-bg">
                 <div className="container">
-                    
+                    <div className="col-md-6 mx-auto shadow-lg p-5">
+                        <h1 className="font-size-xxl font-weight-bold mb-5 text-center">Login</h1>
+                        <div className="" id="sign-in">
+                            <form onSubmit={handleLoginFormSubmit}>
+                                <div className="form-group">
+                                    <label>Email address or Phone *</label>
+                                    <input type="text" className="form-control" onChange={handleInputChange} value={input.phoneOrEmail} name="phoneOrEmail" id="username" required={true}/>
+                                </div>
+                                <div className="form-group mb-0">
+                                    <label>Password *</label>
+                                    <input type="password" className="form-control" onChange={handleInputChange} value={input.password} name="password" id="password" required={true} />
+                                </div>
+                                <div className="form-checkbox mt-3 d-flex align-items-center justify-content-between">
+                                    <input onChange={handleInputChange} type="checkbox" className="custom-checkbox" id="remember" name="rememberPass" value={input.rememberPass}/>
+                                    <label className="text-default" htmlFor="remember">Remember me</label>
+                                    <a href="#">Lost your password?</a>
+                                </div>
+                                <button type="submit" className="btn btn-primary mt-3 mb-4">Login</button>
+                            </form>
+                        </div>
+                        <p className="text-center">Login with social account</p>
+                        <div className="social-icons social-icon-border-color d-flex justify-content-center">
+                            <a href="#" className="social-icon social-facebook w-icon-facebook"></a>
+                            <a href="#" className="social-icon social-twitter w-icon-twitter"></a>
+                            <a href="#" className="social-icon social-google fab fa-google"></a>
+                        </div>
+                    </div>
                 </div>
             </section>
 

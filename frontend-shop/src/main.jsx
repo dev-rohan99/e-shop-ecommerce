@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import { Provider } from "react-redux";
+import "./assets/css/bootstrap.min.css";
 import './index.css';
 import "./assets/css/style.min.css";
 import "./assets/css/demo1.min.css";

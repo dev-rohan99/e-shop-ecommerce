@@ -76,26 +76,34 @@ const Signup = () => {
         <>
 
 
-            <section className="signup pt-105 pb-120 gray-bg">
+            <section className="signup pt-10 mt-10 mb-10 pb-10 gray-bg">
                 <div className="container">
-                    <div className="col-md-5 mx-auto shadow-lg p-5">
-                        <div className="tab-content">
-                            <div className="tab-pane active" id="sign-in">
+                    <div className="col-md-6 mx-auto shadow-lg p-5">
+                        <h1 className="font-size-xxl font-weight-bold mb-5 text-center">Sign Up</h1>
+                        <div className="" id="sign-in">
+                            <form onSubmit={handleSignupFormSubmit}>
+                                <div className="form-group">
+                                    <label>Name *</label>
+                                    <input type="text" className="form-control" name="name" onChange={handleInputChange} value={input.name} id="username" required={true}/>
+                                </div>
                                 <div className="form-group">
                                     <label>Email address *</label>
-                                    <input type="text" className="form-control" name="email" id="username" required={true}/>
+                                    <input type="email" className="form-control" name="email" onChange={handleInputChange} value={input.email} id="username" required={true}/>
                                 </div>
                                 <div className="form-group mb-0">
                                     <label>Password *</label>
-                                    <input type="text" className="form-control" name="password" id="password" required={true} />
+                                    <input type="password" className="form-control" name="password" onChange={handleInputChange} value={input.password} id="password" required={true} />
                                 </div>
-                                <div className="form-checkbox d-flex align-items-center justify-content-between">
+                                <div className="form-group mb-0">
+                                    <label>Password Confirm *</label>
+                                    <input type="password" className="form-control" onChange={handleInputChange} value={input.rePassword} name="rePassword" id="password" required={true} />
+                                </div>
+                                <div className="form-checkbox mt-3 d-flex align-items-center justify-content-between">
                                     <input type="checkbox" className="custom-checkbox" id="remember" name="remember" required={true}/>
-                                    <label htmlFor="remember">Remember me</label>
-                                    <a href="#">Last your password?</a>
+                                    <label className="text-default" htmlFor="remember">Accept our all terms of condition and policy</label>
                                 </div>
-                                <a href="#" className="btn btn-primary">Sign In</a>
-                            </div>
+                                <button type="submit" className="btn btn-primary mt-3 mb-4">Sign Up</button>
+                            </form>
                         </div>
                         <p className="text-center">Sign in with social account</p>
                         <div className="social-icons social-icon-border-color d-flex justify-content-center">

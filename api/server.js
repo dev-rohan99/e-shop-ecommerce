@@ -21,7 +21,7 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
 app.use(cors({
-    origin : ["https://e-shop-ecommerce-uk4l.onrender.com", "http://localhost:3000"],
+    origin : ["https://e-shop-ecommerce-uk4l.onrender.com", "http://localhost:3000", "http://localhost:4000"],
     credentials : true
 }));
 app.use(cookieParser({ secure: false })); 
