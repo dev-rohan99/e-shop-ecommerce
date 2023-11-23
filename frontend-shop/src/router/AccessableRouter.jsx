@@ -1,5 +1,6 @@
 import PageLayout from "../components/page-layout/PageLayout";
 import Home from "../pages/home/Home";
+import Shop from "../pages/shop/Shop";
 
 const AccessableRouter = [
     {
@@ -8,6 +9,10 @@ const AccessableRouter = [
             {
                 path: "/",
                 element: <Home />
+            },
+            {
+                path: "/shop",
+                element: <Shop />
             },
         ]
     }
