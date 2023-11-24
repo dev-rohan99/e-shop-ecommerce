@@ -2,8 +2,8 @@ import PageLayout from "../components/page-layout/PageLayout";
 import Cart from "../pages/cart/Cart";
 import Checkout from "../pages/checkout/Checkout";
 import OrderComplete from "../pages/order-complete/OrderComplete";
-import UserDashboard from "../pages/user-dashboard/UserDashboard";
 import PrivateGard from "./PrivateGard";
+import MyAccount from "../pages/my-account/MyAccount";
 
 
 const privateRouter = [
@@ -14,7 +14,7 @@ const privateRouter = [
             children: [
                 {
                     path: "/user-dashboard",
-                    element: <UserDashboard />
+                    element: <MyAccount />
                 },
                 {
                     path: "/cart",
