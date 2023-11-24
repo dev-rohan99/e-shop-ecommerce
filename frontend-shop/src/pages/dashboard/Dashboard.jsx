@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const MyAccount = () => {
+const Dashboard = () => {
 
 
 
@@ -16,4 +16,4 @@ const MyAccount = () => {
     )
 }
 
-export default MyAccount;
+export default Dashboard;
