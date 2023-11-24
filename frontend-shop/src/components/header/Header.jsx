@@ -110,22 +110,22 @@ const Header = () => {
                                     <a href="tel:#" className="phone-number font-weight-bolder ls-50">0(800)123-456</a>
                                 </div>
                             </div>
-                            <a className="wishlist label-down link d-xs-show" href="wishlist.html">
+                            <Link className="wishlist label-down link d-xs-show" to="/wishlist">
                                 <i className="w-icon-heart"></i>
                                 <span className="wishlist-label d-lg-show">Wishlist</span>
-                            </a>
-                            <a className="compare label-down link d-xs-show" href="compare.html">
+                            </Link>
+                            <Link className="compare label-down link d-xs-show" to="/compare">
                                 <i className="w-icon-compare"></i>
                                 <span className="compare-label d-lg-show">Compare</span>
-                            </a>
+                            </Link>
                             <div className="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
                                 <div className="cart-overlay"></div>
-                                <a href="#" className="cart-toggle label-down link">
+                                <Link to="cart" className="cart-toggle label-down link">
                                     <i className="w-icon-cart">
                                         <span className="cart-count">2</span>
                                     </i>
                                     <span className="cart-label">Cart</span>
-                                </a>
+                                </Link>
                                 <div className="dropdown-box">
                                     <div className="cart-header">
                                         <span>Shopping Cart</span>
@@ -592,10 +592,10 @@ const Header = () => {
                                 <nav className="main-nav">
                                     <ul className="menu active-underline">
                                         <li className="active">
-                                            <a href="demo1.html">Home</a>
+                                            <Link to="/">Home</Link>
                                         </li>
                                         <li>
-                                            <a href="shop-banner-sidebar.html">Shop</a>
+                                            <Link to="shop">Shop</Link>
 
                                             <ul className="megamenu">
                                                 <li>
@@ -604,7 +604,7 @@ const Header = () => {
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="blog.html">Blog</a>
+                                            <Link to="/blog">Blog</Link>
                                         </li>
                                     </ul>
                                 </nav>
