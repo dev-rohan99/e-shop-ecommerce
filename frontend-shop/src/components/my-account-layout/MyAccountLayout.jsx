@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 
 const MyAccountLayout = () => {
@@ -33,25 +33,25 @@ const MyAccountLayout = () => {
                         <div className="row">
                             <ul className="col-md-3 mb-6 list-style-none" role="tablist">
                                 <li className="nav-item">
-                                    <a href="#account-dashboard" className="nav-link text-left active">Dashboard</a>
+                                    <Link to="/my-account/dashboard" className="nav-link text-left active">Dashboard</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a href="#account-orders" className="nav-link text-left">Orders</a>
+                                    <Link to="/my-account/orders" className="nav-link text-left">Orders</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a href="#account-downloads" className="nav-link text-left">Downloads</a>
+                                    <Link to="/my-account/downloads" className="nav-link text-left">Downloads</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a href="#account-addresses" className="nav-link text-left">Addresses</a>
+                                    <Link to="/my-account/addresses" className="nav-link text-left">Addresses</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a href="#account-details" className="nav-link text-left">Account details</a>
+                                    <Link to="/my-account/account-details" className="nav-link text-left">Account details</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a href="wishlist.html" className="nav-link text-left">Wishlist</a>
+                                    <Link to="/wishlist" className="nav-link text-left">Wishlist</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a href="login.html" className="nav-link text-left">Logout</a>
+                                    <Link to="/login" className="nav-link text-left">Logout</Link>
                                 </li>
                             </ul>
 
