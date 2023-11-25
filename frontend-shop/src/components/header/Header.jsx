@@ -595,13 +595,16 @@ const Header = () => {
                                             <Link to="/">Home</Link>
                                         </li>
                                         <li>
-                                            <Link to="shop">Shop</Link>
+                                            <Link to="/shop">Shop</Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/vendors-list">Vendors</Link>
 
-                                            <ul className="megamenu">
+                                            {/* <ul className="megamenu">
                                                 <li>
                                                     <h4 className="menu-title">Shop</h4>
                                                 </li>
-                                            </ul>
+                                            </ul> */}
                                         </li>
                                         <li>
                                             <Link to="/blog">Blog</Link>
