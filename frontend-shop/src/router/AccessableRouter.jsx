@@ -5,6 +5,7 @@ import VendorStores from "../components/vendor-layout/VendorLayout";
 import VendorLayout from "../components/vendor-layout/VendorLayout";
 import VendorList from "../pages/vendor-list/VendorList";
 import VendorGrid from "../pages/vendor-grid/VendorGrid";
+import ShopSingle from "../pages/shop-single/ShopSingle";
 
 const AccessableRouter = [
     {
@@ -17,6 +18,10 @@ const AccessableRouter = [
             {
                 path: "/shop",
                 element: <Shop />
+            },
+            {
+                path: "/shop/:id",
+                element: <ShopSingle />
             },
             {
                 element: <VendorLayout/>,

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import logo from "../../assets/logo.png";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userLogout } from '../../features/auth/authApiSlice';
 import useAuthHook from '../../hooks/useAuthHook';
@@ -10,6 +10,7 @@ const Header = () => {
 
     const dispatch = useDispatch();
     const { user } = useAuthHook();
+    const { pathname } = useLocation();
 
     const handleUserLogout = (e) => {
         e.preventDefault();
@@ -57,7 +58,7 @@ const Header = () => {
                             {
                                 user ? (
                                     <>
-                                        <Link to="/user-dashboard" className="d-lg-show">My Account</Link>
+                                        <Link to="/my-account/dashboard" className="d-lg-show">My Account</Link>
                                     </>
                                 ) : (
                                     <>
@@ -76,9 +77,9 @@ const Header = () => {
                         <div className="header-left mr-md-4">
                             <a href="#" className="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
                             </a>
-                            <a href="demo1.html" className="logo ml-lg-0">
+                            <Link to="/" className="logo ml-lg-0">
                                 <img src={logo} alt="logo" width="164" height="55" />
-                            </a>
+                            </Link>
                             <form method="get" action="#"
                                 className="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
                                 <div className="select-box">
@@ -203,7 +204,7 @@ const Header = () => {
                                         <span>Browse Categories</span>
                                     </a>
 
-                                    <div className="dropdown-box">
+                                    {<div className={`dropdown-box ${pathname === "/" ? "" : "hideBox"}`}>
                                         <ul className="menu vertical-menu category-menu">
                                             <li>
                                                 <a href="shop-fullwidth-banner.html">
@@ -587,17 +588,17 @@ const Header = () => {
                                                 </a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div>}
                                 </div>
                                 <nav className="main-nav">
                                     <ul className="menu active-underline">
-                                        <li className="active">
+                                        <li className={`${pathname === "/" ? "active" : ""}`}>
                                             <Link to="/">Home</Link>
                                         </li>
-                                        <li>
+                                        <li className={`${pathname === "/shop" ? "active" : ""}`}>
                                             <Link to="/shop">Shop</Link>
                                         </li>
-                                        <li>
+                                        <li className={`${pathname === "/vendors-list" || pathname === "/vendors-grid" ? "active" : ""}`}>
                                             <Link to="/vendors-list">Vendors</Link>
 
                                             {/* <ul className="megamenu">
@@ -606,7 +607,7 @@ const Header = () => {
                                                 </li>
                                             </ul> */}
                                         </li>
-                                        <li>
+                                        <li className={`${pathname === "/blog" ? "active" : ""}`}>
                                             <Link to="/blog">Blog</Link>
                                         </li>
                                     </ul>

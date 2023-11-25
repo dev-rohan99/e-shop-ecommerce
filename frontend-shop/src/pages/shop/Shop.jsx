@@ -1,5 +1,6 @@
 import React from 'react';
 import ShopSideBar from '../../components/shop-sidebar/ShopSideBar';
+import { Link } from 'react-router-dom';
 
 
 const Shop = () => {
@@ -159,10 +160,10 @@ const Shop = () => {
                                     <div className="product-wrap pb-2" style={{background:"rgb(187 187 187 / 19%)"}}>
                                         <div className="product text-center">
                                             <figure className="product-media">
-                                                <a href="product-default.html">
+                                                <Link to="/shop/1245">
                                                     <img src="https://pngimg.com/d/honey_PNG86351.png" alt="Product" width="300"
                                                         height="380" style={{objectFit:"cover"}} />
-                                                </a>
+                                                </Link>
                                                 <div className="product-action-horizontal">
                                                     <a href="#" className="btn-product-icon btn-cart w-icon-cart"
                                                         title="Add to cart"></a>
