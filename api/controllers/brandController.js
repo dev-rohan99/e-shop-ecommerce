@@ -42,7 +42,7 @@ export const getBrands = async (req, res, next) => {
 export const createBrand = async (req, res, next) => {
     try{
 
-        const { name, permissions } = req.body;
+        const { name, logo } = req.body;
 
         if(!name){
             return next(createError(400, 'Please fill out the form!'));
@@ -59,7 +59,7 @@ export const createBrand = async (req, res, next) => {
         const brand = await brandModel.create({
             name,
             slug,
-            permissions
+            logo
         });
 
         return res.status(201).json({
@@ -112,7 +112,7 @@ export const editBrand = async (req, res, next) => {
     try{
 
         const { id } = req.params;
-        const { name, permissions } = req.body;
+        const { name, logo } = req.body;
      
         if(!name){
             return next(createError(400, "Sorry, name field is required!"));
@@ -122,7 +122,7 @@ export const editBrand = async (req, res, next) => {
             ...req.body,
             name: name,
             slug: makeSlug(name),
-            permissions: permissions
+            logo
         }, { new: true });
 
         if(!updatedbrand){
