@@ -9,6 +9,7 @@ import mongoDBConnect from './config/db.js';
 import userRouter from './routes/userRouter.js';
 import permissionRouter from './routes/permissionRouter.js';
 import roleRouter from './routes/roleRouter.js';
+import brandRouter from './routes/brandRouter.js';
 import errorHandler from './middlewares/common/errorHandler.js';
 
 const __dirname = path.resolve();
@@ -36,6 +37,7 @@ app.use('/', express.static(path.join(__dirname, '/api/public')));
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/users/permissions', permissionRouter);
 app.use('/api/v1/users/roles', roleRouter);
+app.use('/api/v1/users/brands', brandRouter);
 
 // error handler
 app.use(errorHandler);

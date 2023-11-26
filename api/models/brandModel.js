@@ -39,6 +39,6 @@ const brandDataSchema = mongoose.Schema({
 
 const brandModel = mongoose.model('brands', brandDataSchema);
 
-export default roleModel;
+export default brandModel;
 
 
