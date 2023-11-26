@@ -10,6 +10,7 @@ import userRouter from './routes/userRouter.js';
 import permissionRouter from './routes/permissionRouter.js';
 import roleRouter from './routes/roleRouter.js';
 import brandRouter from './routes/brandRouter.js';
+import tagRouter from './routes/tagRouter.js';
 import errorHandler from './middlewares/common/errorHandler.js';
 
 const __dirname = path.resolve();
@@ -38,6 +39,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/users/permissions', permissionRouter);
 app.use('/api/v1/users/roles', roleRouter);
 app.use('/api/v1/users/brands', brandRouter);
+app.use('/api/v1/users/tags', tagRouter);
 
 // error handler
 app.use(errorHandler);
