@@ -26,15 +26,15 @@ const categoryDataSchema = mongoose.Schema({
         required: true
     },
     
-    parentCategory: {
+    parentCategoryId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "category",
+        ref: "categories",
         default: null
     },
     
     subCategories: {
         type: [mongoose.Schema.Types.ObjectId],
-        ref: "category",
+        ref: "categories",
         default: null
     },
 

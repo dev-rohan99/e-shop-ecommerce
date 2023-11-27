@@ -11,7 +11,9 @@ import permissionRouter from './routes/permissionRouter.js';
 import roleRouter from './routes/roleRouter.js';
 import brandRouter from './routes/brandRouter.js';
 import tagRouter from './routes/tagRouter.js';
+import categoryRouter from './routes/categoryRouter.js';
 import errorHandler from './middlewares/common/errorHandler.js';
+import {v2 as cloudinary} from 'cloudinary';
 
 const __dirname = path.resolve();
 
@@ -27,6 +29,12 @@ app.use(cors({
     credentials : true
 }));
 app.use(cookieParser({ secure: false })); 
+          
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.CLOUD_API_KEY, 
+  api_secret: process.env.CLOUD_API_SECRET 
+});
 
 // mongoDB Connection
 mongoDBConnect();
@@ -40,6 +48,7 @@ app.use('/api/v1/users/permissions', permissionRouter);
 app.use('/api/v1/users/roles', roleRouter);
 app.use('/api/v1/users/brands', brandRouter);
 app.use('/api/v1/users/tags', tagRouter);
+app.use('/api/v1/users/categories', categoryRouter);
 
 // error handler
 app.use(errorHandler);

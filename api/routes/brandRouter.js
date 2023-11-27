@@ -4,16 +4,14 @@ import { createBrand, deleteBrand, editBrand, editBrandStatus, getBrands, getSin
 const router = express.Router();
 
 
-router.use(userVerify);
-
 router.get('/all', getBrands);
 router.get('/:id', getSingleBrand);
-router.post('/create', createBrand);
-router.put('/update/:id', editBrand);
-router.patch('/update/:id', editBrand);
-router.put('/status-update/:id', editBrandStatus);
-router.patch('/status-update/:id', editBrandStatus);
-router.delete('/delete/:id', deleteBrand);
+router.post('/create', userVerify, createBrand);
+router.put('/update/:id', userVerify, editBrand);
+router.patch('/update/:id', userVerify, editBrand);
+router.put('/status-update/:id', userVerify, editBrandStatus);
+router.patch('/status-update/:id', userVerify, editBrandStatus);
+router.delete('/delete/:id', userVerify, deleteBrand);
 
 
 // router export
