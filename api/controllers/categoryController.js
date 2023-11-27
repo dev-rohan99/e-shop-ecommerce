@@ -1,4 +1,5 @@
 import categoryModel from "../models/categoryModel.js";
+import { cloudinaryUpload } from "../utility/cloudinary.js";
 import createError from "../utility/createError.js";
 import { makeSlug } from "../utility/makeSlug.js";
 
@@ -148,7 +149,7 @@ export const editCategory = async (req, res, next) => {
             ...req.body,
             name: name,
             slug: makeSlug(name),
-            logo
+            logo: cloudinaryUpload(file)
         }, { new: true });
 
         if(!updatedcategory){

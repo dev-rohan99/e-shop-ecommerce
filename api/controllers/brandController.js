@@ -1,4 +1,5 @@
 import brandModel from "../models/brandModel.js";
+import { cloudinaryUpload } from "../utility/cloudinary.js";
 import createError from "../utility/createError.js";
 import { makeSlug } from "../utility/makeSlug.js";
 
@@ -42,7 +43,7 @@ export const getBrands = async (req, res, next) => {
 export const createBrand = async (req, res, next) => {
     try{
 
-        const { name, logo } = req.body;
+        const { name } = req.body;
 
         if(!name){
             return next(createError(400, 'Please fill out the form!'));
@@ -55,11 +56,12 @@ export const createBrand = async (req, res, next) => {
         }
 
         const slug = makeSlug(name);
+        const brandLogo = await cloudinaryUpload(req);
         
         const brand = await brandModel.create({
             name,
             slug,
-            logo
+            logo: brandLogo
         });
 
         return res.status(201).json({
