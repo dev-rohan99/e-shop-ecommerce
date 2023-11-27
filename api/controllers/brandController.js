@@ -1,6 +1,7 @@
 import brandModel from "../models/brandModel.js";
-import { cloudinaryUpload } from "../utility/cloudinary.js";
+import { cloudinaryDelete, cloudinaryUpload } from "../utility/cloudinary.js";
 import createError from "../utility/createError.js";
+import { findPublicId } from "../utility/helpers.js";
 import { makeSlug } from "../utility/makeSlug.js";
 
 
@@ -59,6 +60,7 @@ export const createBrand = async (req, res, next) => {
         const brandLogo = await cloudinaryUpload(req);
         
         const brand = await brandModel.create({
+            userId: req.userId,
             name,
             slug,
             logo: brandLogo
@@ -114,21 +116,29 @@ export const editBrand = async (req, res, next) => {
     try{
 
         const { id } = req.params;
-        const { name, logo } = req.body;
+        const { name } = req.body;
      
         if(!name){
             return next(createError(400, "Sorry, name field is required!"));
         }
 
+        const brandLogo = await cloudinaryUpload(req);
+
         const updatedbrand = await brandModel.findByIdAndUpdate(id, {
             ...req.body,
             name: name,
             slug: makeSlug(name),
-            logo
+            logo: brandLogo
         }, { new: true });
 
         if(!updatedbrand){
             return next(createError(400, "Sorry, brand update failed! Try again."));
+        }
+
+        // brand logo delete
+        if(deleteBrand.logo){
+            const publicId = findPublicId(deleteBrand.logo);
+            await cloudinaryDelete(publicId);
         }
 
         res.status(201).json({
@@ -190,6 +200,12 @@ export const deleteBrand = async (req, res, next) => {
 
         if(!deletedbrand){
             return next(createError(400, "Sorry, brands not deleted! Please, try again later."))
+        }
+
+        // brand logo delete
+        if(deleteBrand.logo){
+            const publicId = findPublicId(deleteBrand.logo);
+            await cloudinaryDelete(publicId);
         }
 
         return res.status(201).json({

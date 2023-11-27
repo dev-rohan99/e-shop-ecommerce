@@ -3,13 +3,19 @@ import {v2 as cloudinary} from 'cloudinary';
 import fs from "fs";
 
 
-const storage = multer.memoryStorage();
+const storage = multer.diskStorage({
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + "-" + Math.round(Math.random() * 99999) + "-" + file.fieldname)
+    }
+});
 export const brandLogo = multer({ storage }).single("logo");
 
 export const cloudinaryUpload = async (req) => {
-    fs.writeFileSync("./" + req.file.originalname, req.file.buffer);
-    const res = await cloudinary.uploader.upload("./" + req.file.originalname, req.file.buffer);
-    fs.unlinkSync("./" + req.file.originalname);
+    const res = await cloudinary.uploader.upload(req.file.path);
     return res.secure_url;
+}
+
+export const cloudinaryDelete = async (publicId) => {
+    await cloudinary.uploader.destroy(publicId);
 }
 
