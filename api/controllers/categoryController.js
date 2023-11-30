@@ -1,5 +1,5 @@
 import categoryModel from "../models/categoryModel.js";
-import { cloudinaryUpload } from "../utility/cloudinary.js";
+import { cloudinaryDelete, cloudinaryUpload } from "../utility/cloudinary.js";
 import createError from "../utility/createError.js";
 import { makeSlug } from "../utility/makeSlug.js";
 
@@ -63,7 +63,7 @@ export const getCategories = async (req, res, next) => {
 export const createCategory = async (req, res, next) => {
     try{
 
-        const { name, parentCategoryId } = req.body;
+        const { name, parentCategoryId, icon, photo } = req.body;
 
         if(!name){
             return next(createError(400, 'Please fill out the form!'));
@@ -76,10 +76,22 @@ export const createCategory = async (req, res, next) => {
         }
 
         const slug = makeSlug(name);
+
+        let catIcon = null;
+        if(icon){
+            catIcon = icon;
+        }
+
+        const categoryPhoto = null;
+        if(photo){
+            categoryPhoto = cloudinaryUpload(req.file.path);
+        }
         
         const category = await categoryModel.create({
             ...req.body,
             slug,
+            icon: catIcon ? catIcon : null,
+            photo: categoryPhoto ? categoryPhoto : null,
             parentCategoryId: parentCategoryId ? parentCategoryId : null
         });
 
@@ -139,21 +151,42 @@ export const editCategory = async (req, res, next) => {
     try{
 
         const { id } = req.params;
-        const { name, logo } = req.body;
+        const { name, photo, icon, parentCategoryId } = req.body;
      
         if(!name){
             return next(createError(400, "Sorry, name field is required!"));
         }
 
+        const slug = makeSlug(name);
+
+        let catIcon = null;
+        if(icon){
+            catIcon = icon;
+        }
+
+        let categoryPhoto = null;
+        if(req.file){
+            categoryPhoto = await cloudinaryUpload(req.file.path);
+            await cloudinaryDelete(findPublicId(photo));
+        }
+
         const updatedcategory = await categoryModel.findByIdAndUpdate(id, {
             ...req.body,
             name: name,
-            slug: makeSlug(name),
-            logo: cloudinaryUpload(file)
+            slug: slug,
+            logo: catIcon ? catIcon : null,
+            logo: categoryPhoto ? categoryPhoto : null,
+            parentCategoryId: parentCategoryId ? parentCategoryId : null
         }, { new: true });
 
         if(!updatedcategory){
             return next(createError(400, "Sorry, category update failed! Try again."));
+        }
+
+        if(parentCategoryId){
+            await categoryModel.findByIdAndUpdate(parentCategoryId, {
+                $push: { subCategories: updatedcategory._id }
+            });
         }
 
         res.status(201).json({
@@ -215,6 +248,10 @@ export const deleteCategory = async (req, res, next) => {
 
         if(!deletedCategory){
             return next(createError(400, "Sorry, categories not deleted! Please, try again later."))
+        }
+
+        if(deleteCategory.photo){
+            await cloudinaryDelete(findPublicId(deleteCategory.photo));
         }
 
         return res.status(201).json({

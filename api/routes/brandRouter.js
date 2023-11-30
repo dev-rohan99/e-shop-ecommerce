@@ -1,7 +1,7 @@
 import express from 'express';
 import { userVerify } from '../middlewares/userVerify.js';
 import { createBrand, deleteBrand, editBrand, editBrandStatus, getBrands, getSingleBrand } from '../controllers/brandController.js';
-import { brandLogo } from '../utility/cloudinary.js';
+import { brandLogo } from '../middlewares/multer.js';
 const router = express.Router();
 
 

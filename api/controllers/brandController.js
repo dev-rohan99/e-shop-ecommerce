@@ -59,7 +59,7 @@ export const createBrand = async (req, res, next) => {
         const slug = makeSlug(name);
         let brandUp = null;
         if(req.file){
-            const brandLogo = await cloudinaryUpload(req);
+            const brandLogo = await cloudinaryUpload(req.file.path);
             brandUp = brandLogo;
         }
         
@@ -136,8 +136,9 @@ export const editBrand = async (req, res, next) => {
 
         let updatedLogo = null;
         if(req.file){
-            const brandLogo = await cloudinaryUpload(req);
+            const brandLogo = await cloudinaryUpload(req.file.path);
             updatedLogo = brandLogo;
+            await cloudinaryDelete(findPublicId(brandUpdate.logo));
         }
 
         brandUpdate.name = name;
