@@ -57,13 +57,17 @@ export const createBrand = async (req, res, next) => {
         }
 
         const slug = makeSlug(name);
-        const brandLogo = await cloudinaryUpload(req);
+        let brandUp = null;
+        if(req.file){
+            const brandLogo = await cloudinaryUpload(req);
+            brandUp = brandLogo;
+        }
         
         const brand = await brandModel.create({
             userId: req.userId,
             name,
             slug,
-            logo: brandLogo
+            logo: brandUp ? brandUp : null
         });
 
         return res.status(201).json({
@@ -122,28 +126,45 @@ export const editBrand = async (req, res, next) => {
             return next(createError(400, "Sorry, name field is required!"));
         }
 
-        const brandLogo = await cloudinaryUpload(req);
+        
+        const slug = makeSlug(name);
+        const brandUpdate = await brandModel.findById(id);
 
-        const updatedbrand = await brandModel.findByIdAndUpdate(id, {
-            ...req.body,
-            name: name,
-            slug: makeSlug(name),
-            logo: brandLogo
-        }, { new: true });
-
-        if(!updatedbrand){
-            return next(createError(400, "Sorry, brand update failed! Try again."));
+        if(!brandUpdate){
+            return next(createError(400, "Sorry, brand data dosen't exist!"));
         }
+
+        let updatedLogo = null;
+        if(req.file){
+            const brandLogo = await cloudinaryUpload(req);
+            updatedLogo = brandLogo;
+        }
+
+        brandUpdate.name = name;
+        brandUpdate.slug = slug;
+        brandUpdate.logo = updatedLogo ? updatedLogo : null;
+        brandUpdate.save();
+
+        // const updatedbrand = await brandModel.findByIdAndUpdate(id, {
+        //     ...req.body,
+        //     name: name,
+        //     slug: makeSlug(name),
+        //     logo: updatedLogo ? updatedLogo : null
+        // }, { new: true });
+
+        // if(!updatedbrand){
+        //     return next(createError(400, "Sorry, brand update failed! Try again."));
+        // }
 
         // brand logo delete
-        if(deleteBrand.logo){
-            const publicId = findPublicId(deleteBrand.logo);
-            await cloudinaryDelete(publicId);
-        }
+        // if(deleteBrand.logo){
+        //     const publicId = findPublicId(deleteBrand.logo);
+        //     await cloudinaryDelete(publicId);
+        // }
 
         res.status(201).json({
             message: "User brand successfully updated!",
-            brand: updatedbrand
+            brand: brandUpdate
         });
 
     }catch(err){
