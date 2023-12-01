@@ -250,8 +250,8 @@ export const deleteCategory = async (req, res, next) => {
             return next(createError(400, "Sorry, categories not deleted! Please, try again later."))
         }
 
-        if(deleteCategory.photo){
-            await cloudinaryDelete(findPublicId(deleteCategory.photo));
+        if(deletedCategory.photo){
+            await cloudinaryDelete(findPublicId(deletedCategory.photo));
         }
 
         return res.status(201).json({

@@ -204,7 +204,7 @@ const productDataSchema = mongoose.Schema({
     reviews: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: "reviews",
-        default: []
+        default: null
     },
 
     status: {
