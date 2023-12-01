@@ -99,7 +99,7 @@ export const createProduct = async (req, res, next) => {
  */
 
 
-export const getSingleproduct = async (req, res, next) => {
+export const getSingleProduct = async (req, res, next) => {
     try{
 
         const { id } = req.params;
@@ -127,7 +127,7 @@ export const getSingleproduct = async (req, res, next) => {
  */
 
 
-export const editproduct = async (req, res, next) => {
+export const editProduct = async (req, res, next) => {
     try{
 
         const { id } = req.params;
@@ -187,7 +187,7 @@ export const editproduct = async (req, res, next) => {
  * @returns 
  */
 
-export const editproducttatus = async (req, res, next) => {
+export const editProductStatus = async (req, res, next) => {
     try{
 
         const { id } = req.params;

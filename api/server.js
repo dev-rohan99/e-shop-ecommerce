@@ -12,6 +12,7 @@ import roleRouter from './routes/roleRouter.js';
 import brandRouter from './routes/brandRouter.js';
 import tagRouter from './routes/tagRouter.js';
 import categoryRouter from './routes/categoryRouter.js';
+import productRouter from './routes/productRouter.js';
 import errorHandler from './middlewares/common/errorHandler.js';
 import {v2 as cloudinary} from 'cloudinary';
 
@@ -49,6 +50,7 @@ app.use('/api/v1/users/roles', roleRouter);
 app.use('/api/v1/users/brands', brandRouter);
 app.use('/api/v1/users/tags', tagRouter);
 app.use('/api/v1/users/categories', categoryRouter);
+app.use('/api/v1/users/products', productRouter);
 
 // error handler
 app.use(errorHandler);
