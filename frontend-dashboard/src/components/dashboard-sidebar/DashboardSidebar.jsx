@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { FaSitemap } from 'react-icons/fa';
+import { FaRegIdBadge, FaSitemap } from 'react-icons/fa';
 import { MdKeyboardArrowDown, MdOutlineCategory, MdOutlineDashboard, MdOutlineEdgesensorHigh, MdOutlineSettings, MdReportGmailerrorred } from 'react-icons/md';
 import { TbNewSection, TbTruckDelivery } from 'react-icons/tb';
 import { AiFillShop, AiOutlineTags } from 'react-icons/ai';
@@ -36,7 +36,10 @@ const DashboardSidebar = () => {
                                 <Link to={"/dashboard/tags"}><AiOutlineTags style={{fontSize: "23px"}} /> <span>Tags</span></Link>
                             </li>
                             <li> 
-                                <Link to={"/dashboard/sellers"}><AiFillShop style={{fontSize: "23px"}} /> <span>Sellers</span></Link>
+                                <Link to={"/dashboard/sellers"}><FaRegIdBadge style={{fontSize: "23px"}} /> <span>Sellers</span></Link>
+                            </li>
+                            <li> 
+                                <Link to={"/dashboard/brands"}><AiFillShop style={{fontSize: "23px"}} /> <span>Brands</span></Link>
                             </li>
                             <li> 
                                 <Link to={"/dashboard/orders"}><MdOutlineEdgesensorHigh style={{fontSize: "23px"}} /> <span>Orders</span></Link>

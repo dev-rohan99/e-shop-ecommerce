@@ -33,7 +33,7 @@ const productDataSchema = mongoose.Schema({
 
     productType: {
         type: String,
-        enum: ["simple", "variable", "group", "affiliate"],
+        enum: ["simple", "downloadable", "variable", "group", "affiliate"],
         required: true,
         default: null
     },
@@ -42,12 +42,10 @@ const productDataSchema = mongoose.Schema({
 
         regularPrice: {
             type: Number,
-            required: true
         },
 
         salePrice: {
             type: Number,
-            required: true
         },
 
         discount: {
@@ -57,7 +55,32 @@ const productDataSchema = mongoose.Schema({
 
         images: {
             type: [String],
-            required: true
+        },
+
+        stock: {
+            type: Number,
+            default: 0
+        },
+
+    },
+
+    productDownloadable: {
+
+        regularPrice: {
+            type: Number,
+        },
+
+        salePrice: {
+            type: Number,
+        },
+
+        discount: {
+            type: Number,
+            default: null
+        },
+
+        images: {
+            type: [String],
         },
 
         stock: {
@@ -81,12 +104,10 @@ const productDataSchema = mongoose.Schema({
 
         regularPrice: {
             type: Number,
-            required: true
         },
 
         salePrice: {
             type: Number,
-            required: true
         },
 
         discount: {
@@ -96,7 +117,6 @@ const productDataSchema = mongoose.Schema({
 
         images: {
             type: [String],
-            required: true
         },
 
         stock: {
@@ -110,17 +130,14 @@ const productDataSchema = mongoose.Schema({
 
         name: {
             type: String,
-            required: true
         },
 
         regularPrice: {
             type: Number,
-            required: true
         },
 
         salePrice: {
             type: Number,
-            required: true
         },
 
         discount: {
@@ -130,7 +147,6 @@ const productDataSchema = mongoose.Schema({
 
         images: {
             type: [String],
-            required: true
         },
 
         stock: {
@@ -144,7 +160,6 @@ const productDataSchema = mongoose.Schema({
 
         regularPrice: {
             type: Number,
-            required: true
         },
 
         discount: {
@@ -154,12 +169,10 @@ const productDataSchema = mongoose.Schema({
 
         salePrice: {
             type: Number,
-            required: true
         },
 
         images: {
             type: [String],
-            required: true
         },
 
         stock: {
@@ -169,7 +182,6 @@ const productDataSchema = mongoose.Schema({
 
         link: {
             type: String,
-            required: true
         }
 
     },
@@ -193,7 +205,7 @@ const productDataSchema = mongoose.Schema({
     category: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: "categories",
-        default: ""
+        default: []
     },
 
     rating: {

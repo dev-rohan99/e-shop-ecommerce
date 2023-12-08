@@ -43,7 +43,7 @@ export const getProducts = async (req, res, next) => {
 export const createProduct = async (req, res, next) => {
     try{
 
-        const { name, parentproductId, icon, photo } = req.body;
+        const { name, productType, productSimple, productVariable, productGroup, productAffiliate, productDownloadable } = req.body;
 
         if(!name){
             return next(createError(400, 'Please fill out the form!'));
@@ -57,29 +57,27 @@ export const createProduct = async (req, res, next) => {
 
         const slug = makeSlug(name);
 
-        let catIcon = null;
-        if(icon){
-            catIcon = icon;
+        let productPhoto = [];
+        if(req.files){
+            req.files.forEach((item) => {
+                console.log(item.path);
+                const fileData = cloudinaryUpload(item.path);
+                productPhoto.push(fileData);
+            });
         }
 
-        const productPhoto = null;
-        if(photo){
-            productPhoto = cloudinaryUpload(req.file.path);
-        }
+        console.log(productPhoto);
         
         const product = await productModel.create({
             ...req.body,
+            userId: req.userId,
             slug,
-            icon: catIcon ? catIcon : null,
-            photo: productPhoto ? productPhoto : null,
-            parentproductId: parentproductId ? parentproductId : null
+            productSimple: (productType === "simple") ? { ...productSimple, productPhoto } : null,
+            productDownloadable: (productType === "affiliate") ? productDownloadable : null,
+            productVariable: (productType === "downloadable") ? productVariable : null,
+            productGroup: (productType === "variable") ? productGroup : null,
+            productAffiliate: (productType === "group") ? productAffiliate : null
         });
-
-        if(parentproductId){
-            await productModel.findByIdAndUpdate(parentproductId, {
-                $push: { subproduct: product._id }
-            });
-        }
 
         return res.status(201).json({
             message: "User product successfully created!",
