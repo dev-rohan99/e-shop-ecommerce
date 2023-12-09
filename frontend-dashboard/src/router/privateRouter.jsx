@@ -1,5 +1,6 @@
 import DashboardLayout from "../components/dashboard-layout/DashboardLayout";
 import Dashboard from "../pages/admin-dashboard/Dashboard";
+import Brand from "../pages/brand/Brand";
 import Permission from "../pages/permission/Permission";
 import Profile from "../pages/profile/Profile";
 import Role from "../pages/role/Role";
@@ -25,6 +26,10 @@ const privateRouter = [
                     {
                         path: "/dashboard/sellers",
                         element: <Sellers />
+                    },
+                    {
+                        path: "/dashboard/brands",
+                        element: <Brand />
                     },
                     {
                         path: "/dashboard/profile",

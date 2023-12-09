@@ -8,6 +8,6 @@ const storage = multer.diskStorage({
     }
 });
 
-export const brandLogo = multer({ storage }).single("brand-logo");
+export const brandLogo = multer({ storage }).single("logo");
 export const categoryPhoto = multer({ storage }).single("category-photo");
 export const productPhotos = multer({ storage }).array("product-photo");
