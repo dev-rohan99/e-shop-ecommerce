@@ -15,9 +15,10 @@ const Brand = () => {
 		logo: ""
 	});
 	const dispatch = useDispatch();
-    const { error, message, brands } = useSelector((state) => state.shop);
+    const { isLoading, error, message, brands } = useSelector((state) => state.shop);
 
     const handleLogoPreview = (e) => {
+        console.log(e.target.files[0]);
         setInput({
             ...input,
             logo : e.target.files[0]
@@ -29,9 +30,15 @@ const Brand = () => {
         if(!input.name || !input.logo){
             createToast("Please, fill out the form!", "warn");
         }else{
-            dispatch(createSellerOrAdminBrand(input));
+            const formData = new FormData();
+            formData.append("name", input.name);
+            formData.append("logo", input.logo);
+            dispatch(createSellerOrAdminBrand(formData));
+            setInput({
+                name: "",
+		        logo: ""
+            });
             resetForm();
-            setModal(false);
         }
     }
 
@@ -105,7 +112,7 @@ const Brand = () => {
 						</div>
 						
 					</div>
-					<button type="submit" className="btn btn-primary btn-block">Create</button>
+					<button type="submit" className="btn btn-primary btn-block">{isLoading ? "Creating . . ." : "Create"}</button>
 				</form>
 			</Modal>}
 
@@ -114,4 +121,4 @@ const Brand = () => {
     )
 }
 
-export default Brand
+export default Brand;
