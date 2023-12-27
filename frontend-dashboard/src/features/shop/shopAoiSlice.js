@@ -101,3 +101,63 @@ export const createShopTag = createAsyncThunk("shop/createShopTag", async (data)
     }
 });
 
+export const getShopTag = createAsyncThunk("shop/getShopTag", async () => {
+    try{
+
+        const response = await axios.get(`${serverUri}/users/tags/all`, {
+            withCredentials: true
+        });
+        return response.data;
+        
+    }catch(err){
+        throw new Error(err.response.data.message);
+    }
+});
+
+export const updateShopTag = createAsyncThunk("shop/updateShopTag", async (id, data) => {
+    try{
+
+        const response = await axios.patch(`${serverUri}/users/tags/update/${id}`, data, {
+            withCredentials: true
+        });
+        return response.data;
+        
+    }catch(err){
+        throw new Error(err.response.data.message);
+    }
+});
+
+export const updateShopTagStatus = createAsyncThunk("shop/updateShopTagStatus", async ({id, status}) => {
+    try{
+
+        const response = await axios.put(`${serverUri}/users/tags/status-update/${id}`, {status}, {
+            withCredentials: true
+        });
+        return response.data;
+        
+    }catch(err){
+        throw new Error(err.response.data.message);
+    }
+});
+
+export const deleteShopTag = createAsyncThunk("shop/deleteShopTag", async (id, Swal) => {
+    try{
+
+        const response = await axios.delete(`${serverUri}/users/tags/delete/${id}`, {
+            withCredentials: true
+        });
+
+        if(response.data.brands){
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+            });
+        }
+
+        return response.data;
+        
+    }catch(err){
+        throw new Error(err.response.data.message);
+    }
+});

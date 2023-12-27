@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getLoggedinUser } from "./features/auth/authApiSlice";
 import { setMessageEmpty } from "./features/auth/authSlice";
 import { getAllPermission, getAllRole } from "./features/user/userApiSlice";
-import { getSellerOrAdminBrands } from "./features/shop/shopAoiSlice";
+import { getSellerOrAdminBrands, getShopTag } from "./features/shop/shopAoiSlice";
 
 function App() {
 
@@ -27,6 +27,7 @@ function App() {
     dispatch(getAllPermission());
     dispatch(getAllRole());
     dispatch(getSellerOrAdminBrands());
+    dispatch(getShopTag());
   }, [dispatch]);
 
   useEffect(() => {

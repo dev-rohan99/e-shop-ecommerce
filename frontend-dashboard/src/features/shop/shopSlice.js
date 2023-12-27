@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createSellerOrAdminBrand, deleteSellerOrAdminBrand, getSellerOrAdminBrands, updateSellerOrAdminBrand, updateSellerOrAdminBrandStatus } from "./shopAoiSlice";
+import { createSellerOrAdminBrand, createShopTag, deleteSellerOrAdminBrand, deleteShopTag, getSellerOrAdminBrands, getShopTag, updateSellerOrAdminBrand, updateSellerOrAdminBrandStatus, updateShopTag, updateShopTagStatus } from "./shopAoiSlice";
 
 
 const shopSlice = createSlice({
@@ -87,6 +87,70 @@ const shopSlice = createSlice({
                 )
             ] = action.payload.brand;
         }).addCase(updateSellerOrAdminBrand.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        builder.addCase(createShopTag.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(createShopTag.fulfilled, (state, action) => {
+            state.tags = state.tags ?? [];
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.tags.push(action.payload.tag);
+        }).addCase(createShopTag.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        builder.addCase(getShopTag.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(getShopTag.fulfilled, (state, action) => {
+            state.tags = state.tags ?? [];
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.tags = action.payload.tags;
+        }).addCase(getShopTag.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        builder.addCase(updateShopTag.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(updateShopTag.fulfilled, (state, action) => {
+            state.tags = state.tags ?? [];
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.tags = state.tags.filter((data) => data._id !== action.payload.tag._id);
+        }).addCase(updateShopTag.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        builder.addCase(updateShopTagStatus.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(updateShopTagStatus.fulfilled, (state, action) => {
+            state.tags = state.tags ?? [];
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.tags[
+                state.tags.findIndex(
+                    (data) => data._id == action.payload.tag._id
+                )
+            ] = action.payload.tag;
+        }).addCase(updateShopTagStatus.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        builder.addCase(deleteShopTag.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(deleteShopTag.fulfilled, (state, action) => {
+            state.tags = state.tags ?? [];
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.tags = state.tags.filter((data) => data._id !== action.payload.tag._id);
+        }).addCase(deleteShopTag.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
         })
