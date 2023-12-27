@@ -56,10 +56,10 @@ app.use('/api/v1/users/products', productRouter);
 app.use(errorHandler);
 
 if (process.env.NODE_ENV === 'PRODUCTION'){
-    app.use(express.static(path.join(__dirname, '/front-end/dist')));
+    app.use(express.static(path.join(__dirname, '/frontend-dashboard/dist')));
   
     app.get('*', (req, res) =>
-      res.sendFile(path.join(__dirname, 'front-end', 'dist', 'index.html'))
+      res.sendFile(path.join(__dirname, 'frontend-dashboard', 'dist', 'index.html'))
     );
 }
 

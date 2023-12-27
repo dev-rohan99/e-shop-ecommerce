@@ -2,6 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import serverUri from "../../utilities/serverUri";
 
+/**
+ * brands functionality
+ * multivendor system
+ */
 
 export const createSellerOrAdminBrand = createAsyncThunk("shop/createSellerOrAdminBrand", async (data) => {
     try{
@@ -15,7 +19,6 @@ export const createSellerOrAdminBrand = createAsyncThunk("shop/createSellerOrAdm
         throw new Error(err.response.data.message);
     }
 });
-
 
 export const getSellerOrAdminBrands = createAsyncThunk("shop/getSellerOrAdminBrand", async () => {
     try{
@@ -79,5 +82,22 @@ export const deleteSellerOrAdminBrand = createAsyncThunk("shop/deleteSellerOrAdm
 });
 
 
+/**
+ * tags functionality
+ * multivendor system
+ */
 
+
+export const createShopTag = createAsyncThunk("shop/createShopTag", async (data) => {
+    try{
+
+        const response = await axios.post(`${serverUri}/users/tags/create`, data, {
+            withCredentials: true
+        });
+        return response.data;
+        
+    }catch(err){
+        throw new Error(err.response.data.message);
+    }
+});
 
