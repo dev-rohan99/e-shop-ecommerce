@@ -5,6 +5,7 @@ import useInputControl from '../../hooks/useInputControl';
 import createToast from '../../utilities/createToast';
 import { createSellerOrAdminBrand } from '../../features/shop/shopAoiSlice';
 import { setShopMessageEmpty } from '../../features/shop/shopSlice';
+import BrandDatatable from '../../components/brands-datatable/BrandDatatable';
 
 
 const Brand = () => {
@@ -15,7 +16,7 @@ const Brand = () => {
 		logo: ""
 	});
 	const dispatch = useDispatch();
-    const { isLoading, error, message, brands } = useSelector((state) => state.shop);
+    const { isLoading, error, message } = useSelector((state) => state.shop);
 
     const handleLogoPreview = (e) => {
         console.log(e.target.files[0]);
@@ -82,7 +83,7 @@ const Brand = () => {
 								<div className="card-body">
 									<div className="table-responsive">
 
-                                        {/* <RoleDatatable/> */}
+                                        <BrandDatatable/>
 
 									</div>
 								</div>

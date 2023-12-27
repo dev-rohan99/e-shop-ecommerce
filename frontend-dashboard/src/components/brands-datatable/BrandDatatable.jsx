@@ -1,41 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import DataTable from 'datatables.net-dt';
-import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPermissionData } from '../../features/user/userSlice';
-import { deletePermission, getAllPermission, updatePermission, updatePermissionStatus } from '../../features/user/userApiSlice';
-import moment from "moment";
+import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import DataTable from 'datatables.net-dt';
 import Swal from 'sweetalert2';
+import moment from "moment";
+import { deleteSellerOrAdminBrand, getSellerOrAdminBrands, updateSellerOrAdminBrand, updateSellerOrAdminBrandStatus } from '../../features/shop/shopAoiSlice';
 import useInputControl from '../../hooks/useInputControl';
-import createToast from '../../utilities/createToast';
 import Modal from '../modal/Modal';
+import createToast from '../../utilities/createToast';
 
 
-const PermissionDatatable = () => {
+const BrandDatatable = () => {
+
 
 	const [modal, setModal] = useState(false);
-	const dispatch = useDispatch();
-    const { permissions } = useSelector(getAllPermissionData);
 	const { input, setInput, handleInputChange, resetForm } = useInputControl({
-		name: ""
+		name: "",
+		logo: ""
 	});
+    const { isLoading, brands } = useSelector((state) => state.shop);
+	const dispatch = useDispatch();
 
-    const handlePermissionUpdate = (e, id) => {
-		e.preventDefault();
-		if(!input.name){
+    const handleBrandStatusUpdate = (status, id) => {
+        dispatch(updateSellerOrAdminBrandStatus({id: id, status}));
+    }
+
+    const handleFileInputChange = (e, fieldName) => {
+        const file = e.target.files[0];
+        setInput((prevInput) => ({
+          ...prevInput,
+          [fieldName]: file,
+        }));
+      };
+
+    const handleBrandUpdate = (e, id) => {
+        e.preventDefault();
+        if(!input.name || !input.logo){
 			createToast("Please, fill out the form!", "warn");
 		}else{
-			dispatch(updatePermission({id: id, name: input.name}));
+			dispatch(updateSellerOrAdminBrand(id, {name: input.name, logo: input.logo}));
 			resetForm();
 			setModal(false);
 		}
-	}
+    }
 
-    const handlePermissionStatusUpdate = (status, id) => {
-        dispatch(updatePermissionStatus({id: id, status}));
-	}
-
-    const handlePermissionDelete = (id) => {
+    const handleBrandDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -46,23 +55,22 @@ const PermissionDatatable = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if(result.isConfirmed){
-                dispatch(deletePermission(id, Swal));
-                dispatch(getAllPermission());
+                dispatch(deleteSellerOrAdminBrand(id, Swal));
+                dispatch(getSellerOrAdminBrands());
             }
-        });
-	}
+        })
+    }
 
-    useEffect(() => {
-        new DataTable('.datatable');
-    }, []);
 
     return (
         <>
         
-            {permissions ? (<table className="datatable table table-hover table-center mb-0">
+        
+            {brands ? (<table className="datatable table table-hover table-center mb-0">
                 <thead>
                     <tr>
-                        <th>Permission Name</th>
+                        <th>Logo</th>
+                        <th>Name</th>
                         <th>Slug</th>
                         <th>Created At</th>
                         <th>Status</th>
@@ -71,8 +79,11 @@ const PermissionDatatable = () => {
                 </thead>
                 <tbody>
                     {
-                        [...permissions]?.reverse().map((data, index) => 
+                        [...brands]?.reverse().map((data, index) => 
                             <tr key={index}>
+                                <td>
+                                    <img src={data?.logo} alt="" className="rounded shadow" style={{width:"60px",height:"60px",objectFit:"cover`"}} />
+                                </td>
                                 <td>
                                     <h2 className="table-avatar">{data?.name}</h2>
                                 </td>
@@ -82,23 +93,22 @@ const PermissionDatatable = () => {
                                 <td>
                                     <div className="status-toggle">
                                         <input type="checkbox" id={`status_${index}`} className="check" checked={data.status ? true : false}/>
-                                        <label onClick={() => handlePermissionStatusUpdate(data?.status, data?._id)} htmlFor={`status_${index}`} className="checktoggle">checkbox</label>
+                                        <label onClick={() => handleBrandStatusUpdate(data?.status, data?._id)} htmlFor={`status_${index}`} className="checktoggle">checkbox</label>
                                     </div>
                                 </td>
 
                                 <td>
                                     <button 
                                         onClick={() => {
-                                            setInput({name: data?.name});
+                                            setInput({name: data?.name, logo: data?.logo});
                                             setModal(true);
-                                        }} 
-                                        className="btn btn-sm bg-info-light mr-2"
+                                        }} className="btn btn-sm bg-info-light mr-2"
                                     >
-                                        <FaRegEdit style={{fontSize: "15px", margin:"auto"}} />
+                                            <FaRegEdit style={{fontSize: "15px", margin:"auto"}} />
                                     </button>
 
                                     {modal && <Modal title={"Permission update"}  modalClose={setModal}>
-                                        <form onSubmit={(e) => handlePermissionUpdate(e, data?._id)}>
+                                        <form onSubmit={(e) => handleBrandUpdate(e, data?._id)}>
                                             <div className="row form-row">
 
                                                 <div className="col-12">
@@ -107,13 +117,20 @@ const PermissionDatatable = () => {
                                                         <input type="text" name="name" value={input.name} onChange={handleInputChange} className="form-control"/>
                                                     </div>
                                                 </div>
+
+                                                <div className="col-12">
+                                                    <div className="form-group">
+                                                        <label>Logo</label>
+                                                        <input type="file" name="logo" onChange={(e) => handleFileInputChange(e, 'logo')} className="form-control"/>
+                                                    </div>
+                                                </div>
                                                 
                                             </div>
                                             <button type="submit" className="btn btn-primary btn-block">Update</button>
                                         </form>
                                     </Modal>}
 
-                                    <button onClick={() => handlePermissionDelete(data?._id)} className="btn btn-sm bg-danger-light"><FaRegTrashAlt style={{fontSize: "15px", margin:"auto"}} /></button>
+                                    <button onClick={() => handleBrandDelete(data?._id)} className="btn btn-sm bg-danger-light"><FaRegTrashAlt style={{fontSize: "15px", margin:"auto"}} /></button>
                                 </td>
                             </tr>
                         )
@@ -123,8 +140,10 @@ const PermissionDatatable = () => {
                 <h3 className="mt-6 mb-6 text-center py-5">Sorry, permission data not found!</h3>
             )}
         
+        
         </>
     )
 }
 
-export default PermissionDatatable;
+export default BrandDatatable;
+

@@ -3,7 +3,7 @@ import Login from "../pages/login/Login";
 import Signup from "../pages/signup/Signup";
 import PublicGard from "./PublicGard";
 
-const publicRouter = [
+const PublicRouter = [
     {
         element: <PageLayout/>,
         children: [{
@@ -22,4 +22,4 @@ const publicRouter = [
     }
 ];
 
-export default publicRouter;
+export default PublicRouter;
