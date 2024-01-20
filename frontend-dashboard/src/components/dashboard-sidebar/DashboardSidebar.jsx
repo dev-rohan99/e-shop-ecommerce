@@ -24,7 +24,7 @@ const DashboardSidebar = () => {
                                 <span>Admin</span>
                             </li>
                             <li className="active"> 
-                                <Link to={"/dashboard"}><MdOutlineDashboard style={{fontSize: "23px"}} /> <span>Dashboard</span></Link>
+                                <Link to={"/"}><MdOutlineDashboard style={{fontSize: "23px"}} /> <span>Dashboard</span></Link>
                             </li>
                             <li> 
                                 <Link to={"/dashboard/products"}><FaSitemap style={{fontSize: "23px"}} /> <span>Products</span></Link>

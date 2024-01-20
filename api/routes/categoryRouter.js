@@ -1,13 +1,13 @@
 import express from 'express';
 import { userVerify } from '../middlewares/userVerify.js';
 import { createCategory, deleteCategory, editCategoriestatus, editCategory, getCategories, getSingleCategory } from '../controllers/categoryController.js';
-import { categoryPhoto } from '../middlewares/multer.js';
+import { categoryIcon, categoryPhoto } from '../middlewares/multer.js';
 const router = express.Router();
 
 
 router.get('/all', getCategories);
 router.get('/:id', getSingleCategory);
-router.post('/create', userVerify, categoryPhoto, createCategory);
+router.post('/create', userVerify, categoryIcon, categoryPhoto, createCategory);
 router.put('/update/:id', userVerify, categoryPhoto, editCategory);
 router.patch('/update/:id', userVerify, categoryPhoto, editCategory);
 router.put('/status-update/:id', userVerify, editCategoriestatus);

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createSellerOrAdminBrand, createShopTag, deleteSellerOrAdminBrand, deleteShopTag, getSellerOrAdminBrands, getShopTag, updateSellerOrAdminBrand, updateSellerOrAdminBrandStatus, updateShopTag, updateShopTagStatus } from "./shopAoiSlice";
+import { createSellerOrAdminBrand, createShopCategory, createShopTag, deleteSellerOrAdminBrand, deleteShopCategory, deleteShopTag, getSellerOrAdminBrands, getShopCategories, getShopTag, updateSellerOrAdminBrand, updateSellerOrAdminBrandStatus, updateShopCategoriy, updateShopCategoryStatus, updateShopTag, updateShopTagStatus } from "./shopAoiSlice";
 
 
 const shopSlice = createSlice({
@@ -22,6 +22,8 @@ const shopSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
+
+        // brands functionality 
 
         builder.addCase(createSellerOrAdminBrand.pending, (state) => {
             state.isLoading = true;
@@ -91,6 +93,8 @@ const shopSlice = createSlice({
             state.error = action.error.message;
         })
 
+        // tags functionality 
+
         builder.addCase(createShopTag.pending, (state) => {
             state.isLoading = true;
         }).addCase(createShopTag.fulfilled, (state, action) => {
@@ -151,6 +155,72 @@ const shopSlice = createSlice({
             state.message = action.payload.message;
             state.tags = state.tags.filter((data) => data._id !== action.payload.tag._id);
         }).addCase(deleteShopTag.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        // categories functionality 
+
+        builder.addCase(createShopCategory.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(createShopCategory.fulfilled, (state, action) => {
+            state.categories = state.categories ?? [];
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.categories.push(action.payload.category);
+        }).addCase(createShopCategory.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        builder.addCase(getShopCategories.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(getShopCategories.fulfilled, (state, action) => {
+            state.categories = state.categories ?? [];
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.categories = action.payload.categories;
+        }).addCase(getShopCategories.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        builder.addCase(updateShopCategoriy.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(updateShopCategoriy.fulfilled, (state, action) => {
+            state.categories = state.categories ?? [];
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.categories = state.categories.filter((data) => data._id !== action.payload.category._id);
+        }).addCase(updateShopCategoriy.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        builder.addCase(updateShopCategoryStatus.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(updateShopCategoryStatus.fulfilled, (state, action) => {
+            state.categories = state.categories ?? [];
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.categories[
+                state.categories.findIndex(
+                    (data) => data._id == action.payload.category._id
+                )
+            ] = action.payload.tag;
+        }).addCase(updateShopCategoryStatus.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        })
+
+        builder.addCase(deleteShopCategory.pending, (state) => {
+            state.isLoading = true;
+        }).addCase(deleteShopCategory.fulfilled, (state, action) => {
+            state.categories = state.categories ?? [];
+            state.isLoading = false;
+            state.message = action.payload.message;
+            state.categories = state.categories.filter((data) => data._id !== action.payload.category._id);
+        }).addCase(deleteShopCategory.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
         })

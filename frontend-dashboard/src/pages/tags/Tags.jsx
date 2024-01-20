@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TagsDataTable from '../../components/tags-datatable/TagsDataTable';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useInputControl from '../../hooks/useInputControl';
 import Modal from '../../components/modal/Modal';
 import createToast from '../../utilities/createToast';
 import { createShopTag } from '../../features/shop/shopAoiSlice';
+import { setShopMessageEmpty } from '../../features/shop/shopSlice';
 
 
 const Tags = () => {
 
     const [modal, setModal] = useState(false);
 	const { input, setInput, resetForm, handleInputChange } = useInputControl({
-		name: "",
-		permissions: []
+		name: ""
 	});
 	const dispatch = useDispatch();
+    const { isLoading, error, message } = useSelector((state) => state.shop);
 
     const handleTagCreate = (e) => {
         e.preventDefault();
@@ -26,6 +27,17 @@ const Tags = () => {
 			setModal(false);
 		}
     }
+
+    useEffect(() => {
+        if(error){
+            createToast(error, "warn");
+            dispatch(setShopMessageEmpty());
+        }
+        if(message){
+            createToast(message, "success");
+            dispatch(setShopMessageEmpty());
+        }
+    }, [error, message, dispatch]);
 
     return (
         <>

@@ -63,11 +63,13 @@ export const getCategories = async (req, res, next) => {
 export const createCategory = async (req, res, next) => {
     try{
 
-        const { name, parentCategoryId, icon, photo } = req.body;
+        const { name, icon, photo, parentCategoryId } = req.body;
 
-        if(!name){
+        if(!name || !icon || !photo){
             return next(createError(400, 'Please fill out the form!'));
         }
+
+        console.log("Received Files:", req.files);
 
         const categoriesCheck = await categoryModel.findOne({ name });
 
@@ -78,12 +80,12 @@ export const createCategory = async (req, res, next) => {
         const slug = makeSlug(name);
 
         let catIcon = null;
-        if(icon){
-            catIcon = icon;
+        if(req.file && req.file.fieldname === 'category-icon'){
+            catIcon = cloudinaryUpload(req.file.path);
         }
 
         const categoryPhoto = null;
-        if(photo){
+        if(req.file && req.file.fieldname === 'category-photo'){
             categoryPhoto = cloudinaryUpload(req.file.path);
         }
         
@@ -94,6 +96,9 @@ export const createCategory = async (req, res, next) => {
             photo: categoryPhoto ? categoryPhoto : null,
             parentCategoryId: parentCategoryId ? parentCategoryId : null
         });
+
+        
+        console.log(req.body);
 
         if(parentCategoryId){
             await categoryModel.findByIdAndUpdate(parentCategoryId, {
